@@ -1,19 +1,20 @@
 \name{ann.cv}
-\alias{ann.cv}
+\alias{}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Calculate interannual coefficient of variation}
 \description{
 This function takes a daily time series and returns the coefficient of variation of mean annual runoff expressed as a percentage. 
 
-i.e. sd/mean*100
+i.e. (sd/mean)*100
 }
 \usage{
 ann.cv(flow.ts)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{flow.ts}{Dataframe consisting of date in column one and flow in column two. Date must be in POSIX format (see ts.format)}
+  \item{flow.ts}{Dataframe consisting of date in column one and flow in column two. Date must be in POSIX format (see ts.format). Missing values are ignored.
+  }
 }
 \details{
 Requires date to be in POSIX format. See ts.format
@@ -42,13 +43,12 @@ Nick Bond <nrb.ski@gmail.com>
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-
 data(cooper)
 cooper<-ts.format(cooper)
 ann.cv(cooper)
 
 
-
+}
 %## The function is currently defined as
 %function (flow.ts) 
 %{
@@ -62,5 +62,5 @@ ann.cv(cooper)
 %}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ coefficient of variation }
-\keyword{ interannual variability }% __ONLY ONE__ keyword per line
+%\keyword{ coefficient of variation }
+%\keyword{ interannual variability }% __ONLY ONE__ keyword per line

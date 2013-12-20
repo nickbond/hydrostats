@@ -6,8 +6,7 @@
 calculate hydrologic statistics
 }
 \description{
-More about what it does (maybe more than one line)
-~~ A concise (1-5 lines) description of the package ~~
+A package to calculate a range of hydrologic statistics based on daily time series data and which are widely used in hydrology and ecological applications.
 }
 \details{
 \tabular{ll}{
@@ -17,8 +16,9 @@ Version: \tab 0.1\cr
 Date: \tab 2013-12-20\cr
 License: \tab Free \cr
 }
-~~ An overview of how to use the package, including the most important ~~
-~~ functions ~~
+
+Data must be provided as a dataframe in which the first column is the date in POSIX format (see \code{\link[hydrostats:ts.format]{ts.format}}) and the second column contains the flow data.
+
 }
 \author{
 Nick Bond
@@ -29,9 +29,10 @@ Maintainer:  nrb.ski@gmail.com
 \references{
 ~~ Literature or other references for background information ~~
 }
+\keyword{ package 
 ~~ Optionally other standard keywords, one per line, from file KEYWORDS in ~~
 ~~ the R documentation directory ~~
-\keyword{ package }
+}
 \seealso{
 ~~ Optional links to other man pages, e.g. ~~
 ~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
