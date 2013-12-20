@@ -7,6 +7,8 @@ Calculate interannual coefficient of variation}
 This function takes a daily time series and returns the coefficient of variation of mean annual runoff expressed as a percentage. 
 
 i.e. (sd/mean)*100
+
+Missing values are ignored.
 }
 \usage{
 ann.cv(flow.ts)
