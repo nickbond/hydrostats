@@ -2,9 +2,9 @@
 \alias{ann.cv}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Calculate interannual coefficient of variation}
+calculate interannual coefficient of variation}
 \description{
-This function takes a daily time series and returns the coefficient of variation of mean annual runoff expressed as a percentage. 
+This function takes a daily time series and returns the coefficient of variation of mean annual flow expressed as a percentage. 
 
 i.e. (sd/mean)*100
 

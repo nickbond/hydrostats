@@ -2,7 +2,7 @@
 \alias{daily.cv}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Caculate daily cofficient of variation in streamflow
+caculate daily cofficient of variation
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

@@ -2,7 +2,7 @@
 \alias{partial.series}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Derive partial flood series
+derive partial and annual flood series
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

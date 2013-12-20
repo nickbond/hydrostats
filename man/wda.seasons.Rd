@@ -2,7 +2,7 @@
 \alias{wda.seasons}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Divide series into wet, dry and average years
+divide series into wet, dry and average years for subsequent analysis
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

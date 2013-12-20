@@ -2,7 +2,7 @@
 \alias{monthly.cv}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Calculate monthly coefficient of variation
+calculate monthly coefficient of variation
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
