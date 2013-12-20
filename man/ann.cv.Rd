@@ -4,16 +4,14 @@
 \title{
 Calculate interannual coefficient of variation}
 \description{
-This function takes a daily time series and returns the mean and standard deviation (sd) in mean annual runoff (reported in Ml/day).
+This function takes a daily time series and returns the mean and standard deviation (sd) of mean annual runoff (reported in Ml/day).
 }
 \usage{
 ann.cv(flow.ts)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{flow.ts}{
-%%     ~~Describe \code{flow.ts} here~~
-}
+  \item{flow.ts}{Dataframe consisting of date in column one and flow in column two.}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
@@ -29,7 +27,7 @@ ann.cv(flow.ts)
 %% ~put references to the literature/web site here ~
 }
 \author{
-%%  ~~who you are~~
+Nick Bond <nrb.ski@gmail.com>
 }
 \note{
 %%  ~~further notes~~
