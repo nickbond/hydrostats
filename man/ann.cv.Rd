@@ -4,19 +4,20 @@
 \title{
 Calculate interannual coefficient of variation}
 \description{
-This function takes a daily time series and returns the mean and standard deviation (sd) of mean annual runoff (reported in Ml/day).
+This function takes a daily time series and returns the coefficient of variation of mean annual runoff.
 }
 \usage{
 ann.cv(flow.ts)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{flow.ts}{Dataframe consisting of date in column one and flow in column two.}
+  \item{flow.ts}{Dataframe consisting of date in column one and flow in column two. Date must be in POSIX format (see ts.format)}
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+Requires date to be in POSIX format. See ts.format
 }
 \value{
+list of length 1
 %%  ~Describe the value returned
 %%  If it is a LIST, use
 %%  \item{comp1 }{Description of 'comp1'}
@@ -39,9 +40,10 @@ Nick Bond <nrb.ski@gmail.com>
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+
+data(cooper)
+cooper<-ts.format(cooper)
+ann.cv(cooper)
 
 ## The function is currently defined as
 function (flow.ts) 
