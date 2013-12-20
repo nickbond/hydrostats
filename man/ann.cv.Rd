@@ -4,7 +4,9 @@
 \title{
 Calculate interannual coefficient of variation}
 \description{
-This function takes a daily time series and returns the coefficient of variation of mean annual runoff.
+This function takes a daily time series and returns the coefficient of variation of mean annual runoff expressed as a percentage. 
+
+i.e. sd/mean*100
 }
 \usage{
 ann.cv(flow.ts)
@@ -45,18 +47,20 @@ data(cooper)
 cooper<-ts.format(cooper)
 ann.cv(cooper)
 
-## The function is currently defined as
-function (flow.ts) 
-{
-    flow.ts$year <- strftime(flow.ts$Date, format = "\%Y")
-    ann.stats <- ddply(flow.ts, "year", summarize, mean = mean(Q, 
-        na.rm = T), sd = sd(Q, na.rm = T))
-    out <- sd(ann.stats$mean, na.rm = T)/mean(ann.stats$mean, 
-        na.rm = T) * 100
-    return(list(ann.cv = out))
-  }
-}
+
+
+%## The function is currently defined as
+%function (flow.ts) 
+%{
+%    flow.ts$year <- strftime(flow.ts$Date, format = "\%Y")
+%    ann.stats <- ddply(flow.ts, "year", summarize, mean = mean(Q, 
+%        na.rm = T), sd = sd(Q, na.rm = T))
+%    out <- sd(ann.stats$mean, na.rm = T)/mean(ann.stats$mean, 
+%        na.rm = T) * 100
+%    return(list(ann.cv = out))
+%  }
+%}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ coefficient of variation }
+\keyword{ interannual variability }% __ONLY ONE__ keyword per line
