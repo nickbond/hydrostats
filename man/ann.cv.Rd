@@ -1,5 +1,5 @@
 \name{ann.cv}
-\alias{}
+\alias{ann.cv}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Calculate interannual coefficient of variation}
