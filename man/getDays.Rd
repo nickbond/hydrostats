@@ -2,7 +2,7 @@
 \alias{getDays}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-function to find day of the year based on dates
+Function to find day of the year based on dates
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

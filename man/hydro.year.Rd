@@ -2,7 +2,7 @@
 \alias{hydro.year}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-determine hydrologic year for calculating indices
+Determine hydrologic year for calculating indices
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

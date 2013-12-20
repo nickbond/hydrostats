@@ -2,7 +2,7 @@
 \alias{doy.plot}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-create day of year plot with ggplot
+Create day of year plot with ggplot
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

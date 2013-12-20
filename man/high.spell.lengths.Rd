@@ -2,7 +2,7 @@
 \alias{high.spell.lengths}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-calculate the length of high flow spells
+Calculate the length of high flow spells
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

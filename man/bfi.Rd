@@ -2,7 +2,7 @@
 \alias{bfi}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-calculate baseflow indices using the Lynne-Hollick filter
+Calculate baseflow indices using the Lynne-Hollick filter
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

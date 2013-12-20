@@ -2,7 +2,7 @@
 \alias{day.dist}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-calculate average timing of events (doy)
+Calculate average timing of events (doy)
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

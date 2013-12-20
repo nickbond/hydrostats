@@ -2,7 +2,7 @@
 \alias{daily.reshape}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-reshape daily data for plotting day of year (doy) plots in ggplot
+Reshape daily data for plotting day of year (doy) plots in ggplot
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

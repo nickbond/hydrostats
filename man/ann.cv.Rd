@@ -2,7 +2,7 @@
 \alias{ann.cv}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-calculate interannual coefficient of variation}
+Calculate interannual coefficient of variation}
 \description{
 This function takes a daily time series and returns the coefficient of variation of mean annual flow expressed as a percentage. 
 

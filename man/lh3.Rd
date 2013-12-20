@@ -2,10 +2,10 @@
 \alias{lh3}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-3-pass LH filter
+3-pass Lynne Hollick filter (Lynne & Hollick, 1979)
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Applies 3 repeat passes (forward, back, forward) of the Lynne Hollick filter (Lynne & Hollick, 1979) to determine baseflow contribution.
 }
 \usage{
 lh3(Q, a)
@@ -30,10 +30,10 @@ lh3(Q, a)
 %% ...
 }
 \references{
-%% ~put references to the literature/web site here ~
+Lynne, V., Hollick, M. (1979) Stochastic time-variable rainfall-runoff modelling. In: pp. 89–93 Institute of Engineers Australia National Conference. Perth.
 }
 \author{
-%%  ~~who you are~~
+Nick Bond
 }
 \note{
 %%  ~~further notes~~
