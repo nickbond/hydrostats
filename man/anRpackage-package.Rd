@@ -13,18 +13,18 @@ More about what it does (maybe more than one line)
 \tabular{ll}{
 Package: \tab hydrostats\cr
 Type: \tab Package\cr
-Version: \tab 1.0\cr
+Version: \tab 0.1\cr
 Date: \tab 2013-12-20\cr
-License: \tab What license is it under?\cr
+License: \tab Free \cr
 }
 ~~ An overview of how to use the package, including the most important ~~
 ~~ functions ~~
 }
 \author{
-Who wrote it
+Nick Bond
 
-Maintainer: Who to complain to <yourfault@somewhere.net>
-~~ The author and/or maintainer of the package ~~
+Maintainer:  nrb.ski@gmail.com
+
 }
 \references{
 ~~ Literature or other references for background information ~~

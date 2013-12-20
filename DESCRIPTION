@@ -1,9 +1,9 @@
-Package: hydro-stats
+Package: hydrostats
 Type: Package
 Title: Calculates a suite of hydrologic indices for daily timeseries.
-Version: 1.0
+Version: 0.1
 Date: 2013-12-20
-Author: Who wrote it
+Author: Nick Bond
 Maintainer: Who to complain to <yourfault@somewhere.net>
 Description: More about what it does (maybe more than one line)
 License: What license is it under?
