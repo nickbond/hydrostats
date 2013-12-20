@@ -14,10 +14,10 @@ Package: \tab hydrostats\cr
 Type: \tab Package\cr
 Version: \tab 0.1\cr
 Date: \tab 2013-12-20\cr
-License: \tab Free \cr
+License: \tab GPL (>= 2) \cr
 }
 
-Data must be provided as a dataframe in which the first column is the date in POSIX format (see \code{\link[hydrostats:ts.format]{ts.format}}) and the second column contains the flow data.
+For most functions data must be provided as a dataframe in which the first column is the date in POSIX format (see \code{\link[hydrostats:ts.format]{ts.format}}) and the second column contains the flow data.
 
 }
 \author{
