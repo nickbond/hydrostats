@@ -5,14 +5,19 @@
 Caculate daily cofficient of variation
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+This function takes a daily time series and returns the coefficient of variation of daily flows expressed as a percentage. 
+
+i.e. (sd/mean)*100
+
+Missing values are ignored.
 }
 \usage{
 daily.cv(flow.ts)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{flow.ts}{
+  \item{flow.ts}{Dataframe consisting of date in column one and flow in column two. Date must be in POSIX format (see ts.format).}
+  {
 %%     ~~Describe \code{flow.ts} here~~
 }
 }
@@ -30,8 +35,7 @@ daily.cv(flow.ts)
 %% ~put references to the literature/web site here ~
 }
 \author{
-%%  ~~who you are~~
-}
+Nick Bond}
 \note{
 %%  ~~further notes~~
 }
@@ -42,9 +46,10 @@ daily.cv(flow.ts)
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+data(cooper)
+cooper<-ts.format(cooper)
+
+daily.cv(Cooper)
 
 ## The function is currently defined as
 function (flow.ts) 

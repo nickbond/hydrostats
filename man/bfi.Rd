@@ -13,30 +13,39 @@ bfi(flow.ts, a, ts = "mean")
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{flow.ts}{
-%%     ~~Describe \code{flow.ts} here~~
+Dataframe consisting of date in column one and flow in column two. Date must be in POSIX format (see ts.format). Missing values are ignored.
 }
   \item{a}{
-%%     ~~Describe \code{a} here~~
+The alpha value used in the Lynne-Hollick filter for digital baseflow separation. Default value is 0.975  
 }
   \item{ts}{
-%%     ~~Describe \code{ts} here~~
-}
+ts="mean" returns means for the entire time series
+annual returns annual averages. Note this function does not currently use hydrologic years even when defined
+daily returns complete series}
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+Technically the LH filter cannot be calculated where there are missing data. Here the function removes missing values and is applied to a concatenated version of the time series. Missing dates are reinserted after the filter has been applied for the purpose of returning annual or daily series. The function further reports the number of missing values leaving the user to decide on the reliability of the baseflow estimates.
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
+ts="mean" 
+ \item{prop.obs }{proportion of non-missing observations}
+ \item{MDF }{mean daily flow}
+ \item{Q50 }{median daily flow}
+ \item{mean.bf }{mean baseflow volume}
+ \item{mean.bfi }{mean baseflow index}
+ 
+ts="annual"
+	\item{}{A dataframe containing columns "year", "no.obs",  "Q", "bf", "bfi", where no.obs is the number of observations, and bf and bfi are the mean baseflow and baseflow index, respectively, for each year in the record.}
+	
+ts="daily"
+	\item{}{The original dataframe with appended columns "bf" and "bfi". See ts="annual" for details.}
 %% ...
 }
 \references{
-%% ~put references to the literature/web site here ~
+Lynne, V., Hollick, M. (1979) Stochastic time-variable rainfall-runoff modelling. In: pp. 89-93 Institute of Engineers Australia National Conference. Perth.
 }
 \author{
-%%  ~~who you are~~
+Nick Bond
 }
 \note{
 %%  ~~further notes~~
@@ -48,49 +57,13 @@ bfi(flow.ts, a, ts = "mean")
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+data(cooper)
+cooper<-ts.format(cooper)
 
-## The function is currently defined as
-function (flow.ts, a, ts = "mean") 
-{
-    full.flow.ts <- flow.ts[, c("Date", "Q")]
-    red.flow.ts <- full.flow.ts[complete.cases(full.flow.ts[, 
-        "Date"], full.flow.ts[, "Q"]), ]
-    Date <- red.flow.ts[, "Date"]
-    Q <- red.flow.ts[, "Q"]
-    bf <- lh3(Q, a)
-    bfi <- ifelse(Q == 0, 0, bf/Q)
-    out <- data.frame(Date, bf, bfi)
-    out <- merge(full.flow.ts, out, by = "Date", all.x = T)
-    names(out) <- c("Date", "Q", "bf", "bfi")
-    if (ts == "daily") {
-        return(out)
-    }
-    else {
-        if (ts == "annual") {
-            a.obs <- aggregate(full.flow.ts$Q, by = list(year = strftime(full.flow.ts$Date, 
-                format = "\%Y")), function(x) {
-                sum(!is.na(x))
-            })
-            names(a.obs) <- c("year", "obs")
-            a.bf <- aggregate(out[2:4], by = list(year = strftime(out$Date, 
-                format = "\%Y")), mean, na.rm = T)
-            out <- merge(a.obs, a.bf, by = "year", all.x = T)
-            return(out)
-        }
-        if (ts == "mean") {
-            all.days <- nrow(full.flow.ts)
-            obs <- nrow(red.flow.ts)
-            prop.obs = obs/all.days
-            return(list(prop.obs = prop.obs, MDF = mean(out[, 
-                2], na.rm = T), Q50 = median(out[, 2], na.rm = T), 
-                mean.bf = mean(out[, 3], na.rm = T), mean.bfi = mean(out[, 
-                  3], na.rm = T)/mean(out[, 2], na.rm = T)))
-        }
-    }
-  }
+bfi(Cooper,a=0.975, ts="mean")
+bfi(Cooper,a=0.975, ts="annual")
+bfi(Cooper,a=0.975, ts="daily")
+
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

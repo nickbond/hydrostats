@@ -5,7 +5,7 @@
 Calculate average timing of events (doy)
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+A helper function for calculating the mean and standard deviation in the timing of annual events. Given a dataframe consisting of years in column one and a day of year (0-365 [366 for leap years]) in column two, day.dist returns the mean day of year (doy) and standard deviation of the mean day of year. Circular statistics are used to account for the proximity of days close to the start and the end of the year (i.e. numbers close to 0 and 365.
 }
 \usage{
 day.dist(years, days)
@@ -30,7 +30,7 @@ day.dist(years, days)
 %% ...
 }
 \references{
-%% ~put references to the literature/web site here ~
+Bayliss, A. C., Jones, R. C. (1993) Peaks-over-threshold flood database: Summary statistics and seasonality. Institute of Hydrology.
 }
 \author{
 %%  ~~who you are~~

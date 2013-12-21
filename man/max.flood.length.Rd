@@ -1,14 +1,14 @@
-\name{ann.flood.length}
-\alias{ann.flood.length}
+\name{max.flood.length}
+\alias{max.flood.length}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Calculate annual flood length
+Calculate maximum flood length in a time series
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-ann.flood.length(flow.ts, flow.threshold, ind.days = 5)
+max.flood.length(flow.ts, flow.threshold, ind.days = 5)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

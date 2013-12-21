@@ -1,2 +1,6 @@
-export(ann.cv,ann.flood.length,bfi,CTF,daily.cv, daily.reshape,day.dist,doy.plot,doy.plot.log,getDays,high.spell.lengths,high.spells,hydro.year,lh,lh3,low.spells,monthly.cv,partial.series,seasonality,ts.format,wda.seasons)
+export(ann.cv,bfi,CTF,daily.cv, 
+			 daily.reshape,day.dist,doy.plot,
+			 doy.plot.log,getDays,high.spell.lengths,
+			 high.spells,hydro.year,lh,lh3,low.spells,max.flood.length,
+			 monthly.cv,partial.series,seasonality,ts.format,wda.seasons)
 import(plyr)

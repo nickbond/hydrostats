@@ -1,5 +1,5 @@
 bfi <-
-function(flow.ts,a,ts="mean") {
+function(flow.ts,a=0.975,ts="mean") {
    	
      full.flow.ts<-flow.ts[,c("Date","Q")]
      #names(full.flow.ts)<-c("Date","Q")
@@ -23,7 +23,7 @@ function(flow.ts,a,ts="mean") {
  
 if  (ts=="annual") {
   a.obs<-aggregate(full.flow.ts$Q,by=list(year=strftime(full.flow.ts$Date,format="%Y")),function(x) {sum(!is.na(x))})
-  names(a.obs)<-c("year","obs")
+  names(a.obs)<-c("year","no.obs")
  a.bf<-aggregate(out[2:4],by=list(year=strftime(out$Date,format="%Y")),mean,na.rm=T)
 out<-merge(a.obs,a.bf,by="year",all.x=T)
 
