@@ -45,9 +45,9 @@ Nick Bond <nrb.ski@gmail.com>
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-data(cooper)
-cooper<-ts.format(cooper)
-ann.cv(cooper)
+data(Cooper)
+cooper<-ts.format(Cooper)
+ann.cv(Cooper)
 
 
 }

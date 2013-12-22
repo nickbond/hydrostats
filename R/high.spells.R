@@ -1,5 +1,6 @@
 high.spells <-
 function(flow.ts,quant=0.9, user.threshold=F, defined.threshold, ind.days=5, duration=T, volume=T,plot=T, ignore.zeros=F,ctf.threshold=0.1, ann.max.stats=T,ann.max.only=F,inter.flood=F) {
+	gauge<-deparse(substitute(flow.ts))
   
   if (ncol(flow.ts)>2) {
     record.year<-flow.ts[,'Year']
@@ -42,7 +43,7 @@ cv.ann.duration<-(sd(ann.max.spell.runs$lengths[which(ann.max.spell.runs$values=
 if(ann.max.only==T) {
 
   return(list(avg.max.ann=mean(ann.max[is.finite(ann.max)],na.rm=T), cv.max.ann=(sd(ann.max,na.rm=T)/mean(ann.max,na.rm=T)*100), 
-              flood.timing=correct.ann.max.day[1], flood.predictability=correct.ann.max.day[2],
+              flood.timing=correct.ann.max.day[[1]], flood.predictability=correct.ann.max.day[[2]],
               flood.skewness=mean(ann.max,na.rm=T)/mean(flow.ts[,2],na.rm=T),avg.ann.duration=avg.ann.duration,cv.ann.duration=cv.ann.duration))
 
 }
@@ -111,7 +112,7 @@ flood.frequency<-n.events/n.years
 if(duration==TRUE) {
   
   avg.duration<-mean(high.flow.runs$lengths[which(high.flow.runs$values==1)],na.rm=T)
-  med.duration<-quantile(high.flow.runs$lengths[which(high.flow.runs$values==1)],0.50,na.rm=T)
+  med.duration<-quantile(high.flow.runs$lengths[which(high.flow.runs$values==1)],0.50,na.rm=T, names=F)
   max.duration<-max(high.flow.runs$lengths[which(high.flow.runs$values==1)], na.rm=T)
   sd.duration<-sd(high.flow.runs$lengths[which(high.flow.runs$values==1)], na.rm=T)
   cv.duration<-sd.duration/avg.duration*100
@@ -120,8 +121,8 @@ if(duration==TRUE) {
 if(inter.flood==TRUE) {
   
   avg.interval<-mean(high.flow.runs$lengths[which(high.flow.runs$values==0)],na.rm=T)
-  max.interval<-max(high.flow.runs$lengths[which(high.flow.runs$values==0)], na.rm=T)
   min.interval<-min(high.flow.runs$lengths[which(high.flow.runs$values==0)], na.rm=T)
+  max.interval<-max(high.flow.runs$lengths[which(high.flow.runs$values==0)], na.rm=T)
 
   sd.interval<-sd(high.flow.runs$lengths[which(high.flow.runs$values==0)], na.rm=T)
   cv.interval<-sd.interval/avg.interval*100
@@ -133,14 +134,16 @@ spell.factor <- rep(seq_along(high.flow.runs$lengths), times=high.flow.runs$leng
 spells<-split(flow.ts[[2]],spell.factor)
 spell.volumes<-flow.ts[[2]]
 spell.volumes<-sapply(spells,sum)
-spell.volumes<-spell.volumes[which(high.flow.runs$values==1)]
+spell.volumes.below.threshold<-sapply(spells,length)*flow.threshold
+spell.volumes<-spell.volumes[which(high.flow.runs$values==1)]-spell.volumes.below.threshold[which(high.flow.runs$values==1)]
 
 }
 
 
-if(plot==TRUE) {  
-plot(flow.ts[[2]],type="l", main=i)
-points(which(high.flows==1),flow.ts[which(high.flows==1),2],col="red")
+if(plot==TRUE) {
+plot(flow.ts[[1]],flow.ts[[2]],type="l", main=gauge, xlab="Date", ylab="Q")
+
+points(flow.ts[which(high.flows==1),1],flow.ts[which(high.flows==1),2],col="red",cex=0.25)
        
 abline(h=flow.threshold)
 }  
@@ -148,14 +151,14 @@ abline(h=flow.threshold)
 }
 
 if (ann.max.stats==F) {
-  return(list(n.events=n.years/flood.frequency, high.spell.threshold=flow.threshold, avg.high.spell.duration=avg.duration, med.high.spell.duration=med.duration, max.high.spell.duration=max.duration))
+	return(list(n.years=n.years, high.spell.threshold=flow.threshold, n.events=n.events, spell.frequency=flood.frequency, ari=1/flood.frequency, avg.high.spell.duration=avg.duration, med.high.spell.duration=med.duration, max.high.spell.duration=max.duration, avg.spell.volume=mean(spell.volumes,na.rm=T), avg.spell.peak=high.flow.av, sd.spell.peak=high.flow.sd))
 }
 
 else {
-  return(list(n.years=n.years,high.spell.threshold=flow.threshold, n.events=n.events,avg.high.spell.duration=avg.duration, med.high.spell.duration=med.duration, max.high.spell.duration=max.duration, spell.freq=flood.frequency, avg.spell.volume=mean(spell.volumes,na.rm=T),
-            avg.spell.peak=high.flow.av, sd.spell.peak=high.flow.sd, avg.max.ann=mean(ann.max[is.finite(ann.max)],na.rm=T),  cv.max.ann=(sd(ann.max,na.rm=T)/mean(ann.max,na.rm=T)*100), 
-            flood.skewness=mean(ann.max,na.rm=T)/mean(flow.ts[,2],na.rm=T), flood.timing=correct.ann.max.day[1], 
-            flood.predictability=correct.ann.max.day[2],avg.ann.duration=avg.ann.duration,cv.ann.duration=cv.ann.duration))
+  return(list(n.years=n.years,high.spell.threshold=flow.threshold, n.events=n.events, spell.freq=flood.frequency, ari=1/flood.frequency, avg.high.spell.duration=avg.duration, med.high.spell.duration=med.duration, max.high.spell.duration=max.duration, avg.spell.volume=mean(spell.volumes,na.rm=T), avg.spell.peak=high.flow.av, sd.spell.peak=high.flow.sd, 
+  						avg.max.ann=mean(ann.max[is.finite(ann.max)],na.rm=T),  cv.max.ann=(sd(ann.max,na.rm=T)/mean(ann.max,na.rm=T)*100), 
+            flood.skewness=mean(ann.max,na.rm=T)/mean(flow.ts[,2],na.rm=T), flood.timing=correct.ann.max.day[[1]], 
+            flood.predictability=correct.ann.max.day[[2]],avg.ann.duration=avg.ann.duration,cv.ann.duration=cv.ann.duration))
 }
          
 

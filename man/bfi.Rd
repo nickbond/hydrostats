@@ -57,8 +57,8 @@ Nick Bond
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-data(cooper)
-cooper<-ts.format(cooper)
+data(Cooper)
+cooper<-ts.format(Cooper)
 
 bfi(Cooper,a=0.975, ts="mean")
 bfi(Cooper,a=0.975, ts="annual")

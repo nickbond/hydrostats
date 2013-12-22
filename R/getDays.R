@@ -5,5 +5,5 @@ function(year) {
   d2 <- as.Date(paste(year, '-12-31', sep = ''))
   day<-difftime(d2,d1)+1
   days<-rbind(day,days)
-  return(days)
+  return(as.vector(days))
 }
