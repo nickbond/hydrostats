@@ -5,36 +5,37 @@
 Calculate seasonality of discharge
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
-}
+Returns statistics decribing seasonal variation in runoff. }
 \usage{
 seasonality(flow.ts, month.range = F)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{flow.ts}{
-%%     ~~Describe \code{flow.ts} here~~
+Dataframe consisting of date in column one and flow in column two. Date must be in POSIX format (see ts.format). Missing values are ignored.
 }
   \item{month.range}{
-%%     ~~Describe \code{month.range} here~~
-}
+logical. If FALSE (default), the function returns the percentage of runoff occurring during the average driest 6 month period (as defined across all years). If true, additional statistics describing cumulative average monthly flows, the range between the runoff in the wettest and driest months, and the average number of months between the wettest and driest periods of runoff.}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
+monthly.range=F\cr
+a vector of length 1. Percentage of annual runoff delivered during the average driest 6 month period.
+
+monthly.range=T\cr
+\item{Seasonality }{Description of 'comp1'}
+\item{average monthly flow }{Description of 'comp2'}
+\item{average annual monthly range }{Description of 'comp2'}
+\item{average number of months between the highest and lowest monthly runoff }{Description of 'comp2'}
 %% ...
 }
 \references{
 %% ~put references to the literature/web site here ~
 }
 \author{
-%%  ~~who you are~~
-}
+Nick Bond}
 \note{
 %%  ~~further notes~~
 }
@@ -45,9 +46,13 @@ seasonality(flow.ts, month.range = F)
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+
+Data(Cooper)
+Cooper<-ts.format(Cooper)
+
+seasonality(Cooper, monthly.range=T)
+
+
 
 ## The function is currently defined as
 function (flow.ts, month.range = F) 

@@ -2,42 +2,36 @@
 \alias{max.flood.length}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Calculate maximum flood length in a time series
+Calculates the maximum flood length in a time series. 
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
-}
+Calculates the maximum flood length above a user defined threshold in a time series. Used with ddply (from the plyr package) it will return a vector of maximum annual flood lengths (see examples). 
+
+Alternatively, the function high.spell.lengths can be used to return the length of all events above a threshold, not just the longest event in each year.}
 \usage{
 max.flood.length(flow.ts, flow.threshold, ind.days = 5)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{flow.ts}{
-%%     ~~Describe \code{flow.ts} here~~
+Dataframe consisting of date in column one and flow in column two. Date must be in POSIX format (see ts.format). 
 }
   \item{flow.threshold}{
-%%     ~~Describe \code{flow.threshold} here~~
-}
+A user supplied threshold for defining spells. This would typically be derived from hydraulic models or similar knowledge pertaining to a gauge site.}
   \item{ind.days}{
-%%     ~~Describe \code{ind.days} here~~
-}
+Periods between spells of less than ind.days (default 5) are considered to be 'in spell' for the purpose of further calculations. A value of 0 means spells 1 day apart are considered indpedendent.}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+returns a vector of length 1. Maximum spell duration.
 }
 \references{
 %% ~put references to the literature/web site here ~
 }
 \author{
-%%  ~~who you are~~
-}
+Nick Bond}
 \note{
 %%  ~~further notes~~
 }
@@ -48,14 +42,24 @@ max.flood.length(flow.ts, flow.threshold, ind.days = 5)
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+
+data(Cooper)
+Cooper<-ts.format(Cooper)
+
+max.flood.length(Cooper,50000, ind.days=5)
+
+# Return annual maximum flood length based on calendar year\cr# using ddply (from plyr package) 
+ddply(Cooper, .(Year=strptime(Cooper$Date,format="\%Y")),max.flood.length,50000)
+
+# Based on hydrologic year.
+Cooper<-hydro.year(Cooper)
+ddply(Cooper, .(Year),max.flood.length,50000)
+
 
 ## The function is currently defined as
 function (flow.ts, flow.threshold, ind.days = 5) 
 {
-    high.flows <- ifelse(flow.ts[, "Q"] > flow.threshold, 1, 
+    high.flows <- ifelse(flow.ts[, 2] > flow.threshold, 1, 
         0)
     high.flow.runs <- rle(high.flows)
     too.short <- which(high.flow.runs$lengths < ind.days & high.flow.runs$values == 

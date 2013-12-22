@@ -2,10 +2,10 @@
 \alias{bfi}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Calculate baseflow indices using the Lynne-Hollick filter
+Lynne-Hollick baseflow filter
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Calculate baseflow indices using the Lynne-Hollick filter
 }
 \usage{
 bfi(flow.ts, a, ts = "mean")
@@ -19,9 +19,9 @@ Dataframe consisting of date in column one and flow in column two. Date must be 
 The alpha value used in the Lynne-Hollick filter for digital baseflow separation. Default value is 0.975  
 }
   \item{ts}{
-ts="mean" returns means for the entire time series
-annual returns annual averages. Note this function does not currently use hydrologic years even when defined
-daily returns complete series}
+ts="mean" returns means for the entire time series \cr
+ts="annual" returns annual averages. Note this function does not currently use hydrologic years even when defined\cr
+ts="daily" returns complete series}
 }
 \details{
 Technically the LH filter cannot be calculated where there are missing data. Here the function removes missing values and is applied to a concatenated version of the time series. Missing dates are reinserted after the filter has been applied for the purpose of returning annual or daily series. The function further reports the number of missing values leaving the user to decide on the reliability of the baseflow estimates.

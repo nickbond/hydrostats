@@ -58,6 +58,7 @@ function(flow.ts,quant=0.9, user.threshold=F, defined.threshold, ind.days=5, ign
 		flow.runs.values<-high.flow.runs$values[good.high.flow.runs]
 		flow.runs.lengths<-high.flow.runs$lengths[good.high.flow.runs]
 		spell.lengths<-cbind(flow.runs.values, flow.runs.lengths)
-		flood.spell.lengths<-subset(spell.lengths, flow.runs.values==1, select=flow.runs.lengths)
-return(data.frame(flood.duration=flood.spell.lengths))
+		spell.lengths<-as.vector(subset(spell.lengths, flow.runs.values==1, select=flow.runs.lengths))
+		names(spell.lengths)[1]<-"spell.lengths"
+	return(data.frame(spell.lengths))
 }

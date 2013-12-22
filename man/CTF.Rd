@@ -2,31 +2,32 @@
 \alias{CTF}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Calculate cease-to-flow (CTF) spell statistics
+Cease-to-flow (CTF) spell statistics
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
-}
+Calculates summary statistics describing cease-to-flow spell characteristics.}
 \usage{
 CTF(flow.ts, threshold = 0.1)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{flow.ts}{
-%%     ~~Describe \code{flow.ts} here~~
-}
+Dataframe consisting of date in column one and flow in column two. Date must be in POSIX format (see ts.format).}
   \item{threshold}{
-%%     ~~Describe \code{threshold} here~~
-}
+values below this threshold (default 0.1) are treated as zero for the purpose of defining cease to flow spells to account for the fact that cease to flow levels are poorly defined for many gauging sites.}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
+list of length 4.
+
+\item{p.CTF }{percentage time cease to flows occur}
+\item{avg.CTF }{Average cease-to-flow spell duration}
+\item{med.CTF }{Median cease-to-flow spell duration}
+\item{min.CTF }{Minimum cease-to-flow spell duration}
+\item{max.CTF }{Maximum cease-to-flow spell duration}
+
 %% ...
 }
 \references{

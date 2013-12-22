@@ -2,10 +2,12 @@
 \alias{high.spell.lengths}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Calculate the length of high flow spells
+Calculate the length of all high flow spells
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Returns the length of all high flow spell events above a given percentile or user defined threshold. 
+
+Independence criteria allow short periods below the spell threshold to be ignored and flows below a threshold (e.g. zero flows) can be ignored when calculating percentile flows (useful in ephemeral rivers).
 }
 \usage{
 high.spell.lengths(flow.ts, quant = 0.9, user.threshold = F, defined.threshold, ind.days = 5, ignore.zeros = T, ctf.threshold = 0.1)
@@ -13,25 +15,22 @@ high.spell.lengths(flow.ts, quant = 0.9, user.threshold = F, defined.threshold, 
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{flow.ts}{
-%%     ~~Describe \code{flow.ts} here~~
+Dataframe consisting of date in column one and flow in column two. Date must be in POSIX format (see ts.format).
 }
   \item{quant}{
-%%     ~~Describe \code{quant} here~~
-}
+Percentile/quantile to use for defining event magnitude (default 0.9). A value of 0.9 is the upper 90th percentile (i.e. a volume exceeded 10\% of the time).}
   \item{user.threshold}{
-%%     ~~Describe \code{user.threshold} here~~
-}
+logical. If TRUE, the function returns results based on a user defined volume to define spell events (see defined.threshold). }
   \item{defined.threshold}{
-%%     ~~Describe \code{defined.threshold} here~~
+A user supplied threshold for defining spells. This would typically be derived from hydraulic models or similar knowledge pertaining to a gauge site.
 }
   \item{ind.days}{
-%%     ~~Describe \code{ind.days} here~~
-}
+Periods between spells of less than ind.days (default 5) are considered to be 'in spell' for the purpose of further calculations. A value of 0 means spells 1 day apart are considered indpedendent.}
   \item{ignore.zeros}{
-%%     ~~Describe \code{ignore.zeros} here~~
+logical. If TRUE, days below a user defined cease-to-flow threshold (default 0.1) will be excluded when estimating the spell threshold for a given percentile. This is primarily of interest in highly ephemeral rivers, where flow may only occur for a small fraction of the time. In such cases, the inclusion of zeros will skew estimates of high flow events downwards, which may be undesirable.
 }
   \item{ctf.threshold}{
-%%     ~~Describe \code{ctf.threshold} here~~
+values below this threshold are treated as zero for the purpose of percentile based calculations (see ignore zeros).
 }
 }
 \details{
@@ -39,16 +38,13 @@ high.spell.lengths(flow.ts, quant = 0.9, user.threshold = F, defined.threshold, 
 }
 \value{
 %%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+Returns a dataframe of spell lengths.
 }
 \references{
 %% ~put references to the literature/web site here ~
 }
 \author{
-%%  ~~who you are~~
+Nick Bond
 }
 \note{
 %%  ~~further notes~~
@@ -60,9 +56,12 @@ high.spell.lengths(flow.ts, quant = 0.9, user.threshold = F, defined.threshold, 
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+data(Cooper)
+Cooper<-ts.format(Cooper)
+
+high.spell.lengths(Cooper, user.threshold=T, defined.threshold=50000)
+
+
 
 ## The function is currently defined as
 function (flow.ts, quant = 0.9, user.threshold = F, defined.threshold, 

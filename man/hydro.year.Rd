@@ -8,17 +8,17 @@ Determine hydrologic year for calculating indices
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-hydro.year(flow.ts, hydro.year = "hydro", alt.start.date)
+hydro.year(flow.ts, hydro.year = "hydro")
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{flow.ts}{
-%%     ~~Describe \code{flow.ts} here~~
-}
+Dataframe consisting of date in column one and flow in column two. Date must be in POSIX format (see ts.format).}
   \item{hydro.year}{
-%%     ~~Describe \code{hydro.year} here~~
-}
-  \item{alt.start.date}{
+hydro.year="hydro" calculates the hydrologic year and returns a dataframe with an additional column indiating the hydrologic year to which each observation belongs. The hydrologic year is defined as starting in the first month of the average driest 6 month period across all years. This maximises the likelihood that low-flow and high-flow spells will be contained within a rolling 12 month period.
+
+Other options may be added in the future.
+
 %%     ~~Describe \code{alt.start.date} here~~
 }
 }
@@ -27,10 +27,7 @@ hydro.year(flow.ts, hydro.year = "hydro", alt.start.date)
 }
 \value{
 %%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+Returns the original dataframe with an added column "Year" indicating the hydrologic year to which each case belongs.
 }
 \references{
 %% ~put references to the literature/web site here ~
@@ -48,23 +45,18 @@ hydro.year(flow.ts, hydro.year = "hydro", alt.start.date)
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+data(Cooper)
+Cooper<-ts.format(Cooper)
+Cooper<-hydro.year(Cooper)
+
 
 ## The function is currently defined as
 function (flow.ts, hydro.year = "hydro", alt.start.date) 
 {
     begin <- head(flow.ts[[1]], 1)
     finish <- tail(flow.ts[[1]], 1)
-    if (hydro.year == "presample") {
-        date.dif <- round(difftime(alt.start.date, paste(strftime(begin, 
-            format = "\%Y"), 1, 1, sep = "-")))
-        new.begin <- as.Date(begin) - date.dif
-        new.begin <- seq.Date(new.begin, by = "year", len = 2)[2]
-        new.Date <- seq.Date(new.begin, by = "day", len = length(flow.ts[[1]]))
-    }
-    if (hydro.year == "hydro") {
+ 
+ if (hydro.year == "hydro") {
         month.runs <- c()
         month.means <- aggregate(flow.ts[[2]], by = list(month = strftime(flow.ts[[1]], 
             format = "\%m")), sum, na.rm = T)

@@ -1,8 +1,16 @@
 low.spells <-
-function(flow.ts,quant=0.1, duration=T, volume=T,plot=T,annual.stats=T,ann.min.only=F) {
+function(flow.ts,quant=0.1, duration=T, volume=T,plot=T,annual.stats=T,ann.stats.only=F) {
+	gauge<-deparse(substitute(flow.ts))
+	
   
-#record.year<-strftime(flow.ts[[1]],format="%Y")
-record.year<-flow.ts[[3]]
+	if (ncol(flow.ts)>2) {
+		record.year<-flow.ts[,'Year']
+	}
+	else {
+		record.year<-strftime(flow.ts[[1]],format="%Y")
+		flow.ts<-data.frame(flow.ts,Year=record.year)
+	}
+	
   n.years<-nlevels(as.factor(record.year))
 
 if(annual.stats==T) {
@@ -28,7 +36,7 @@ correct.ann.min.day<-day.dist(names(ann.min.day.no),ann.min.day.no)
 
 }
 
-if(ann.min.only==T) {
+if(ann.stats.only==T) {
 
  
   
@@ -82,18 +90,20 @@ spell.volumes<-spell.volumes[which(low.flow.runs$values==1)]
 }
 
 
-if(plot==TRUE) {  
-plot(flow.ts[[2]],type="l")
-points(which(low.flows==1),flow.ts[which(low.flows==1),2],col="red")
-       
-abline(h=flow.threshold)
+if(plot==TRUE) {
+	plot(flow.ts[[1]],flow.ts[[2]],type="l", main=gauge, xlab="Date", ylab="Q")
+	
+	points(flow.ts[which(low.flows==1),1],flow.ts[which(low.flows==1),2],col="red",cex=0.25)
+	
+	abline(h=flow.threshold)
 }  
+
 
 }
 
 return(list(low.spell.threshold=flow.threshold, avg.low.spell.duration=avg.duration, 
-max.low.duration=max.duration, low.spell.freq=low.spell.frequency, avg.min.ann=mean(ann.min[is.finite(ann.min)],na.rm=T), timing.min.flow=correct.ann.min.day[1], 
-            pred.min.flow=correct.ann.min.day[2]))
+max.low.duration=max.duration, low.spell.freq=low.spell.frequency, avg.min.ann=mean(ann.min[is.finite(ann.min)],na.rm=T), timing.min.flow=correct.ann.min.day[[1]], 
+            pred.min.flow=correct.ann.min.day[[2]]))
 
 
          

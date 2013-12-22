@@ -7,7 +7,7 @@ function(flow.ts,quant=0.9, user.threshold=F, defined.threshold, ind.days=5, dur
     }
   else {
     record.year<-strftime(flow.ts[[1]],format="%Y")
-    flow.ts<-data.frame(flow.ts,year=record.year)
+    flow.ts<-data.frame(flow.ts,Year=record.year)
 }
   n.years<-nlevels(as.factor(record.year))
 

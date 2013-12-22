@@ -5,50 +5,63 @@
 Calculate low flow spell statistics
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Calculates a suite of statistics describing low-flow spell characteristics, such as the timing, frequency and duration of events below a threshold. The event threshold can be defined as a flow quantile (e.g. the 10th  percentile, that is flows exceeded 90\% of the time) or a specific threshold volume (e.g. ML/day).
+
+For the purpose of deriving annual low-flow spell statistics, the function can also be applied based on the hydrologic year. This is advisable where the low flow season spans years, such that prolonged spells may span years. This first requires the time series be processed using the hydro.year function. This adds an additional column indicating the hydrologic year to which each row belongs, which is used for deriving annual spell characteristics.
+
+Missing values are allowed for convenience (NA's are removed and the time-series is concatenated before functions are applied), but of course may lead to biased results.
 }
 \usage{
-low.spells(flow.ts, quant = 0.1, duration = T, volume = T, plot = T, annual.stats = T, ann.min.only = F)
+low.spells(flow.ts, quant = 0.1, duration = T, volume = T, plot = T, annual.stats = T, ann.stats.only = F)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{flow.ts}{
-%%     ~~Describe \code{flow.ts} here~~
-}
+Dataframe consisting of date in column one and flow in column two. Date must be in POSIX format (see ts.format). 
+
+	If a third column exists then this is assumed to provide a vector of years for the purpose of calculating annual spell statistics based on a predetermined hydrologic year.}
   \item{quant}{
-%%     ~~Describe \code{quant} here~~
+Percentile/quantile to use for defining event magnitude (default 0.1). A value of 0.1 is the lower 10th percentile (i.e. a volume exceeded 90\% of the time).}
+  \item{user.threshold}{
+User-defined thresholds are not implemented at this stage. 
 }
+  \item{defined.threshold}{
+User-defined thresholds are not implemented at this stage.
+}
+
   \item{duration}{
-%%     ~~Describe \code{duration} here~~
-}
+logical. Should statistics describing spell duration be returned?}
   \item{volume}{
-%%     ~~Describe \code{volume} here~~
-}
+logical. Should statistics describing spell volumes be returned?}
   \item{plot}{
-%%     ~~Describe \code{plot} here~~
-}
+logical. Should the time-series be plotted? Data points considered 'within spell' are identifed using red circles and the threshold is identified with a horizontal line.}
   \item{annual.stats}{
-%%     ~~Describe \code{annual.stats} here~~
-}
-  \item{ann.min.only}{
-%%     ~~Describe \code{ann.min.only} here~~
-}
+logical. If TRUE, the function returns results describing the annual series (i.e. that describing the characteristics of the spells associated with the lowest annual daily flow).}
+  \item{ann.stats.only}{
+logical. If TRUE, statistics describing the annual series only are returned.}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
 %%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+\value{
+low flow indices
+\item{low.spell.threshold }{Description of 'comp1'}
+\item{avg.low.spell.duration }{Description of 'comp2'}
+\item{max.low.duration }{Description of 'comp2'}
+\item{low.spell.freq}{Description of 'comp2'}
+
+Annual low flow statistics
+\item{avg.min.ann}{Description of 'comp2'}
+\item{timing.min.flow}{Description of 'comp2'}
+\item{pred.min.flow}{Description of 'comp2'}
 }
 \references{
 %% ~put references to the literature/web site here ~
 }
 \author{
-%%  ~~who you are~~
+Nick Bond
 }
 \note{
 %%  ~~further notes~~
@@ -60,15 +73,24 @@ low.spells(flow.ts, quant = 0.1, duration = T, volume = T, plot = T, annual.stat
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+
+data(Cooper)
+Cooper<-ts.format(Cooper)
+
+low.spells(Cooper, quant=0.1)
 
 ## The function is currently defined as
 function (flow.ts, quant = 0.1, duration = T, volume = T, plot = T, 
-    annual.stats = T, ann.min.only = F) 
+    annual.stats = T, ann.stats.only = F) 
 {
-    record.year <- flow.ts[[3]]
+ if (ncol(flow.ts)>2) {
+    record.year<-flow.ts[,'Year']
+    }
+  else {
+    record.year<-strftime(flow.ts[[1]],format="%Y")
+    flow.ts<-data.frame(flow.ts,year=record.year)
+}
+
     n.years <- nlevels(as.factor(record.year))
     if (annual.stats == T) {
         flow.ts.comp <- na.omit(flow.ts)
@@ -88,7 +110,7 @@ function (flow.ts, quant = 0.1, duration = T, volume = T, plot = T,
         correct.ann.min.day <- day.dist(names(ann.min.day.no), 
             ann.min.day.no)
     }
-    if (ann.min.only == T) {
+    if (ann.stats.only == T) {
         return(list(avg.min.ann = mean(ann.min[is.finite(ann.min)], 
             na.rm = T), timing.min.flow = correct.ann.min.day[1], 
             min.timing.predictability = correct.ann.min.day[2]))

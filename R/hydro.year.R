@@ -1,17 +1,8 @@
 hydro.year <-
-function(flow.ts, hydro.year="hydro", alt.start.date) {
+function(flow.ts, hydro.year="hydro") {
   
 begin<-head(flow.ts[[1]],1)
 finish<-tail(flow.ts[[1]],1)
-  
-  if(hydro.year=="presample") {
-  ##change start date for hydro year to cover 12 months prior to 
- date.dif<-round(difftime(alt.start.date,paste(strftime(begin,format="%Y"),01,01,sep="-")))
- new.begin<-as.Date(begin)-date.dif
- new.begin<-seq.Date(new.begin,by="year",len=2)[2]
- new.Date<-seq.Date(new.begin,by="day",len=length(flow.ts[[1]]))
-  }
-  
   
   if(hydro.year=="hydro") {
     month.runs<-c()
@@ -32,13 +23,7 @@ finish<-tail(flow.ts[[1]],1)
     alt.month<-which.min(month.runs)
     year<-c()
     year<-ifelse(as.numeric(strftime(flow.ts[[1]],format="%m"))<alt.month,as.numeric(strftime(flow.ts[[1]],format="%Y"))-1,as.numeric(strftime(flow.ts[[1]],format="%Y")))
-  	#alt.day1<-paste(strftime(begin,format="%Y"),alt.month,"01",sep="-")
- 		#date.dif<-round(difftime(alt.day1,begin),0)
-  #new.begin<-as.Date(begin)-date.dif
- #new.begin<-seq.Date(new.begin,by="year",len=2)[2]
- #new.Date<-seq.Date(new.begin,by="day",len=length(flow.ts[[1]]))
-  	}
-#flow.ts[[1]]<-new.Date
+  }
 flow.ts<-cbind(flow.ts,Year=year)  	
 return(flow.ts)
 

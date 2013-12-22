@@ -5,32 +5,27 @@
 Calculate monthly coefficient of variation
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
-}
+This function takes a daily time series and returns the coefficient of variation of mean monthly flow expressed as a percentage.}
 \usage{
 monthly.cv(flow.ts)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{flow.ts}{
-%%     ~~Describe \code{flow.ts} here~~
+  \item{flow.ts}{Dataframe consisting of date in column one and flow in column two. Date must be in POSIX format (see ts.format). Missing values are ignored.
 }
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+Requires date to be in POSIX format. See ts.format
 }
 \value{
 %%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+list of length 1
 }
 \references{
 %% ~put references to the literature/web site here ~
 }
 \author{
-%%  ~~who you are~~
+Nick Bond
 }
 \note{
 %%  ~~further notes~~
@@ -42,9 +37,9 @@ monthly.cv(flow.ts)
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+data(Cooper)
+cooper<-ts.format(Cooper)
+ann.cv(Cooper)
 
 ## The function is currently defined as
 function (flow.ts) 
