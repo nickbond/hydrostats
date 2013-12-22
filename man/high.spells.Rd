@@ -104,6 +104,7 @@ high.spells(Cooper, quant=0.9)
 
 high.spells(Cooper, quant=0.9, ann.stats=F, plot=F)
 
+high.spells(Cooper, quant=0.9, ann.stats=F, ignore.zeros=T)
 
 
 ## The function is currently defined as
