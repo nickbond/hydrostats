@@ -2,19 +2,17 @@
 \alias{getDays}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Function to find day of the year based on dates
+Function to determine the number of days 365 or 366 in a given year.
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
-}
+A helper function for circular statistic functions.Determines the number of days in any given year (i.e. 365 or 366)}
 \usage{
 getDays(year)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{year}{
-%%     ~~Describe \code{year} here~~
-}
+A vector of years in numeric format}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
@@ -42,9 +40,9 @@ getDays(year)
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+
+years<-c("1968","1975","1983","1990","2004")
+getDays(years)
 
 ## The function is currently defined as
 function (year) 
@@ -54,7 +52,7 @@ function (year)
     d2 <- as.Date(paste(year, "-12-31", sep = ""))
     day <- difftime(d2, d1) + 1
     days <- rbind(day, days)
-    return(days)
+    return(as.vector(days))
   }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
