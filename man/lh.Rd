@@ -2,11 +2,10 @@
 \alias{lh}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Lynne Hollick Filter
+Helper function to bfi
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
-}
+Applies a single pass of the Lynne Hollick Filter (Lynne & Hollick, 1979).}
 \usage{
 lh(Q, a)
 }
@@ -45,32 +44,9 @@ Lynne, V., Hollick, M. (1979) Stochastic time-variable rainfall-runoff modelling
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (Q, a) 
-{
-    qf <- rep(Q[1], length(Q))
-    qb <- rep(Q[1], length(Q))
-    qf[1] <- (Q[2] - Q[1]) * ((1 + a)/2)
-    for (i in 2:length(Q)) {
-        qf[i] <- a * qf[i - 1] + ((Q[i] - Q[i - 1]) * ((1 + a)/2))
-    }
-    for (i in 1:length(Q)) {
-        if (qf[i] < 0) {
-            qb[i] <- Q[i]
-        }
-        else if (Q[i] > qf[i]) {
-            qb[i] <- Q[i] - qf[i]
-        }
-        else qb[i] <- 0
-    }
-    return(qb)
-  }
-}
+Helper function only. See bfi for examples.
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
+}
 \keyword{ ~kwd1 }
 \keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

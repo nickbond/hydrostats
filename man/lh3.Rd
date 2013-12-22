@@ -2,8 +2,7 @@
 \alias{lh3}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-3-pass Lynne Hollick filter (Lynne & Hollick, 1979)
-}
+Helper function to bfi}
 \description{
 Applies 3 repeat passes (forward, back, forward) of the Lynne Hollick filter (Lynne & Hollick, 1979) to determine baseflow contribution.
 }
@@ -45,9 +44,8 @@ Nick Bond
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+Helper function only. See bfi for examples.
+
 
 ## The function is currently defined as
 function (Q, a) 
