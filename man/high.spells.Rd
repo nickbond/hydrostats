@@ -11,7 +11,7 @@ Calculates a suite of statistics describing flood characteristics, such as the t
 
 }
 \usage{
-high.spells(flow.ts, quant = 0.9, user.threshold = F, defined.threshold, \cr ind.days = 5, duration = T, volume = T, plot = T, ignore.zeros = F,\cr ctf.threshold = 0.1, ann.max.stats = T, ann.max.only = F, \cr inter.flood = F)
+high.spells(flow.ts, quant = 0.9, user.threshold = F, defined.threshold, \cr ind.days = 5, duration = T, volume = T, plot = T, ignore.zeros = F,\cr ctf.threshold = 0.1, ann.stats = T, ann.stats.only = F, \cr inter.flood = F)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -39,10 +39,10 @@ logical. If TRUE, days below a user defined cease-to-flow threshold (default 0.1
   \item{ctf.threshold}{
 values below this threshold are treated as zero for the purpose of percentile based calculations (see ignore zeros).
 }
-  \item{ann.max.stats}{
+  \item{ann.stats}{
 logical. If TRUE, the function returns results describing the annual series (i.e. that describing the characteristics of the largest flood event in each year of the time-series).
 }
-  \item{ann.max.only}{
+  \item{ann.stats.only}{
 logical. If TRUE, statistics describing the annual series only are returned.}
 
   \item{inter.flood}{
@@ -108,7 +108,7 @@ high.spells(Cooper, quant=0.9, ann.stats=F, plot=F)
 
 ## The function is currently defined as
 high.spells <-
-function(flow.ts,quant=0.9, user.threshold=F, defined.threshold, ind.days=5, duration=T, volume=T,plot=T, ignore.zeros=F,ctf.threshold=0.1, ann.max.stats=T,ann.max.only=F,inter.flood=F) {
+function(flow.ts,quant=0.9, user.threshold=F, defined.threshold, ind.days=5, duration=T, volume=T,plot=T, ignore.zeros=F,ctf.threshold=0.1, ann.stats=T,ann.stats.only=F,inter.flood=F) {
 	gauge<-deparse(substitute(flow.ts))
   
   if (ncol(flow.ts)>2) {
@@ -120,7 +120,7 @@ function(flow.ts,quant=0.9, user.threshold=F, defined.threshold, ind.days=5, dur
 }
   n.years<-nlevels(as.factor(record.year))
 
-if(ann.max.stats==T) {
+if(ann.stats==T) {
   #calculate annual minimum flow
   flow.ts.comp<-na.omit(flow.ts) 
   
@@ -149,7 +149,7 @@ cv.ann.duration<-(sd(ann.max.spell.runs$lengths[which(ann.max.spell.runs$values=
 
 }
 
-if(ann.max.only==T) {
+if(ann.stats.only==T) {
 
   return(list(avg.max.ann=mean(ann.max[is.finite(ann.max)],na.rm=T), cv.max.ann=(sd(ann.max,na.rm=T)/mean(ann.max,na.rm=T)*100), 
               flood.timing=correct.ann.max.day[[1]], flood.predictability=correct.ann.max.day[[2]],
@@ -259,7 +259,7 @@ abline(h=flow.threshold)
 
 }
 
-if (ann.max.stats==F) {
+if (ann.stats==F) {
 	return(list(n.years=n.years, high.spell.threshold=flow.threshold, n.events=n.events, spell.frequency=flood.frequency, ari=1/flood.frequency, avg.high.spell.duration=avg.duration, med.high.spell.duration=med.duration, max.high.spell.duration=max.duration, avg.spell.volume=mean(spell.volumes,na.rm=T), avg.spell.peak=high.flow.av, sd.spell.peak=high.flow.sd))
 }
 
@@ -273,6 +273,9 @@ else {
 
 }
 
+%%end function
+
+}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{ ~kwd1 }
