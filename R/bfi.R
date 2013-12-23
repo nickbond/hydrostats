@@ -1,19 +1,18 @@
 bfi <-
 function(flow.ts,a=0.975,ts="mean") {
    	
-     full.flow.ts<-flow.ts[,c("Date","Q")]
-     #names(full.flow.ts)<-c("Date","Q")
+     full.flow.ts<-flow.ts[c("Date","Q")]
    	red.flow.ts<-full.flow.ts[complete.cases(full.flow.ts[,"Date"],full.flow.ts[,"Q"]),]
    	
-  Date<-red.flow.ts[,"Date"]
-   Q<-red.flow.ts[,"Q"]
+  Date<-red.flow.ts[["Date"]]
+   Q<-red.flow.ts[["Q"]]
    	
 	
   	bf<-lh3(Q,a)
   	bfi<-ifelse(Q==0,0,bf/Q)
    	out<-data.frame(Date,bf,bfi)
-  
-  	out<-merge(full.flow.ts,out, by="Date",all.x=T)
+		full.flow.ts$Date<-as.POSIXct(full.flow.ts$Date)
+		out<-merge(full.flow.ts,out, by="Date",all.x=T)
   	names(out)<-c("Date","Q","bf","bfi")
    	
    	  if(ts=="daily") {

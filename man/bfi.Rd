@@ -58,7 +58,7 @@ Nick Bond
 }
 \examples{
 data(Cooper)
-cooper<-ts.format(Cooper)
+Cooper<-ts.format(Cooper)
 
 bfi(Cooper,a=0.975, ts="mean")
 bfi(Cooper,a=0.975, ts="annual")
