@@ -46,8 +46,8 @@ Nick Bond}
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-data(cooper)
-cooper<-ts.format(cooper)
+data(Cooper)
+Cooper<-ts.format(Cooper)
 
 daily.cv(Cooper)
 
