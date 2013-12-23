@@ -22,13 +22,12 @@ Dataframe consisting of date in column one and flow in column two. Date must be 
 	If a third column exists then this is assumed to provide a vector of years for the purpose of calculating annual spell statistics based on a predetermined hydrologic year.}
   \item{quant}{
 Percentile/quantile to use for defining event magnitude (default 0.1). A value of 0.1 is the lower 10th percentile (i.e. a volume exceeded 90\% of the time).}
-  \item{user.threshold}{
-User-defined thresholds are not implemented at this stage. 
-}
-  \item{defined.threshold}{
-User-defined thresholds are not implemented at this stage.
-}
-
+%  \item{user.threshold}{
+%User-defined thresholds are not implemented at this stage. 
+%}
+%  \item{defined.threshold}{
+%User-defined thresholds are not implemented at this stage.
+%}
   \item{duration}{
 logical. Should statistics describing spell duration be returned?}
   \item{volume}{

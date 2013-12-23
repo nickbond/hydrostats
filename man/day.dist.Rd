@@ -52,24 +52,8 @@ days<-c(366,1,365,1,366)
 day.dist(years,days)
 days<-c(170,180,1,365,170)
 day.dist(years,days)
-
-function (years, days) 
-{
-    year.lengths <- sapply(years, getDays)
-    theta <- c()
-    theta <- days * (2 * pi/year.lengths)
-    x <- sum(sin(theta))
-    y <- sum(cos(theta))
-    m.theta <- atan2(x, y)
-    m.deg <- (180 * m.theta/pi)
-    if (m.deg < 0) 
-        m.deg <- m.deg + 360
-    R <- sqrt((x^2) + (y^2))
-    Rm <- R/length(theta)
-    rad.sd <- 1 - Rm
-    return(cbind(mean.doy=m.deg,sd.doy=rad.sd))
-  }
 }
+
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{ ~kwd1 }

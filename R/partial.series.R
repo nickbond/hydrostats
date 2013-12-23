@@ -4,7 +4,7 @@ partial.series<-function (flow.ts, ari = 2, ind.days = 7, duration = T, plot = F
 	
 		n.years <- nlevels(as.factor(strftime(flow.ts$Date, format = "%Y")))
 	
-	if(ari>n.years){return(print("warning: time-series is shorter than ari. Please provide a more frequent ari."))}
+	if(ari>n.years){return(print("warning(time-series is shorter than ari. Please provide a smaller ari"))}
 	
 		n.events <- ceiling(n.years/ari)
 		p.series <- vector("list", n.events)

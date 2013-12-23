@@ -62,8 +62,8 @@ data(Cooper)
 Cooper<-ts.format(Cooper)
 
 partial.series(Cooper,ari=2)
-partial.series(Cooper, ari=5, plot=T, ind.days=2)
-partial.series(Cooper, ari=5, plot=T, ind.days=10)
+partial.series(Cooper, ari=5, plot=TRUE, ind.days=2)
+partial.series(Cooper, ari=5, plot=TRUE, ind.days=10)
 }
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the

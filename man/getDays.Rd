@@ -28,8 +28,7 @@ A vector of years in numeric format}
 %% ~put references to the literature/web site here ~
 }
 \author{
-%%  ~~who you are~~
-}
+Nick Bond}
 \note{
 %%  ~~further notes~~
 }
@@ -43,17 +42,6 @@ A vector of years in numeric format}
 
 years<-c("1968","1975","1983","1990","2004")
 getDays(years)
-
-## The function is currently defined as
-function (year) 
-{
-    days <- c()
-    d1 <- as.Date(paste(year, "-01-01", sep = ""))
-    d2 <- as.Date(paste(year, "-12-31", sep = ""))
-    day <- difftime(d2, d1) + 1
-    days <- rbind(day, days)
-    return(as.vector(days))
-  }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

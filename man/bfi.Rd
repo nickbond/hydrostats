@@ -64,8 +64,10 @@ bfi(Cooper,a=0.975, ts="mean")
 bfi(Cooper,a=0.975, ts="annual")
 bfi(Cooper,a=0.975, ts="daily")
 
+
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ ~kwd2 }
+% __ONLY ONE__ keyword per line

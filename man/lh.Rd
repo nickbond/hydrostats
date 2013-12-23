@@ -2,7 +2,7 @@
 \alias{lh}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Helper function to bfi
+Single-pass Lynne Hollick filter
 }
 \description{
 Applies a single pass of the Lynne Hollick Filter (Lynne & Hollick, 1979).}
@@ -32,10 +32,10 @@ lh(Q, a)
 Lynne, V., Hollick, M. (1979) Stochastic time-variable rainfall-runoff modelling. In: pp. 89–93 Institute of Engineers Australia National Conference. Perth.
 }
 \author{
-%%  ~~who you are~~
+Nick Bond
 }
 \note{
-%%  ~~further notes~~
+Generally used with \code{\link{bfi}}
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
@@ -44,9 +44,15 @@ Lynne, V., Hollick, M. (1979) Stochastic time-variable rainfall-runoff modelling
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-Helper function only. See bfi for examples.
+data(Cooper)
+Cooper<-ts.format(Cooper)
+
+lh(Cooper$Q, a=0.975)
+
+}
+
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-}
+
 \keyword{ ~kwd1 }
 \keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

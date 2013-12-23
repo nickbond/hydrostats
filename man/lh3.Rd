@@ -44,17 +44,11 @@ Nick Bond
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-Helper function only. See bfi for examples.
+data(Cooper)
+Cooper<-ts.format(Cooper)
 
+lh3(Cooper$Q, a=0.975)
 
-## The function is currently defined as
-function (Q, a) 
-{
-    qb1 <- lh(Q, a)
-    qb2 <- lh(rev(qb1), a)
-    qb3 <- lh(rev(qb2), a)
-    return(qb3)
-  }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

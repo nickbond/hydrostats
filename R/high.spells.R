@@ -1,5 +1,5 @@
-high.spells <-
-function(flow.ts,quant=0.9, user.threshold=F, defined.threshold, ind.days=5, duration=T, volume=T,plot=T, ignore.zeros=F,ctf.threshold=0.1, ann.stats=T,ann.stats.only=F,inter.flood=F) {
+ high.spells <-
+function(flow.ts,quant=0.9, user.threshold=FALSE, defined.threshold=0.9, ind.days=5, duration=TRUE, volume=TRUE,plot=TRUE, ignore.zeros=FALSE,ctf.threshold=0.1, ann.stats=TRUE,ann.stats.only=FALSE,inter.flood=FALSE) {
 	gauge<-deparse(substitute(flow.ts))
   
   if (ncol(flow.ts)>2) {
@@ -12,10 +12,9 @@ function(flow.ts,quant=0.9, user.threshold=F, defined.threshold, ind.days=5, dur
   n.years<-nlevels(as.factor(record.year))
 
 if(ann.stats==T) {
-  #calculate annual minimum flow
-  flow.ts.comp<-na.omit(flow.ts) 
+
+	flow.ts.comp<-na.omit(flow.ts) 
   
-  #record.year<-strftime(flow.ts.comp[[1]],format="%Y")
   n.days<-tapply(flow.ts.comp[[2]],flow.ts.comp[[3]],length)
   n.most.days<-which(n.days>350)
   flow.ts.comp<-flow.ts.comp[which(flow.ts.comp[[3]] %in% names(n.days)),]
@@ -25,7 +24,6 @@ if(ann.stats==T) {
 ann.max<-tapply(flow.ts.comp[[2]],record.year, max)
 
 ann.max.day.no<-tapply(flow.ts.comp[[2]],record.year, which.max)-1
-##ann.max.date<-as.Date(paste(names(ann.max.day.no),01,01,sep="-"))+ann.max.day.no
 
 
 correct.ann.max.day<-day.dist(names(ann.max.day.no),ann.max.day.no)
@@ -53,7 +51,6 @@ if(user.threshold==T) {
   
     
 flow.threshold<-defined.threshold  
-#names(flow.threshold)<-NULL #normallyhide
 
 }   
 
@@ -63,12 +60,12 @@ else {
 if(ignore.zeros==T) {
   
 flow.threshold<-quantile(flow.ts[which(flow.ts[[2]]>ctf.threshold),2],quant,na.rm=T)
-names(flow.threshold)<-NULL #normally hide
+names(flow.threshold)<-NULL 
 }
 else
 {
   flow.threshold<-quantile(flow.ts[,2],quant,na.rm=T)
-  names(flow.threshold)<-NULL #normallyhide
+  names(flow.threshold)<-NULL 
 }
 
 }
@@ -97,7 +94,6 @@ high.flow.av<-mean(flow.ts[which(high.flows==1),2],na.rm=T)
 high.flow.sd<-sd(flow.ts[which(high.flows==1),2],na.rm=T)
 
 
-#flood.days<-as.numeric(strftime(flow.ts[which(high.flows==1),1],format="%j"))
   
 good.high.flow.runs<-which(!is.na(high.flow.runs$values))
 flow.runs.values<-high.flow.runs$values[good.high.flow.runs]

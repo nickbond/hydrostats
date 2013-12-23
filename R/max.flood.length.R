@@ -1,5 +1,5 @@
 max.flood.length <-
-function(flow.ts,flow.threshold,ind.days=5) {
+function(flow.ts,flow.threshold,ind.days=5, ...) {
 	
 	high.flows<-ifelse(flow.ts[,2]>flow.threshold,1,0)
 	

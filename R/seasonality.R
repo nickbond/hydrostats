@@ -1,5 +1,5 @@
 seasonality <-
-function(flow.ts,monthly.range=F) {
+function(flow.ts,monthly.range=FALSE) {
   
   
     month.runs<-c()
@@ -22,7 +22,7 @@ function(flow.ts,monthly.range=F) {
       out<-low.6.months/sum(month.runs)*100
 
     
-    if(monthly.range==T) {
+    if(monthly.range==TRUE) {
     flow.ts$Year<-as.factor(strftime(flow.ts$Date, format="%Y"))
     flow.ts$month<-as.factor(strftime(flow.ts$Date,format="%m"))
     month.year.means<-tapply(flow.ts[,2],flow.ts[c('Year','month')],sum)  
@@ -32,8 +32,8 @@ function(flow.ts,monthly.range=F) {
     min.months<-apply(month.year.means,1,which.min)
     max.months<-apply(month.year.means,1,which.max)
  av.ann.month.range<-mean(month.range[2,]-month.range[1,])
-    month.difs<-as.factor(abs(max.months-min.months))
-    month.difs<-revalue(month.difs, c("11"="1", "10"="2", "9"="3", "8"="4", "7"="5"), warn_missing=FALSE)
+    month.difs<-factor(as.character(abs(max.months-min.months)))
+    month.difs<-mapvalues(month.difs, from=c("11","10","9","8","7"), to=c("1","2","3","4","5"), warn_missing=FALSE) 
     
     
     return(list(seasonality=out, monthly.means,avg.ann.month.range=av.ann.month.range,max.min.time.dif=round(mean(as.numeric(levels(month.difs)[month.difs])),0)))
