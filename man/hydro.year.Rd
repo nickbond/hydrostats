@@ -5,7 +5,7 @@
 Determine hydrologic year for calculating indices
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Defines a hydrologic year to minimise the risk that defined spells are interrupted by transitions between calendar years.
 }
 \usage{
 hydro.year(flow.ts, hydro.year = "hydro")

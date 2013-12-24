@@ -5,20 +5,17 @@
 Format dates as POSIX
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
-}
+Converts dates from class character (format dd/mm/yyyy) into class POSIXlt}
 \usage{
 ts.format(x)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-%%     ~~Describe \code{x} here~~
-}
+dates of class character}
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
-}
+Assumes date is of class character and in the first column of the data frame. For more flexibility in formatting dates/times see the lubridate package.}
 \value{
 %%  ~Describe the value returned
 %%  If it is a LIST, use

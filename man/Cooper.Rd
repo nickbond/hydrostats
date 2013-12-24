@@ -6,7 +6,7 @@
 Cooper Creek flow data
 }
 \description{
-Daily discharge time series in megalitres per day (ML/day) for Coopers Creek @ Currareva Gauge (No.003101), Qld, Australia, from 1967-1987.
+Daily discharge time series in megalitres per day (ML/day) for Coopers Creek @ Currareva (Gauge No. 003101), Qld, Australia, from 1967-1987.
 
 }
 \usage{
