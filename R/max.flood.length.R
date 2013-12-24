@@ -20,6 +20,6 @@ function(flow.ts,flow.threshold,ind.days=5, ...) {
 	}
 	
 	max.duration<-data.frame(max.duration=max.duration)
-	
+
 	return(max.duration)
 }

@@ -12,11 +12,9 @@ lh3(Q, a)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{Q}{
-%%     ~~Describe \code{Q} here~~
-}
+Time series of river flows}
   \item{a}{
-%%     ~~Describe \code{a} here~~
-}
+alpha value }
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
@@ -29,7 +27,7 @@ lh3(Q, a)
 %% ...
 }
 \references{
-Lynne, V., Hollick, M. (1979) Stochastic time-variable rainfall-runoff modelling. In: pp. 89–93 Institute of Engineers Australia National Conference. Perth.
+Lynne, V., Hollick, M. (1979) Stochastic time-variable rainfall-runoff modelling. In: pp. 89-93 Institute of Engineers Australia National Conference. Perth.
 }
 \author{
 Nick Bond
@@ -47,7 +45,7 @@ Nick Bond
 data(Cooper)
 Cooper<-ts.format(Cooper)
 
-lh3(Cooper$Q, a=0.975)
+lh3(Cooper[,2], a=0.975)
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

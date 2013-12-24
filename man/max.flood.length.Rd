@@ -20,9 +20,11 @@ Dataframe consisting of date in column one and flow in column two. Date must be 
 A user supplied threshold for defining spells. This would typically be derived from hydraulic models or similar knowledge pertaining to a gauge site.}
   \item{ind.days}{
 Periods between spells of less than ind.days (default 5) are considered to be 'in spell' for the purpose of further calculations. A value of 0 means spells 1 day apart are considered indpedendent.}
-	\item{\dots}
+	\item{\dots}{
 Further arguments to max
 }
+}
+
 \details{
 %%  ~~ If necessary, more details than the description above ~~
 }
@@ -57,29 +59,6 @@ ddply(Cooper, .(Year=strptime(Cooper$Date,format="\%Y")),max.flood.length,50000)
 Cooper<-hydro.year(Cooper)
 ddply(Cooper, .(Year),max.flood.length,50000)
 
-
-## The function is currently defined as
-function (flow.ts, flow.threshold, ind.days = 5) 
-{
-    high.flows <- ifelse(flow.ts[, 2] > flow.threshold, 1, 
-        0)
-    high.flow.runs <- rle(high.flows)
-    too.short <- which(high.flow.runs$lengths < ind.days & high.flow.runs$values == 
-        0)
-    spell.factor <- rep(seq_along(high.flow.runs$lengths), times = high.flow.runs$lengths)
-    add.to.spell <- which(spell.factor \%in\% too.short)
-    high.flows[add.to.spell] <- 1
-    high.flow.runs <- rle(high.flows)
-    if (length(which(high.flow.runs$values == 1)) == 0) {
-        max.duration <- 0
-    }
-    else {
-        max.duration <- max(high.flow.runs$lengths[which(high.flow.runs$values == 
-            1)], na.rm = T)
-    }
-    max.duration <- data.frame(max.duration = max.duration)
-    return(max.duration)
-  }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

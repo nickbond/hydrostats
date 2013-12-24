@@ -29,7 +29,7 @@ lh(Q, a)
 %% ...
 }
 \references{
-Lynne, V., Hollick, M. (1979) Stochastic time-variable rainfall-runoff modelling. In: pp. 89–93 Institute of Engineers Australia National Conference. Perth.
+Lynne, V., Hollick, M. (1979) Stochastic time-variable rainfall-runoff modelling. In: pp. 89-93 Institute of Engineers Australia National Conference. Perth.
 }
 \author{
 Nick Bond
@@ -47,7 +47,7 @@ Generally used with \code{\link{bfi}}
 data(Cooper)
 Cooper<-ts.format(Cooper)
 
-lh(Cooper$Q, a=0.975)
+lh(Cooper[,2], a=0.975)
 
 }
 
