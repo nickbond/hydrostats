@@ -10,7 +10,7 @@ Daily discharge time series in megalitres per day (ML/day) for Coopers Creek @ C
 
 }
 \usage{
-Cooper
+data(Cooper)
 }
 %- maybe also 'usage' for other objects documented here.
 

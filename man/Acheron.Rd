@@ -10,7 +10,7 @@ Daily discharge time series in megalitres per day (ML/day) for Acheron River @ T
 
 }
 \usage{
-Acheron
+data(Acheron)
 }
 %- maybe also 'usage' for other objects documented here.
 
