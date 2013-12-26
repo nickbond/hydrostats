@@ -4,7 +4,7 @@ Title: Calculates a suite of hydrologic indices for daily timeseries.
 Version: 0.1
 Date: 2013-12-20
 Author: Nick Bond
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
+Maintainer: Nick Bond <n.bond@griffith.edu.au>
+Description: Calculates a suite of hydrologic indices for daily time series data that are widely used in hydrology and stream ecology.
 License: GPL (>= 2)
 Depends: plyr

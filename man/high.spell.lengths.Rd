@@ -10,7 +10,8 @@ Returns the length of all high flow spell events above a given percentile or use
 Independence criteria allow short periods below the spell threshold to be ignored and flows below a threshold (e.g. zero flows) can be ignored when calculating percentile flows (useful in ephemeral rivers).
 }
 \usage{
-high.spell.lengths(flow.ts, quant = 0.9, user.threshold = F, defined.threshold, ind.days = 5, ignore.zeros = T, ctf.threshold = 0.1)
+high.spell.lengths(flow.ts, quant = 0.9, user.threshold = F, defined.threshold,
+ind.days = 5, ignore.zeros = T, ctf.threshold = 0.1)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

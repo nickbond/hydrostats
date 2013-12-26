@@ -12,7 +12,8 @@ For the purpose of deriving annual low-flow spell statistics, the function can a
 Missing values are allowed for convenience (NA's are removed and the time-series is concatenated before functions are applied), but of course may lead to biased results.
 }
 \usage{
-low.spells(flow.ts, quant = 0.1, duration = T, volume = T, plot = T, annual.stats = T, ann.stats.only = F)
+low.spells(flow.ts, quant = 0.1, duration = T, volume = T, plot = T,
+annual.stats = T, ann.stats.only = F)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

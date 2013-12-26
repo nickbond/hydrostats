@@ -1,5 +1,5 @@
-\name{max.flood.length}
-\alias{max.flood.length}
+\name{flood.length.max}
+\alias{flood.length.max}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Calculates the maximum flood length in a time series. 
@@ -9,7 +9,7 @@ Calculates the maximum flood length above a user defined threshold in a time ser
 
 Alternatively, the function high.spell.lengths can be used to return the length of all events above a threshold, not just the longest event in each year.}
 \usage{
-max.flood.length(flow.ts, flow.threshold, ind.days = 5, ...)
+flood.length.max(flow.ts, flow.threshold, ind.days = 5)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -20,10 +20,8 @@ Dataframe consisting of date in column one and flow in column two. Date must be 
 A user supplied threshold for defining spells. This would typically be derived from hydraulic models or similar knowledge pertaining to a gauge site.}
   \item{ind.days}{
 Periods between spells of less than ind.days (default 5) are considered to be 'in spell' for the purpose of further calculations. A value of 0 means spells 1 day apart are considered indpedendent.}
-	\item{\dots}{
-Further arguments to max
 }
-}
+
 
 \details{
 %%  ~~ If necessary, more details than the description above ~~
@@ -50,14 +48,14 @@ Nick Bond}
 data(Cooper)
 Cooper<-ts.format(Cooper)
 
-max.flood.length(Cooper,50000, ind.days=5)
+flood.length.max(Cooper,50000, ind.days=5)
 
 # Return annual maximum flood length based on calendar year\cr# using ddply (from plyr package) 
-ddply(Cooper, .(Year=strptime(Cooper$Date,format="\%Y")),max.flood.length,50000)
+ddply(Cooper, .(Year=strptime(Cooper$Date,format="\%Y")),flood.length.max,50000)
 
 # Based on hydrologic year.
 Cooper<-hydro.year(Cooper)
-ddply(Cooper, .(Year),max.flood.length,50000)
+ddply(Cooper, .(Year),flood.length.max,50000)
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
