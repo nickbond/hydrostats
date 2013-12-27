@@ -5,7 +5,7 @@
 Function to determine the number of days 365 or 366 in a given year.
 }
 \description{
-A helper function for circular statistic functions.Determines the number of days in any given year (i.e. 365 or 366)}
+A helper function for circular statistic functions. Determines the number of days in any given year (i.e. 365 or 366)}
 \usage{
 getDays(year)
 }

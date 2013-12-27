@@ -39,17 +39,8 @@ Assumes date is of class character and in the first column of the data frame. Fo
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (x) 
-{
-    x[[1]] <- strptime(x[[1]], format = "\%d/\%m/\%Y")
-    names(x)[1] <- "Date"
-    return(x)
-  }
+data(Cooper)
+Cooper<-ts.format(Cooper)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
