@@ -27,7 +27,7 @@ Assumes date is of class character and in the first column of the data frame. Fo
 %% ~put references to the literature/web site here ~
 }
 \author{
-%%  ~~who you are~~
+Nick Bond
 }
 \note{
 %%  ~~further notes~~
