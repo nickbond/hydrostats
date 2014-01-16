@@ -1,11 +1,14 @@
-high.spells <- function(flow.ts, quant = 0.9, user.threshold = FALSE, defined.threshold = 0.9, ind.days = 5, duration = TRUE, volume = TRUE, plot = TRUE, ignore.zeros = FALSE, 
-    ctf.threshold = 0.1, ann.stats = TRUE, ann.stats.only = FALSE, inter.flood = FALSE) {
+high.spells <- function(flow.ts, quant = 0.9, user.threshold = FALSE, defined.threshold = 0.9,
+												ind.days = 5, duration = TRUE, volume = TRUE, plot = TRUE, 
+												ignore.zeros = FALSE, ctf.threshold = 0.1, ann.stats = TRUE, 
+												ann.stats.only = FALSE, inter.flood = FALSE) {
+	
     gauge <- deparse(substitute(flow.ts))
     
     if (ncol(flow.ts) > 2) {
         record.year <- flow.ts[, "Year"]
     } else {
-        record.year <- strftime(flow.ts[[1]], format = "%Y")
+        record.year <- strftime(flow.ts[,1], format = "%Y")
         flow.ts <- data.frame(flow.ts, Year = record.year)
     }
     n.years <- nlevels(as.factor(record.year))
@@ -14,20 +17,27 @@ high.spells <- function(flow.ts, quant = 0.9, user.threshold = FALSE, defined.th
         
         flow.ts.comp <- na.omit(flow.ts)
         
-        n.days <- tapply(flow.ts.comp[[2]], flow.ts.comp[[3]], length)
+        n.days <- tapply(flow.ts.comp[,2], flow.ts.comp[,3], length)
         n.most.days <- which(n.days > 350)
-        flow.ts.comp <- flow.ts.comp[which(flow.ts.comp[[3]] %in% names(n.days)), ]
+        flow.ts.comp <- flow.ts.comp[which(flow.ts.comp[[3]] %in% names(n.most.days)), ]
         record.year <- flow.ts.comp[[3]]
         n.years <- nlevels(as.factor(record.year))
         
-        ann.max <- tapply(flow.ts.comp[[2]], record.year, max)
+        ann.maxs<-ddply(flow.ts.comp, .(Year), summarise, max=max(Q, na.rm=T))
         
-        ann.max.day.no <- tapply(flow.ts.comp[[2]], record.year, which.max) - 1
+        ann.max.days<-ddply(flow.ts.comp, .(Year), subset, Q==max(Q))
         
         
-        correct.ann.max.day <- day.dist(names(ann.max.day.no), ann.max.day.no)
+        ann.maxs.mean<-mean(ann.maxs$max, na.rm=T)
+        ann.maxs.sd<-sd(ann.maxs$max, na.rm=T)
         
-        max.ann.flow.threshold <- min(ann.max, na.rm = T)
+        avg.ann.max.days <-ddply(ann.max.days, .(Year), function(x) day.dist(x$Date))
+        
+        avg.max.day<-day.dist(avg.ann.max.days$mean.doy, avg.ann.max.days$Year)
+        
+        
+        
+        max.ann.flow.threshold <- min(ann.maxs$max, na.rm = T)
         
         ann.max.spells <- ifelse(flow.ts[, 2] > max.ann.flow.threshold, 1, 0)
         ann.max.spell.runs <- rle(ann.max.spells)
@@ -40,8 +50,8 @@ high.spells <- function(flow.ts, quant = 0.9, user.threshold = FALSE, defined.th
     
     if (ann.stats.only == T) {
         
-        return(list(avg.max.ann = mean(ann.max[is.finite(ann.max)], na.rm = T), cv.max.ann = (sd(ann.max, na.rm = T)/mean(ann.max, na.rm = T) * 100), flood.timing = correct.ann.max.day[[1]], 
-            flood.predictability = correct.ann.max.day[[2]], flood.skewness = mean(ann.max, na.rm = T)/mean(flow.ts[, 2], na.rm = T), avg.ann.duration = avg.ann.duration, 
+        return(list(avg.max.ann = ann.maxs.mean, cv.maxs.ann = (ann.maxs.sd/ann.maxs.mean) * 100, flood.timing = avg.max.day[[1]], 
+            flood.predictability = avg.max.day[[2]], flood.skewness = mean(ann.maxs.mean, na.rm = T)/mean(flow.ts[, 2], na.rm = T), avg.ann.duration = avg.ann.duration, 
             cv.ann.duration = cv.ann.duration))
         
     } else {
@@ -148,8 +158,8 @@ high.spells <- function(flow.ts, quant = 0.9, user.threshold = FALSE, defined.th
     } else {
         return(list(n.years = n.years, high.spell.threshold = flow.threshold, n.events = n.events, spell.freq = flood.frequency, ari = 1/flood.frequency, avg.high.spell.duration = avg.duration, 
             med.high.spell.duration = med.duration, max.high.spell.duration = max.duration, avg.spell.volume = mean(spell.volumes, na.rm = T), avg.spell.peak = high.flow.av, 
-            sd.spell.peak = high.flow.sd, avg.max.ann = mean(ann.max[is.finite(ann.max)], na.rm = T), cv.max.ann = (sd(ann.max, na.rm = T)/mean(ann.max, na.rm = T) * 100), 
-            flood.skewness = mean(ann.max, na.rm = T)/mean(flow.ts[, 2], na.rm = T), flood.timing = correct.ann.max.day[[1]], flood.predictability = correct.ann.max.day[[2]], 
+            sd.spell.peak = high.flow.sd, avg.max.ann = ann.maxs.mean, cv.max.ann = (ann.maxs.sd/ann.maxs.mean)*100, 
+            flood.skewness = ann.maxs.mean/mean(flow.ts[, 2], na.rm = T), flood.timing = avg.max.day[[1]], flood.predictability = avg.max.day[[2]], 
             avg.ann.duration = avg.ann.duration, cv.ann.duration = cv.ann.duration))
     }
     

@@ -18,18 +18,22 @@ low.spells <- function(flow.ts, quant = 0.1, duration = T, volume = T, plot = T,
         # record.year<-strftime(flow.ts.comp[[1]],format='%Y')
         n.days <- tapply(flow.ts.comp[[2]], flow.ts.comp[[3]], length)
         n.most.days <- which(n.days > 350)
-        flow.ts.comp <- flow.ts.comp[which(flow.ts.comp[[3]] %in% names(n.days)), ]
+        flow.ts.comp <- flow.ts.comp[which(flow.ts.comp[,'Year'] %in% names(n.most.days)), ]
         record.year <- flow.ts.comp[[3]]
         n.years <- nlevels(as.factor(record.year))
         
-        ann.min <- tapply(flow.ts.comp[[2]], flow.ts.comp[[3]], min)
         
-        ann.min.day.no <- tapply(rev(flow.ts.comp[[2]]), flow.ts.comp[[3]], which.min) - 1
-        ann.min.date <- as.Date(paste(names(ann.min.day.no), 1, 1, sep = "-")) + ann.min.day.no
+        ann.mins<-ddply(flow.ts.comp, .(Year), summarise, min=min(Q, na.rm=T))
         
-        correct.ann.min.day <- day.dist(names(ann.min.day.no), ann.min.day.no)
+        ann.min.days<-ddply(flow.ts.comp, .(Year), subset, Q==min(Q))
         
-        # av.min.day<-mean(ann.min.day.no,na.rm=T) cv.min.day<-(sd(ann.min.day.no,na.rm=T)/mean(ann.min.day.no,na.rm=T))*100
+        
+        ann.mins.mean<-mean(ann.mins$min, na.rm=T)
+        ann.mins.sd<-sd(ann.mins$min, na.rm=T)
+       
+        avg.ann.min.days <-ddply(ann.min.days, .(Year), function(x) day.dist(x$Date))
+        
+       	avg.min.day<-day.dist(avg.ann.min.days$mean.doy, avg.ann.min.days$Year)
         
     }
     
@@ -37,7 +41,7 @@ low.spells <- function(flow.ts, quant = 0.1, duration = T, volume = T, plot = T,
         
         
         
-        return(list(avg.min.ann = mean(ann.min[is.finite(ann.min)], na.rm = T), timing.min.flow = correct.ann.min.day[1], min.timing.predictability = correct.ann.min.day[2]))
+        return(list(avg.min.ann = ann.mins.mean, cv.min.ann = (ann.mins.sd/ann.mins.mean)*100, timing.min.flow = avg.min.day[[1]], pred.min.flow = avg.min.day[[2]]))
         
     } else {
         
@@ -97,8 +101,7 @@ low.spells <- function(flow.ts, quant = 0.1, duration = T, volume = T, plot = T,
         
     }
     
-    return(list(low.spell.threshold = flow.threshold, avg.low.spell.duration = avg.duration, max.low.duration = max.duration, low.spell.freq = low.spell.frequency, avg.min.ann = mean(ann.min[is.finite(ann.min)], 
-        na.rm = T), timing.min.flow = correct.ann.min.day[[1]], pred.min.flow = correct.ann.min.day[[2]]))
+    return(list(low.spell.threshold = flow.threshold, avg.low.spell.duration = avg.duration, max.low.duration = max.duration, low.spell.freq = low.spell.frequency, avg.min.ann = ann.mins.mean, cv.min.ann = (ann.mins.sd/ann.mins.mean)*100, timing.min.flow = avg.min.day[[1]], pred.min.flow = avg.min.day[[2]]))
     
     
     

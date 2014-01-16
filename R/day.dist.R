@@ -1,9 +1,20 @@
-day.dist <- function(years, days) {
-    
-    year.lengths <- sapply(years, getDays)
+day.dist <- function(Dates, days, years) {
+
+	if (any(class(Dates)=="POSIXct")==T) {
+		
+		days<-as.numeric(strftime(Dates, format="%j"))
+		years<-as.numeric(strftime(Dates, format="%Y"))
+		
+	} else {
+		days<-days
+		years<-years
+	}
+	
+	
+    year.length <-getDays(years)
     theta <- c()
     adjust <- 0.5 * ((2 * pi)/365)
-    theta <- days * (2 * pi/year.lengths) - adjust
+    theta <- days * (2 * pi/year.length) - adjust
     x <- mean(cos(theta))
     y <- mean(sin(theta))
     m.theta <- atan2(y, x)
@@ -15,6 +26,7 @@ day.dist <- function(years, days) {
     r <- sqrt((x^2) + (y^2))
     sd.rad <- sqrt(-2 * log(r))
     sd.deg <- sd.rad * (365/(2 * pi))
-    
-    return(list(mean.doy = round(m.deg, 0), sd.doy = round(sd.deg, 0)))
-} 
+	
+
+	data.frame(mean.doy=round(m.deg, 0), sd.doy=round(sd.deg, 0))
+}

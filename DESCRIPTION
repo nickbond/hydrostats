@@ -1,6 +1,6 @@
 Package: hydrostats
 Type: Package
-Title: Calculates a suite of hydrologic indices for daily timeseries.
+Title: Hydrologic indices for daily timeseries.
 Version: 0.1
 Date: 2013-12-20
 Author: Nick Bond

@@ -10,16 +10,17 @@ Calculates the mean and standard deviation of the timing of annual events. Given
 Circular statistics are used to account for the proximity of days close to the start and the end of the year (i.e. numbers close to 0 and 365), which would notionally have a mean of approximiately 182 (see Bayliss and Jones (1993)). The mean that is returned can be interpreted as a calendar day, and data that are strongly directional will have a standard deviation close to zero.
 }
 \usage{
-day.dist(years, days)
+day.dist(Dates, days, years)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{years}{
-%%     ~~Describe \code{years} here~~
-}
+  \item{Dates}{
+A vector of POSIXct dates from which days and years are extracted. If Dates are not provided, days and years must be }
   \item{days}{
-%%     ~~Describe \code{days} here~~
+A vector of days in numeric format. Not required if POSIXct dates are provided}
 }
+\item{years}{
+A vector of years in numeric format. Not required if POSIXct dates are provided}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
@@ -47,11 +48,16 @@ Nick Bond
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-years<-c("1968","1975","1983","1990","2004")
 days<-c(366,1,365,1,366)
-day.dist(years,days)
+years<-c("1968","1975","1983","1990","2004")
+day.dist(days,years)
+
 days<-c(170,180,1,365,170)
-day.dist(years,days)
+day.dist(days,years)
+
+dates<-c("1968-06-18", "1975-06-29", "1983-01-01", "1990-12-31", "2004-06-18")
+dates<-as.POSIXct(dates, format = "\%Y-\%m-\%d", tz="")
+day.dist(dates)
 }
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the

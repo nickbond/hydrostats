@@ -7,9 +7,12 @@ Calculate low flow spell statistics
 \description{
 Calculates a suite of statistics describing low-flow spell characteristics, such as the timing, frequency and duration of events below a threshold. The event threshold can be defined as a flow quantile (e.g. the 10th  percentile, that is flows exceeded 90\% of the time) or a specific threshold volume (e.g. ML/day).
 
-For the purpose of deriving annual low-flow spell statistics, the function can also be applied based on the hydrologic year. This is advisable where the low flow season spans years, such that prolonged spells may span years. This first requires the time series be processed using the hydro.year function. This adds an additional column indicating the hydrologic year to which each row belongs, which is used for deriving annual spell characteristics.
+For the purpose of deriving annual low-flow spell statistics, the function can also be applied based on the hydrologic year. This is advisable where the low flow season spans calendar years, such that prolonged spells may be split at the transition from one calendar year to the next. This first requires the time series be processed using the hydro.year function. This adds an additional column indicating the hydrologic year to which each row belongs, which is used for deriving annual spell characteristics.
 
-Missing values are allowed for convenience (NA's are removed and the time-series is concatenated before functions are applied), but of course may lead to biased results.
+It is possible for there to be multiple days with the same low flow value (especially zero flows). In estimating the average timing (and sd) of of minimum flows function calculates the average doy of minimum flows in each year first, before calculating the average across years. Circular functions are used to address the proximity between days toward the beginning and end of the year.
+
+Missing values are allowed for convenience (NA's are removed and the time-series is concatenated before functions are applied), but of course may lead to biased results. For the purpose of the annual statistics years with fewer than 350 days of available record are ignored. 
+
 }
 \usage{
 low.spells(flow.ts, quant = 0.1, duration = T, volume = T, plot = T,
@@ -47,15 +50,15 @@ logical. If TRUE, statistics describing the annual series only are returned.}
 \value{
 %%  ~Describe the value returned
 low flow indices
-\item{low.spell.threshold }{Description of 'comp1'}
-\item{avg.low.spell.duration }{Description of 'comp2'}
-\item{max.low.duration }{Description of 'comp2'}
-\item{low.spell.freq}{Description of 'comp2'}
+\item{low.spell.threshold }{The low spell threshold applied in the analysis}
+\item{avg.low.spell.duration }{Average duration of spell events}
+\item{max.low.duration }{Maximum duration of spell events}
+\item{low.spell.freq}{The frequency of spell events (no. per year)}
 
 Annual low flow statistics
-\item{avg.min.ann}{Description of 'comp2'}
-\item{timing.min.flow}{Description of 'comp2'}
-\item{pred.min.flow}{Description of 'comp2'}
+\item{avg.min.ann}{The average annual minimum flow}
+\item{timing.min.flow}{The average day of the year (0-366) on which the minimum flow occurs.}
+\item{pred.min.flow}{circular standard deviation of the average timing of annual minimum flows}
 }
 \references{
 %% ~put references to the literature/web site here ~

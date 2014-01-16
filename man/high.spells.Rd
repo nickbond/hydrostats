@@ -9,7 +9,9 @@ Calculates a suite of statistics describing flood characteristics, such as the t
 
 For the purpose of deriving annual flood statistics, the function can also be applied based on the hydrologic year. This is advisable where the high flow season spans years, such that prolonged spells may span years. This first requires the time series be processed using the hydro.year function. This adds an additional column indicating the hydrologic year to which each row belongs, which is used for deriving annual spell characteristics.
 
-Missing values are allowed for convenience (NA's are removed and the time-series is concatenated before functions are applied), but of course may lead to biased results.
+It is possible for there to be multiple days with the same annual maximum flow value (although less likely than for low flows). In estimating the average timing (and sd) of of minimum flows function calculates the average doy of minimum flows in each year first, before calculating the average across years. Circular functions are used to address the proximity between days toward the beginning and end of the year.
+
+Missing values are allowed for convenience (NA's are removed and the time-series is concatenated before functions are applied), but of course may lead to biased results. For the purpose of the annual statistics years with fewer than 350 days of available record are ignored.
 
 
 
@@ -61,31 +63,31 @@ logical. If TRUE, statistics describing inter-flood spell characteristics are re
 }
 \value{
 flood indices
-\item{n.years }{Description of 'comp1'}
-\item{high.spell.threshold }{Description of 'comp2'}
-\item{n.events }{Description of 'comp2'}
-\item{spell.freq}{Description of 'comp2'}
-\item{ari}{Description}
-\item{avg.high.spell.duration}{Description of 'comp2'}
-\item{med.high.spell.duration}{Description of 'comp2'}
-\item{max.high.spell.duration}{Description of 'comp2'}
-\item{avg.spell.volume}{Description of 'comp2'}
-\item{avg.spell.peak}{Description of 'comp2'}
-\item{sd.spell.peak}{Description of 'comp2'}
+\item{n.years }{The number of years of record in the series}
+\item{high.spell.threshold }{The high spell threshold applied in the analysis)}
+\item{n.events }{The number of events in the series greater than or equal to the high.spell.threshold}
+\item{spell.freq}{The frequency of spell events (no. per year)}
+\item{ari}{Average Recurrence Interval of events in years (1/spell.freq)}
+\item{avg.high.spell.duration}{Average duration of spell events}
+\item{med.high.spell.duration}{Median duration of spell events}
+\item{max.high.spell.duration}{Maximum duration of spell events}
+\item{avg.spell.volume}{Average spell volume (volumes above the threshold only)}
+\item{avg.spell.peak}{Average spell peak}
+\item{sd.spell.peak}{Standard deviation in spell speaks}
 
 interflood indices
-\item{average.interval}{Description of 'comp1'}
-\item{min.interval}{Description of 'comp2'}
-\item{max.interval }{Description of 'comp2'}
+\item{average.interval}{The average time between spells (years)}
+\item{min.interval}{The mininum time between spells (years)}
+\item{max.interval }{The maximum time between spells (years)}
 
 Annual flood statistics
-\item{avg.max.ann}{Description of 'comp2'}
-\item{cv.max.ann}{Description of 'comp2'}
-\item{flood.skewness}{Description of 'comp2'}
-\item{flood.timing}{Description of 'comp2'}
-\item{flood.predictability}{Description of 'comp2'}
-\item{avg.ann.duration}{Description of 'comp2'}
-\item{cv.ann.duration}{Description of 'comp2'}
+\item{avg.max.ann}{The average annual maximum flow}
+\item{cv.max.ann}{The coefficient of variation of annual maximum flows}
+\item{flood.skewness}{The average annual maximum / mean daily flow}
+\item{flood.timing}{The average day of the year (0-366) on which maximum flows occur}
+\item{flood.predictability}{circular standard deviation of the average timing of annual maximum flows}
+\item{avg.ann.duration}{The average duration of the annual maximum spells}
+\item{cv.ann.duration}{The coefficient of variation of the duration of annual maximum spells}
 
 }
 \references{

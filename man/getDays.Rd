@@ -39,7 +39,6 @@ Nick Bond}
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-
 years<-c("1968","1975","1983","1990","2004")
 getDays(years)
 }
