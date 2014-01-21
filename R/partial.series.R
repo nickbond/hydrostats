@@ -59,9 +59,11 @@ partial.series <- function(flow.ts, ari = 2, ind.days = 7, duration = T, plot = 
         spell.volumes <- flow.ts[[2]]
         spell.volumes <- sapply(spells, sum)
         spell.volumes.below.threshold <- sapply(spells, length) * flow.threshold
-        spell.volumes <- spell.volumes[which(high.flow.runs$values == 1)] - spell.volumes.below.threshold[which(high.flow.runs$values == 1)]
+        spell.volumes <- spell.volumes[which(high.flow.runs$values == 1)] - spell.volumes.below.threshold[which(high.flow.runs$values == 
+            1)]
         
-        return(list(p.series = p.series, n.events = n.events, flow.threshold = flow.threshold, avg.duration = avg.duration, max.duration = max.duration, med.spell.volume = median(spell.volumes)))
+        return(list(p.series = p.series, n.events = n.events, flow.threshold = flow.threshold, avg.duration = avg.duration, max.duration = max.duration, 
+            med.spell.volume = median(spell.volumes)))
     } else {
         return(list(p.series = p.series, n.events = n.events, flow.threshold = flow.threshold, avg.duration = avg.duration, max.duration = max.duration))
     }
