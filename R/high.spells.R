@@ -2,6 +2,8 @@ high.spells <- function(flow.ts, quant = 0.9, user.threshold = FALSE, defined.th
     volume = TRUE, plot = TRUE, ignore.zeros = FALSE, ctf.threshold = 0.1, ann.stats = TRUE, ann.stats.only = FALSE, inter.flood = FALSE) {
     
     gauge <- deparse(substitute(flow.ts))
+    Q<-NULL
+    Year<-NULL
     
     if (ncol(flow.ts) > 2) {
         record.year <- flow.ts[, "Year"]
@@ -31,7 +33,7 @@ high.spells <- function(flow.ts, quant = 0.9, user.threshold = FALSE, defined.th
         
         avg.ann.max.days <- ddply(ann.max.days, .(Year), function(x) day.dist(x$Date))
         
-        avg.max.day <- day.dist(avg.ann.max.days$mean.doy, avg.ann.max.days$Year)
+        avg.max.day <- day.dist(days=avg.ann.max.days$mean.doy, years=avg.ann.max.days$Year)
         
         
         

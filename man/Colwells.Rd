@@ -2,11 +2,13 @@
 \alias{Colwells}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Colwells indices}
+Colwells indices }
 \description{
-Calculates Colwell’s (1974), which provide a measure of the seasonal predictability of environmental phenomena. Defined in terms of Predictability, Constancy and Contingency. For detailed information on the calculation and description of Colwell’s indices refer to (Colwell, 1974).}
+Calculates Colwell's (1974), which provide a measure of the seasonal predictability of environmental phenomena. Defined in terms of Predictability, Constancy and Contingency. For detailed information on the calculation and description of Colwell's indices refer to (Colwell, 1974).}
 \usage{
-Colwells(flow.ts, fn = "mean", boundaries = "transform", s = 11, base = 2, from = 0.5, by = 0.25)
+Colwells(flow.ts, fn = "mean", 
+boundaries = "transform", s = 11, 
+base = 2, from = 0.5, by = 0.25)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -57,9 +59,9 @@ Predictability measures how tightly an event is linked to a season; Constancy me
 %% ...
 }
 \references{
-Colwell, R.K. 1974. Predictability, Constancy, and Contingency of Periodic Phenomena. Ecology 55(5): 1148–53.
+Colwell, R.K. 1974. Predictability, constancy, and contingency of periodic phenomena. Ecology 55(5): 1148-53.
 
-Gan, K.C., McMahon, T.A., and Finlayson, B.L. 1991. Analysis of periodicity in streamflow and rainfall data by Colwell's indices. Journal of Hydrology 123(1-2): 105–18.
+Gan, K.C., McMahon, T.A., and Finlayson, B.L. 1991. Analysis of periodicity in streamflow and rainfall data by Colwell's indices. Journal of Hydrology 123(1-2): 105-18.
 }
 \author{
 Nick Bond

@@ -1,6 +1,7 @@
 export(ann.cv,
 			 bfi,
 			 CTF,
+			 Colwells,
 			 daily.cv, 
 			 day.dist,
 			 flood.length.max,

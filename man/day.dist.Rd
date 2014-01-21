@@ -16,9 +16,10 @@ day.dist(Dates, days, years)
 \arguments{
   \item{Dates}{
 A vector of POSIXct dates from which days and years are extracted. If Dates are not provided, days and years must be }
-  \item{days}{
+
+\item{days}{
 A vector of days in numeric format. Not required if POSIXct dates are provided}
-}
+
 \item{years}{
 A vector of years in numeric format. Not required if POSIXct dates are provided}
 }
@@ -50,14 +51,14 @@ Nick Bond
 \examples{
 days<-c(366,1,365,1,366)
 years<-c("1968","1975","1983","1990","2004")
-day.dist(days,years)
+day.dist(days=days, years=years)
 
 days<-c(170,180,1,365,170)
-day.dist(days,years)
+day.dist(days=days, years=years)
 
 dates<-c("1968-06-18", "1975-06-29", "1983-01-01", "1990-12-31", "2004-06-18")
 dates<-as.POSIXct(dates, format = "\%Y-\%m-\%d", tz="")
-day.dist(dates)
+day.dist(Dates=dates)
 }
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the

@@ -1,4 +1,4 @@
-day.dist <- function(Dates, days, years) {
+day.dist <- function(Dates=NULL, days=NULL, years=NULL) {
     
     if (any(class(Dates) == "POSIXct") == T) {
         

@@ -1,6 +1,7 @@
 low.spells <- function(flow.ts, quant = 0.1, duration = T, volume = T, plot = T, annual.stats = T, ann.stats.only = F) {
     gauge <- deparse(substitute(flow.ts))
-    
+    Q<-NULL
+    Year<-NULL
     
     if (ncol(flow.ts) > 2) {
         record.year <- flow.ts[, "Year"]
@@ -33,7 +34,7 @@ low.spells <- function(flow.ts, quant = 0.1, duration = T, volume = T, plot = T,
         
         avg.ann.min.days <- ddply(ann.min.days, .(Year), function(x) day.dist(x$Date))
         
-        avg.min.day <- day.dist(avg.ann.min.days$mean.doy, avg.ann.min.days$Year)
+        avg.min.day <- day.dist(days=avg.ann.min.days$mean.doy, years=avg.ann.min.days$Year)
         
     }
     
