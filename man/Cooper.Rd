@@ -22,11 +22,8 @@ A data frame with 7670 observations (from 1967-1987) on 2 variables.
 }
 
 \source{
-Approval yet to be granted.
+Data provided by the State of Queensland, Department of Natural Resources and Mines under creative commons licence agreement. Details available at http://watermonitoring.dnrm.qld.gov.au/wini/copyright.htm
 
-Department of Environment and Resource Management, Qld Government, Australia.
-
-%From another paper here's what the Qld government say about using their data. The Department of Natural Resources and Mines gives no %warranty in relation to the data (including accuracy, reliability, completeness or suitability) and %accepts no liability (including without limitation, liability in negligence) for any loss, damage or %costs (including consequential damage) relating to any use of the data. It is acknowledged that all %products and images generated using data from the State of Queensland are based on or contain data %provided by the Department of Natural Resources and Mines, Queensland which gives no warranty in %relation to the data (including accuracy, reliability, completeness or suitability) and accepts no %liability (including without limitation, liability in negligence) for any loss, damage or cost (including consequential damage) relating to any use of the data.
 }
 \examples{
 data(Cooper)
