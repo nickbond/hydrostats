@@ -22,7 +22,7 @@ A data frame with 7670 observations (from 1967-1987) on 2 variables.
 }
 
 \source{
-Data provided by the State of Queensland, Department of Natural Resources and Mines under creative commons licence agreement. Details available at http://watermonitoring.dnrm.qld.gov.au/wini/copyright.htm
+Data provided by the State of Queensland, Department of Natural Resources and Mines under creative commons licence agreement. Details available at http://watermonitoring.dnrm.qld.gov.au/wini/copyright.htm  
 
 }
 \examples{
