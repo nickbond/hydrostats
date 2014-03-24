@@ -1,13 +1,15 @@
-low.spells <- function(flow.ts, quant = 0.1, duration = T, volume = T, plot = T, annual.stats = T, ann.stats.only = F) {
+low.spells <- function(flow.ts, quant = 0.1, duration = T, volume = T, plot = T, annual.stats = T, ann.stats.only = F, hydro.year=FALSE) {
     gauge <- deparse(substitute(flow.ts))
-    Q<-NULL
-    Year<-NULL
+   # Q<-NULL
+   # Year<-NULL
     
-    if (ncol(flow.ts) > 2) {
-        record.year <- flow.ts[, "Year"]
-    } else {
-        record.year <- strftime(flow.ts[[1]], format = "%Y")
-        flow.ts <- data.frame(flow.ts, Year = record.year)
+   if (hydro.year==TRUE) {
+   	print("Returning results based on hydrologic year")
+   	flow.ts<-hydro.year(flow.ts, year="hydro")
+   	record.year <- flow.ts[, "year"]
+  	} else {
+   	record.year <- strftime(flow.ts[[1]], format = "%Y")
+        flow.ts <- data.frame(flow.ts, year = record.year)
     }
     
     n.years <- nlevels(as.factor(record.year))
@@ -19,22 +21,22 @@ low.spells <- function(flow.ts, quant = 0.1, duration = T, volume = T, plot = T,
         # record.year<-strftime(flow.ts.comp[[1]],format='%Y')
         n.days <- tapply(flow.ts.comp[[2]], flow.ts.comp[[3]], length)
         n.most.days <- which(n.days > 350)
-        flow.ts.comp <- flow.ts.comp[which(flow.ts.comp[, "Year"] %in% names(n.most.days)), ]
+        flow.ts.comp <- flow.ts.comp[which(flow.ts.comp[, "year"] %in% names(n.most.days)), ]
         record.year <- flow.ts.comp[[3]]
         n.years <- nlevels(as.factor(record.year))
         
         
-        ann.mins <- ddply(flow.ts.comp, .(Year), summarise, min = min(Q, na.rm = T))
+        ann.mins <- ddply(flow.ts.comp, .(year), summarise, min = min(Q, na.rm = T))
         
-        ann.min.days <- ddply(flow.ts.comp, .(Year), subset, Q == min(Q))
+        ann.min.days <- ddply(flow.ts.comp, .(year), subset, Q == min(Q))
         
         
         ann.mins.mean <- mean(ann.mins$min, na.rm = T)
         ann.mins.sd <- sd(ann.mins$min, na.rm = T)
         
-        avg.ann.min.days <- ddply(ann.min.days, .(Year), function(x) day.dist(x$Date))
+        avg.ann.min.days <- ddply(ann.min.days, .(year), function(x) day.dist(x$Date))
         
-        avg.min.day <- day.dist(days=avg.ann.min.days$mean.doy, years=avg.ann.min.days$Year)
+        avg.min.day <- day.dist(days=avg.ann.min.days$mean.doy, years=avg.ann.min.days$year)
         
     }
     

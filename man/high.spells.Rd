@@ -19,7 +19,7 @@ Missing values are allowed for convenience (NA's are removed and the time-series
 \usage{
 high.spells(flow.ts, quant = 0.9, user.threshold = FALSE, defined.threshold = NULL,
 ind.days = 5, duration = TRUE, volume = TRUE, plot = TRUE, ignore.zeros = FALSE,
-ctf.threshold = 0.1, ann.stats = TRUE, ann.stats.only = FALSE, inter.flood = FALSE)
+ctf.threshold = 0.1, ann.stats = TRUE, ann.stats.only = FALSE, inter.flood = FALSE, hydro.year=FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -57,6 +57,9 @@ logical. If TRUE, statistics describing the annual series only are returned.}
 
   \item{inter.flood}{
 logical. If TRUE, statistics describing inter-flood spell characteristics are reported.}
+	\item{hydro.year}{
+logical. If TRUE, each record is first assigned to a hydrologic year based on the timing of minimum flows. See \code{\link{hydro.year}} for further details.
+}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
@@ -116,6 +119,7 @@ high.spells(Cooper, quant=0.9, ann.stats=FALSE, plot=FALSE)
 
 high.spells(Cooper, quant=0.9, ann.stats=FALSE, ignore.zeros=TRUE)
 
+high.spells(Cooper, quant=0.9, ann.stats=FALSE, ignore.zeros=TRUE, hydro.year=TRUE)
          
 
 }

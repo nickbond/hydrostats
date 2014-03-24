@@ -1,15 +1,17 @@
 high.spells <- function(flow.ts, quant = 0.9, user.threshold = FALSE, defined.threshold=NULL, ind.days = 5, duration = TRUE, 
-    volume = TRUE, plot = TRUE, ignore.zeros = FALSE, ctf.threshold = 0.1, ann.stats = TRUE, ann.stats.only = FALSE, inter.flood = FALSE) {
+    volume = TRUE, plot = TRUE, ignore.zeros = FALSE, ctf.threshold = 0.1, ann.stats = TRUE, ann.stats.only = FALSE, inter.flood = FALSE, hydro.year=FALSE) {
     
     gauge <- deparse(substitute(flow.ts))
-    Q<-NULL
-    Year<-NULL
+    #Q<-NULL
+    #Year<-NULL
     
-    if (ncol(flow.ts) > 2) {
-        record.year <- flow.ts[, "Year"]
+    if (hydro.year==TRUE) {
+    	print("Returning results based on hydrologic year")
+    	flow.ts<-hydro.year(flow.ts, year="hydro")
+        record.year <- flow.ts[, "year"]
     } else {
         record.year <- strftime(flow.ts[, 1], format = "%Y")
-        flow.ts <- data.frame(flow.ts, Year = record.year)
+        flow.ts <- data.frame(flow.ts, year = record.year)
     }
     n.years <- nlevels(as.factor(record.year))
     
@@ -23,17 +25,17 @@ high.spells <- function(flow.ts, quant = 0.9, user.threshold = FALSE, defined.th
         record.year <- flow.ts.comp[[3]]
         n.years <- nlevels(as.factor(record.year))
         
-        ann.maxs <- ddply(flow.ts.comp, .(Year), summarise, max = max(Q, na.rm = T))
+        ann.maxs <- ddply(flow.ts.comp, .(year), summarise, max = max(Q, na.rm = T))
         
-        ann.max.days <- ddply(flow.ts.comp, .(Year), subset, Q == max(Q))
+        ann.max.days <- ddply(flow.ts.comp, .(year), subset, Q == max(Q))
         
         
         ann.maxs.mean <- mean(ann.maxs$max, na.rm = T)
         ann.maxs.sd <- sd(ann.maxs$max, na.rm = T)
         
-        avg.ann.max.days <- ddply(ann.max.days, .(Year), function(x) day.dist(x$Date))
+        avg.ann.max.days <- ddply(ann.max.days, .(year), function(x) day.dist(x$Date))
         
-        avg.max.day <- day.dist(days=avg.ann.max.days$mean.doy, years=avg.ann.max.days$Year)
+        avg.max.day <- day.dist(days=avg.ann.max.days$mean.doy, years=avg.ann.max.days$year)
         
         
         

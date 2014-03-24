@@ -8,7 +8,7 @@ Determine hydrologic year for calculating indices
 Defines a hydrologic year to minimise the risk that defined spells are interrupted by transitions between calendar years.
 }
 \usage{
-hydro.year(flow.ts, hydro.year = "hydro")
+hydro.year(flow.ts, hydro.year = "hydro", year.only=FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -19,15 +19,19 @@ hydro.year="hydro" calculates the hydrologic year and returns a dataframe with a
 
 Other options may be added in the future.
 
-%%     ~~Describe \code{alt.start.date} here~~
 }
+	\item{year.only}{
+logical. If FALSE (default), a column indicating the hydrologic year of each record is added to the original data.frame. If TRUE, a vector indicating the hydrologic year of each record is returned. 
+	}
 }
+
+
 \details{
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
 %%  ~Describe the value returned
-Returns the original dataframe with an added column "Year" indicating the hydrologic year to which each case belongs.
+If year.only=FALSE (default), the function returns the original dataframe with an added column "year" indicating the hydrologic year to which each case belongs. Otherwise, if year.only=TRUE, a vector of hydrologic years is returned. This is typically used when the called from other functions.
 }
 \references{
 %% ~put references to the literature/web site here ~
@@ -41,12 +45,14 @@ Nick Bond}
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+\code{\link{high.spells}}, \code{\link{low.spells}}.
 }
 \examples{
 data(Cooper)
 Cooper<-ts.format(Cooper)
-Cooper<-hydro.year(Cooper)
+
+head(hydro.year(Cooper))
+head(hydro.year(Cooper, year.only=TRUE))
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

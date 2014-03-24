@@ -11,7 +11,7 @@ Independence criteria allow short periods below the spell threshold to be ignore
 }
 \usage{
 high.spell.lengths(flow.ts, quant = 0.9, user.threshold = F, defined.threshold,
-ind.days = 5, ignore.zeros = T, ctf.threshold = 0.1)
+ind.days = 5, ignore.zeros = T, ctf.threshold = 0.1, hydro.year=FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -32,6 +32,9 @@ logical. If TRUE, days below a user defined cease-to-flow threshold (default 0.1
 }
   \item{ctf.threshold}{
 values below this threshold are treated as zero for the purpose of percentile based calculations (see ignore zeros).
+}
+	\item{hydro.year}{
+logical. If TRUE, each record is first assigned to a hydrologic year based on the timing of minimum flows. See \code{\link{hydro.year}} for further details.
 }
 }
 \details{
@@ -62,53 +65,8 @@ Cooper<-ts.format(Cooper)
 
 high.spell.lengths(Cooper, user.threshold=TRUE, defined.threshold=50000)
 
+high.spell.lengths(Cooper, user.threshold=TRUE, defined.threshold=50000, hydro.year=TRUE)
 
-
-## The function is currently defined as
-function (flow.ts, quant = 0.9, user.threshold = F, defined.threshold, 
-    ind.days = 5, ignore.zeros = T, ctf.threshold = 0.1) 
-{
-    if (ncol(flow.ts) > 2) {
-        record.year <- flow.ts[, "Year"]
-    }
-    else {
-        record.year <- strftime(flow.ts[[1]], format = "\%Y")
-        flow.ts <- data.frame(flow.ts, year = record.year)
-    }
-    n.years <- nlevels(as.factor(record.year))
-    if (user.threshold == T) {
-        flow.threshold <- defined.threshold
-    }
-    else {
-        if (ignore.zeros == T) {
-            flow.threshold <- quantile(flow.ts[which(flow.ts[[2]] > 
-                ctf.threshold), 2], quant, na.rm = T)
-            names(flow.threshold) <- NULL
-        }
-        else {
-            flow.threshold <- quantile(flow.ts[, 2], quant, na.rm = T)
-            names(flow.threshold) <- NULL
-        }
-    }
-    high.flows <- ifelse(flow.ts[, 2] > flow.threshold, 1, 0)
-    if (ind.days > 0) {
-        high.flow.runs <- rle(high.flows)
-        too.short <- which(high.flow.runs$lengths < ind.days & 
-            high.flow.runs$values == 0)
-        spell.factor <- rep(seq_along(high.flow.runs$lengths), 
-            times = high.flow.runs$lengths)
-        add.to.spell <- which(spell.factor \%in\% too.short)
-        high.flows[add.to.spell] <- 1
-    }
-    high.flow.runs <- rle(high.flows)
-    good.high.flow.runs <- which(!is.na(high.flow.runs$values))
-    flow.runs.values <- high.flow.runs$values[good.high.flow.runs]
-    flow.runs.lengths <- high.flow.runs$lengths[good.high.flow.runs]
-    spell.lengths <- cbind(flow.runs.values, flow.runs.lengths)
-    flood.spell.lengths <- subset(spell.lengths, flow.runs.values == 
-        1, select = flow.runs.lengths)
-    return(data.frame(flood.duration = flood.spell.lengths))
-  }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

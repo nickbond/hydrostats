@@ -51,11 +51,12 @@ Cooper<-ts.format(Cooper)
 flood.length.max(Cooper,50000, ind.days=5)
 
 # Return annual maximum flood length based on calendar year using ddply (from plyr package) 
-ddply(Cooper, .(year=format(Cooper$Date,format="\%Y")),flood.length.max,50000)
+Cooper$Year=format(Cooper$Date, format="\%Y")
+ddply(Cooper, .(Year), flood.length.max, 50000)
 
 # Based on hydrologic year.
 Cooper<-hydro.year(Cooper)
-ddply(Cooper, .(Year),flood.length.max,50000)
+ddply(Cooper, .(Year), flood.length.max, 50000)
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

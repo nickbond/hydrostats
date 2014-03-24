@@ -51,14 +51,6 @@ data(Cooper)
 Cooper<-ts.format(Cooper)
 
 daily.cv(Cooper)
-
-## The function is currently defined as
-function (flow.ts) 
-{
-    daily.cv <- (sd(flow.ts$Q, na.rm = T)/mean(flow.ts$Q, na.rm = T)) * 
-        100
-    return(list(daily.cv = daily.cv))
-  }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

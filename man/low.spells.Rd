@@ -16,7 +16,7 @@ Missing values are allowed for convenience (NA's are removed and the time-series
 }
 \usage{
 low.spells(flow.ts, quant = 0.1, duration = T, volume = T, plot = T,
-annual.stats = T, ann.stats.only = F)
+annual.stats = T, ann.stats.only = F, hydro.year=FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -42,6 +42,9 @@ logical. Should the time-series be plotted? Data points considered 'within spell
 logical. If TRUE, the function returns results describing the annual series (i.e. that describing the characteristics of the spells associated with the lowest annual daily flow).}
   \item{ann.stats.only}{
 logical. If TRUE, statistics describing the annual series only are returned.}
+	\item{hydro.year}{
+logical. If TRUE, each record is first assigned to a hydrologic year based on the timing of minimum flows. See \code{\link{hydro.year}} for further details.
+}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
@@ -81,6 +84,12 @@ data(Cooper)
 Cooper<-ts.format(Cooper)
 
 low.spells(Cooper, quant=0.1)
+
+low.spells(Acheron, quant=0.1)
+
+low.spells(Acheron, quant=0.1, hydro.year=TRUE)
+
+
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
