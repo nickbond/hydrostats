@@ -5,7 +5,7 @@
 Format dates as POSIX
 }
 \description{
-Converts dates from class character (format dd/mm/yyyy) into class POSIXlt}
+Converts dates from class character (format dd/mm/yyyy) into class POSIXct}
 \usage{
 ts.format(x)
 }
@@ -17,6 +17,7 @@ dates of class character}
 \details{
 Assumes date is of class character and in the first column of the data frame. For more flexibility in formatting dates/times see the lubridate package.}
 \value{
+A dataframe with the first (Date) column formatted as POSIXct
 %%  ~Describe the value returned
 %%  If it is a LIST, use
 %%  \item{comp1 }{Description of 'comp1'}

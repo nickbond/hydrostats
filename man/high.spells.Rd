@@ -17,7 +17,7 @@ Missing values are allowed for convenience (NA's are removed and the time-series
 
 }
 \usage{
-high.spells(flow.ts, quant = 0.9, user.threshold = FALSE, defined.threshold=0.9,
+high.spells(flow.ts, quant = 0.9, user.threshold = FALSE, defined.threshold = NULL,
 ind.days = 5, duration = TRUE, volume = TRUE, plot = TRUE, ignore.zeros = FALSE,
 ctf.threshold = 0.1, ann.stats = TRUE, ann.stats.only = FALSE, inter.flood = FALSE)
 }

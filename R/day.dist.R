@@ -11,7 +11,7 @@ day.dist <- function(Dates=NULL, days=NULL, years=NULL) {
     }
     
     
-    year.length <- getDays(years)
+    year.length <- get.days(years)
     theta <- c()
     adjust <- 0.5 * ((2 * pi)/365)
     theta <- days * (2 * pi/year.length) - adjust

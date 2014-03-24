@@ -22,7 +22,7 @@ ann.cv(flow.ts)
 Requires date to be in POSIX format. See ts.format
 }
 \value{
-list of length 1
+A list of length 1
 %%  ~Describe the value returned
 %%  If it is a LIST, use
 %%  \item{comp1 }{Description of 'comp1'}

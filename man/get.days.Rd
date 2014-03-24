@@ -1,5 +1,5 @@
-\name{getDays}
-\alias{getDays}
+\name{get.days}
+\alias{get.days}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Function to determine the number of days 365 or 366 in a given year.
@@ -7,7 +7,7 @@ Function to determine the number of days 365 or 366 in a given year.
 \description{
 A helper function for circular statistic functions. Determines the number of days in any given year (i.e. 365 or 366)}
 \usage{
-getDays(year)
+get.days(year)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -18,6 +18,7 @@ A vector of years in numeric format}
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
+A vector containing the number of days in each year in the input vector
 %%  ~Describe the value returned
 %%  If it is a LIST, use
 %%  \item{comp1 }{Description of 'comp1'}
@@ -40,7 +41,7 @@ Nick Bond}
 }
 \examples{
 years<-c("1968","1975","1983","1990","2004")
-getDays(years)
+get.days(years)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

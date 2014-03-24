@@ -1,4 +1,4 @@
-high.spells <- function(flow.ts, quant = 0.9, user.threshold = FALSE, defined.threshold = 0.9, ind.days = 5, duration = TRUE, 
+high.spells <- function(flow.ts, quant = 0.9, user.threshold = FALSE, defined.threshold=NULL, ind.days = 5, duration = TRUE, 
     volume = TRUE, plot = TRUE, ignore.zeros = FALSE, ctf.threshold = 0.1, ann.stats = TRUE, ann.stats.only = FALSE, inter.flood = FALSE) {
     
     gauge <- deparse(substitute(flow.ts))

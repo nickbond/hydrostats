@@ -5,7 +5,8 @@ export(ann.cv,
 			 daily.cv, 
 			 day.dist,
 			 flood.length.max,
-			 getDays,
+			 four.digit.year,
+			 get.days,
 			 high.spell.lengths,
 			 high.spells,
 			 hydro.year,
@@ -15,3 +16,5 @@ export(ann.cv,
 			 seasonality,
 			 ts.format)
 import(plyr)
+importFrom(lubridate, dmy)
+importFrom(lubridate, year)
