@@ -4,7 +4,7 @@
 \title{
 Colwells indices }
 \description{
-Calculates Colwell's (1974), which provide a measure of the seasonal predictability of environmental phenomena. Defined in terms of Predictability, Constancy and Contingency. For detailed information on the calculation and description of Colwell's indices refer to (Colwell, 1974).}
+Calculates Colwell's (1974), which provide a measure of the seasonal predictability of environmental phenomena. Defined in terms of Predictability (P), Constancy (C) and Contingency (M). For detailed information on the calculation and description of Colwell's indices refer to (Colwell, 1974).}
 \usage{
 Colwells(flow.ts, fn = "mean", 
 boundaries = "transform", s = 11, 
@@ -28,11 +28,11 @@ boundaries="log_class_size"  generates breaks based on logarithmic scale (defaul
 
 boundaries="weighted_log_class_size" generates breaks based on logarithmic scale (default base 2) * mean (or other summary statistic) of the variable. A roughly equal number of bins occur above and below the mean (or other summary statistic)
 
-boundaries="Gan" creates bins that match those of Gan et al. (1991). Requires from (default 0.25), by (default 0.25) and s (number of bins)
+boundaries="Gan" creates bins that match those of Gan et al. (1991). Requires: from (default 0.25), by (default 0.25) and s (number of bins)
 }
 
  	\item{s}{
-The number of classes the flow data is broken into (Default 11)
+The number of classes the flow data is broken into (default 11)
 }
 
   \item{base}{
