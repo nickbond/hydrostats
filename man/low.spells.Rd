@@ -85,9 +85,7 @@ Cooper<-ts.format(Cooper)
 
 low.spells(Cooper, quant=0.1)
 
-low.spells(Acheron, quant=0.1)
-
-low.spells(Acheron, quant=0.1, hydro.year=TRUE)
+low.spells(Cooper, quant=0.1, hydro.year=TRUE)
 
 
 

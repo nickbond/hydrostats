@@ -1,7 +1,7 @@
 low.spells <- function(flow.ts, quant = 0.1, duration = T, volume = T, plot = T, annual.stats = T, ann.stats.only = F, hydro.year=FALSE) {
     gauge <- deparse(substitute(flow.ts))
-   # Q<-NULL
-   # Year<-NULL
+    Q<-NULL
+    Year<-NULL
     
    if (hydro.year==TRUE) {
    	print("Returning results based on hydrologic year")

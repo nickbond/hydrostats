@@ -2,8 +2,8 @@ high.spells <- function(flow.ts, quant = 0.9, user.threshold = FALSE, defined.th
     volume = TRUE, plot = TRUE, ignore.zeros = FALSE, ctf.threshold = 0.1, ann.stats = TRUE, ann.stats.only = FALSE, inter.flood = FALSE, hydro.year=FALSE) {
     
     gauge <- deparse(substitute(flow.ts))
-    #Q<-NULL
-    #Year<-NULL
+    Q<-NULL
+    Year<-NULL
     
     if (hydro.year==TRUE) {
     	print("Returning results based on hydrologic year")
