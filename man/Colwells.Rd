@@ -22,7 +22,7 @@ The method used to define break points when binning data.
 
 boundaries="equal"  splits the data into s equal sized bins
 
-boundaries="transform" first applies a log10(x+1) transformation and then splits the data into s equal size bins
+boundaries="transform" (default) first applies a log10(x+1) transformation and then splits the data into s equal size bins
 
 boundaries="log_class_size"  generates breaks based on logarithmic scale (default base 2) with a roughly equal number of bins above and below 1
 
