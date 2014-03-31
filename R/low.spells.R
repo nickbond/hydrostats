@@ -21,6 +21,15 @@ low.spells <- function(flow.ts, quant = 0.1, duration = T, volume = T, plot = T,
         # record.year<-strftime(flow.ts.comp[[1]],format='%Y')
         n.days <- tapply(flow.ts.comp[[2]], flow.ts.comp[[3]], length)
         n.most.days <- which(n.days > 350)
+        if (length(n.most.days)==0) {
+        	ann.mins.mean<-NA
+        	cv.min.ann <- NA
+        	avg.min.day <- cbind(NA, NA)
+        	
+        
+        } else {
+        	
+        	
         flow.ts.comp <- flow.ts.comp[which(flow.ts.comp[, "year"] %in% names(n.most.days)), ]
         record.year <- flow.ts.comp[[3]]
         n.years <- nlevels(as.factor(record.year))
@@ -34,17 +43,20 @@ low.spells <- function(flow.ts, quant = 0.1, duration = T, volume = T, plot = T,
         ann.mins.mean <- mean(ann.mins$min, na.rm = T)
         ann.mins.sd <- sd(ann.mins$min, na.rm = T)
         
+        
         avg.ann.min.days <- ddply(ann.min.days, .(year), function(x) day.dist(x$Date))
         
         avg.min.day <- day.dist(days=avg.ann.min.days$mean.doy, years=avg.ann.min.days$year)
         
+        cv.min.ann <- (ann.mins.sd/ann.mins.mean) * 100
     }
-    
+    }
+   
     if (ann.stats.only == T) {
         
         
         
-        return(list(avg.min.ann = ann.mins.mean, cv.min.ann = (ann.mins.sd/ann.mins.mean) * 100, timing.min.flow = avg.min.day[[1]], 
+        return(list(avg.min.ann = ann.mins.mean, cv.min.ann = cv.min.ann, timing.min.flow = avg.min.day[[1]], 
             pred.min.flow = avg.min.day[[2]]))
         
     } else {
@@ -106,7 +118,7 @@ low.spells <- function(flow.ts, quant = 0.1, duration = T, volume = T, plot = T,
     }
     
     return(list(low.spell.threshold = flow.threshold, avg.low.spell.duration = avg.duration, max.low.duration = max.duration, 
-        low.spell.freq = low.spell.frequency, avg.min.ann = ann.mins.mean, cv.min.ann = (ann.mins.sd/ann.mins.mean) * 100, timing.min.flow = avg.min.day[[1]], 
+        low.spell.freq = low.spell.frequency, avg.min.ann = ann.mins.mean, cv.min.ann = cv.min.ann, timing.min.flow = avg.min.day[[1]], 
         pred.min.flow = avg.min.day[[2]]))
     
     

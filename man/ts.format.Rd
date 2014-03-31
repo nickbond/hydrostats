@@ -2,18 +2,22 @@
 \alias{ts.format}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Format dates as POSIX
+Format dates as POSIXct
 }
 \description{
-Converts dates from class character (format dd/mm/yyyy) into class POSIXct}
+Converts dates from class character (format dd/mm/yyyy or other as specified) into class POSIXct}
 \usage{
-ts.format(x)
+ts.format(x, format="\%d/\%m/\%Y")
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-dates of class character}
+dates of class character
 }
+  \item{format}{
+format of dates in existing data frame}
+}
+
 \details{
 Assumes date is of class character and in the first column of the data frame. For more flexibility in formatting dates/times see the lubridate package.}
 \value{
