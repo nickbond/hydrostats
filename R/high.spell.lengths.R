@@ -53,7 +53,7 @@ high.spell.lengths <- function(flow.ts, quant = 0.9, user.threshold = F, defined
     flow.runs.values <- high.flow.runs$values[good.high.flow.runs]
     flow.runs.lengths <- high.flow.runs$lengths[good.high.flow.runs]
     spell.lengths <- cbind(flow.runs.values, flow.runs.lengths)
-    spell.lengths <- as.vector(subset(spell.lengths, flow.runs.values == 1, select = flow.runs.lengths))
+    spell.lengths <- as.data.frame(subset(spell.lengths, flow.runs.values == 1, select = flow.runs.lengths))
     names(spell.lengths)[1] <- "spell.lengths"
-    return(data.frame(spell.lengths))
+    return(spell.lengths)
 } 
