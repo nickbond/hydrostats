@@ -20,7 +20,7 @@ high.spells <- function(flow.ts, quant = 0.9, user.threshold = FALSE, defined.th
         flow.ts.comp <- na.omit(flow.ts)
         
         n.days <- tapply(flow.ts.comp[, 2], flow.ts.comp[, 3], length)
-        n.most.days <- which(n.days > 350)
+        n.most.days <- which(n.days > 271)
        
         if (length(n.most.days)==0) {
         	ann.maxs.mean<-NA
