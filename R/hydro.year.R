@@ -1,4 +1,4 @@
-hydro.year <- function(flow.ts, hydro.year = "hydro", year.only=FALSE) {
+hydro.year <- function(flow.ts, hydro.year = "hydro", year.only = FALSE) {
     
     begin <- head(flow.ts[[1]], 1)
     finish <- tail(flow.ts[[1]], 1)
@@ -21,14 +21,14 @@ hydro.year <- function(flow.ts, hydro.year = "hydro", year.only=FALSE) {
         
         alt.month <- which.min(month.runs)
         year <- c()
-        year <- ifelse(as.numeric(strftime(flow.ts[[1]], format = "%m")) < alt.month, as.numeric(strftime(flow.ts[[1]], format = "%Y")) - 
-            1, as.numeric(strftime(flow.ts[[1]], format = "%Y")))
+        year <- ifelse(as.numeric(strftime(flow.ts[[1]], format = "%m")) < alt.month, as.numeric(strftime(flow.ts[[1]], 
+            format = "%Y")) - 1, as.numeric(strftime(flow.ts[[1]], format = "%Y")))
     }
-    if(year.only==TRUE) {
-    	return(year)
-    } else { 
-    flow.ts <- data.frame(flow.ts, year = year)
-    return(flow.ts)
+    if (year.only == TRUE) {
+        return(year)
+    } else {
+        flow.ts <- data.frame(flow.ts, year = year)
+        return(flow.ts)
     }
     
 } 

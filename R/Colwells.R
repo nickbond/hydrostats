@@ -18,7 +18,7 @@ Colwells <- function(flow.ts, fn = "mean", boundaries = "transform", s = 11, bas
         flow.ts.monthly$Q <- log10(flow.ts.monthly$Q + 1)
         flow.ts.monthly$flow.class <- cut(flow.ts.monthly$Q, s, right = FALSE, include.lowest = TRUE)
         flow.table <- with(flow.ts.monthly, table(flow.class, month))
-        pbreaks<-"see Table"
+        pbreaks <- "see Table"
         
         
     } else {
@@ -27,7 +27,7 @@ Colwells <- function(flow.ts, fn = "mean", boundaries = "transform", s = 11, bas
             
             breaks <- base^(seq(1:s) - 2)
             breaks <- c(-Inf, breaks, Inf)
-            pbreaks<-breaks
+            pbreaks <- breaks
             flow.ts.monthly$flow.class <- cut(flow.ts.monthly$Q, breaks)
             flow.table <- with(flow.ts.monthly, table(flow.class, month))
             
@@ -37,7 +37,7 @@ Colwells <- function(flow.ts, fn = "mean", boundaries = "transform", s = 11, bas
                 low_exp <- ceiling(0 - (s - 1)/2)
                 breaks <- base^seq(low_exp, length.out = s - 1)
                 breaks <- c(-Inf, breaks, Inf)
-                pbreaks<-breaks
+                pbreaks <- breaks
                 breaks <- fn(flow.ts.monthly$Q) * breaks
                 
                 
@@ -50,13 +50,13 @@ Colwells <- function(flow.ts, fn = "mean", boundaries = "transform", s = 11, bas
                 if (boundaries == "equal") {
                   flow.ts.monthly$flow.class <- cut(flow.ts.monthly$Q, s, right = FALSE, include.lowest = TRUE)
                   flow.table <- with(flow.ts.monthly, table(flow.class, month))
-                  pbreaks<-"see Table"
+                  pbreaks <- "see Table"
                 } else {
                   
                   if (boundaries == "Gan") {
                     Q <- fn(flow.ts.monthly$Q, na.rm = TRUE)
                     breaks <- seq(from = from, by = by, length.out = s - 1)
-                    pbreaks<-breaks
+                    pbreaks <- breaks
                     breaks <- Q * breaks
                     breaks <- c(-Inf, breaks, Inf)
                     flow.ts.monthly$flow.class <- cut(flow.ts.monthly$Q, breaks, right = FALSE, include.lowest = TRUE)
@@ -80,5 +80,5 @@ Colwells <- function(flow.ts, fn = "mean", boundaries = "transform", s = 11, bas
     C <- round(1 - HY/log(s), 2)
     M <- round((HX + HY - HXY)/log(s), 2)
     
-    return(list(breaks=pbreaks, flow.table=flow.table, P = P, C = C, M = M, CP = C/P, MP = M/P))
+    return(list(breaks = pbreaks, flow.table = flow.table, P = P, C = C, M = M, CP = C/P, MP = M/P))
 } 

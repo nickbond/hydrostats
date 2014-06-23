@@ -1,4 +1,4 @@
-day.dist <- function(Dates=NULL, days=NULL, years=NULL) {
+day.dist <- function(Dates = NULL, days = NULL, years = NULL) {
     
     if (any(class(Dates) == "POSIXct") == T) {
         
@@ -28,7 +28,7 @@ day.dist <- function(Dates=NULL, days=NULL, years=NULL) {
     sd.deg <- sd.rad * (365/(2 * pi))
     
     
-    #data.frame(mean.doy = round(m.deg, 0), sd.doy = round(1-r, 2))
+    # data.frame(mean.doy = round(m.deg, 0), sd.doy = round(1-r, 2))
     data.frame(mean.doy = round(m.deg, 0), sd.doy = round(sd.deg, 0))
     
 } 
