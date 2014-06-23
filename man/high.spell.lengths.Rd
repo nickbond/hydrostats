@@ -42,7 +42,7 @@ logical. If TRUE, each record is first assigned to a hydrologic year based on th
 }
 \value{
 %%  ~Describe the value returned
-Returns a dataframe of spell lengths.
+Returns a dataframe of spell lengths and their associated starting dates.
 }
 \references{
 %% ~put references to the literature/web site here ~
