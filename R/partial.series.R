@@ -1,4 +1,4 @@
-partial.series <- function(flow.ts, ari = 2, ind.days = 7, duration = T, plot = F, volume = T) {
+partial.series <- function(flow.ts, ari = 2, ind.days = 7, duration = T, plot = F, volume = T, series=FALSE) {
     gauge <- deparse(substitute(flow.ts))
     
     n.years <- nlevels(as.factor(strftime(flow.ts$Date, format = "%Y")))
@@ -59,13 +59,22 @@ partial.series <- function(flow.ts, ari = 2, ind.days = 7, duration = T, plot = 
         spell.volumes <- flow.ts[[2]]
         spell.volumes <- sapply(spells, sum)
         spell.volumes.below.threshold <- sapply(spells, length) * flow.threshold
-        spell.volumes <- spell.volumes[which(high.flow.runs$values == 1)] - spell.volumes.below.threshold[which(high.flow.runs$values == 
-            1)]
+        spell.volumes <- spell.volumes[which(high.flow.runs$values == 1)] - spell.volumes.below.threshold[which(high.flow.runs$values == 1)]
         
+        
+      if (series == TRUE) {
         return(list(p.series = p.series, n.events = n.events, flow.threshold = flow.threshold, avg.duration = avg.duration, 
             max.duration = max.duration, med.spell.volume = median(spell.volumes)))
     } else {
+    	return(data.frame(n.events = n.events, flow.threshold = flow.threshold, avg.duration = avg.duration, 
+    							max.duration = max.duration, med.spell.volume = median(spell.volumes)))
+    			}} else {
+    	if (series == TRUE) {
         return(list(p.series = p.series, n.events = n.events, flow.threshold = flow.threshold, avg.duration = avg.duration, 
             max.duration = max.duration))
+    	} else {
+    		return(data.frame(n.events = n.events, flow.threshold = flow.threshold, avg.duration = avg.duration, 
+    											max.duration = max.duration))
+    	}
     }
 } 

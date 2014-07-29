@@ -20,7 +20,7 @@ values below this threshold (default 0.1) are treated as zero for the purpose of
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
-A list of length 4.
+A dataframe with 4 columns (see below).
 
 \item{p.CTF }{Fraction time cease to flows occur}
 \item{avg.CTF }{Average cease-to-flow spell duration}

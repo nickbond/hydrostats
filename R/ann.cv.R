@@ -5,5 +5,5 @@ ann.cv <- function(flow.ts) {
     
     out <- sd(ann.stats$mean, na.rm = T)/mean(ann.stats$mean, na.rm = T) * 100
     
-    return(list(ann.cv = out))
+    return(data.frame(ann.cv = out))
 } 

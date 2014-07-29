@@ -17,7 +17,7 @@ Date: \tab 2013-12-20\cr
 License: \tab GPL (>= 2) \cr
 }
 
-For most functions data must be provided as a dataframe in which the first column is the date in POSIX format (see \code{\link[hydrostats:ts.format]{ts.format}}) and the second column contains the flow data.
+For most functions data must be provided as a dataframe in which the first column is the date in POSIXct format (see \code{\link[hydrostats:ts.format]{ts.format}}) and the second column contains the flow data.
 
 Includes several sample datasets.\cr
 data(Cooper) - Flow data for Coopers Creek, Australia. Gauge 003101@Currareva \cr
@@ -26,7 +26,6 @@ data(Acheron) - Flow data for Acheron River, Australia, Gauge 405209@Taggerty
 }
 \author{
 Nick Bond
-
 Maintainer: Nick Bond <n.bond@griffith.edu.au>
 
 }

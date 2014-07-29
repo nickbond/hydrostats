@@ -19,7 +19,7 @@ Requires date to be in POSIX format. See ts.format
 }
 \value{
 %%  ~Describe the value returned
-list of length 1
+Dataframe with 1 column (monthly CV).
 }
 \references{
 %% ~put references to the literature/web site here ~

@@ -25,7 +25,7 @@ daily.cv(flow.ts)
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
-A list of length 1
+A dataframe with 1 column (daily CV).
 %%  ~Describe the value returned
 %%  If it is a LIST, use
 %%  \item{comp1 }{Description of 'comp1'}

@@ -27,7 +27,7 @@ Periods between spells of less than ind.days (default 5) are considered to be 'i
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
-returns a vector of length 1. Maximum spell duration.
+returns a dataframe with 1 column (Maximum spell duration)
 }
 \references{
 %% ~put references to the literature/web site here ~

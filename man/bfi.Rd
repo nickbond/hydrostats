@@ -27,6 +27,8 @@ ts="daily" returns complete series}
 Technically the LH filter cannot be calculated where there are missing data. Here the function removes missing values and is applied to a concatenated version of the time series. Missing dates are reinserted after the filter has been applied for the purpose of returning annual or daily series. The function further reports the number of missing values leaving the user to decide on the reliability of the baseflow estimates.
 }
 \value{
+A dataframe. See below for details.
+
 ts="mean" 
  \item{prop.obs }{proportion of non-missing observations}
  \item{MDF }{mean daily flow}

@@ -14,13 +14,12 @@ It is possible for there to be multiple days with the same annual maximum flow v
 Missing values are allowed for convenience (NA's are removed and the time-series is concatenated before functions are applied), but of course may lead to biased results. For the purpose of the annual statistics years with fewer than 350 days of available record are ignored.
 
 
-
 }
 \usage{
 high.spells(flow.ts, quant = 0.9, user.threshold = FALSE, defined.threshold = NULL,
 ind.days = 5, duration = TRUE, volume = TRUE, plot = TRUE, ignore.zeros = FALSE,
 ctf.threshold = 0.1, ann.stats = TRUE, ann.stats.only = FALSE, inter.flood = FALSE, 
-hydro.year=FALSE)
+hydro.year=FALSE, facs=NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -61,11 +60,16 @@ logical. If TRUE, statistics describing inter-flood spell characteristics are re
 	\item{hydro.year}{
 logical. If TRUE, each record is first assigned to a hydrologic year based on the timing of minimum flows. See \code{\link{hydro.year}} for further details.
 }
+	\item{facs}{
+A vector of factors used to break the time series into sub-groups for analysis. The default is NULL.
+}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
+Returns a dataframe with the following columns.
+
 flood indices
 \item{n.years }{The number of years of record in the series}
 \item{high.spell.threshold }{The high spell threshold applied in the analysis)}

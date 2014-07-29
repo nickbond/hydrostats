@@ -22,9 +22,10 @@ logical. If FALSE (default), the function returns the percentage of runoff occur
 }
 \value{
 monthly.range=FALSE\cr
-a vector of length 1. Percentage of annual runoff delivered during the average driest 6 month period.
+a dataframe with 1 column describing the percentage of annual runoff delivered during the average driest 6 month period.
 
 monthly.range=TRUE\cr
+a list with the following elements
 \item{Seasonality }{Description of 'comp1'}
 \item{average monthly flow }{Description of 'comp2'}
 \item{average annual monthly range }{Description of 'comp2'}

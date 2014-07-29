@@ -11,12 +11,15 @@ For the purpose of deriving annual low-flow spell statistics, the function can a
 
 It is possible for there to be multiple days with the same low flow value (especially zero flows). In estimating the average timing (and sd) of of minimum flows function calculates the average doy of minimum flows in each year first, before calculating the average across years. Circular functions are used to address the proximity between days toward the beginning and end of the year.
 
-Missing values are allowed for convenience (NA's are removed and the time-series is concatenated before functions are applied), but of course may lead to biased results. For the purpose of the annual statistics years with fewer than 350 days of available record are ignored. 
+Missing values are allowed for convenience (NA's are removed and the time-series is concatenated before functions are applied), but of course may lead to biased results. For the purpose of the annual statistics years with fewer than 350 days of available record are ignored.
+
+Note that at this stage the timing and predictability statistics are not computed seperately when a factor is used to split the time-series into different periods, for example using ddply.
 
 }
 \usage{
-low.spells(flow.ts, quant = 0.1, duration = T, volume = T, plot = T,
-annual.stats = T, ann.stats.only = F, hydro.year=FALSE)
+low.spells(flow.ts, quant = 0.1, user.threshold=FALSE, defined.threshold=NULL, 
+duration = T, volume = T, plot = T, annual.stats = T, ann.stats.only = F, 
+hydro.year=FALSE, facs=NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -26,12 +29,12 @@ Dataframe consisting of date in column one and flow in column two. Date must be 
 	If a third column exists then this is assumed to provide a vector of years for the purpose of calculating annual spell statistics based on a predetermined hydrologic year.}
   \item{quant}{
 Percentile/quantile to use for defining event magnitude (default 0.1). A value of 0.1 is the lower 10th percentile (i.e. a volume exceeded 90\% of the time).}
-%  \item{user.threshold}{
-%User-defined thresholds are not implemented at this stage. 
-%}
-%  \item{defined.threshold}{
-%User-defined thresholds are not implemented at this stage.
-%}
+  \item{user.threshold}{
+logical. If TRUE, the function returns results based on a user defined volume to define spell events (see defined.threshold). 
+}
+  \item{defined.threshold}{
+A user supplied threshold for defining spells. This would typically be derived from hydraulic models or similar knowledge pertaining to a gauge site.
+}
   \item{duration}{
 logical. Should statistics describing spell duration be returned?}
   \item{volume}{
@@ -43,7 +46,9 @@ logical. If TRUE, the function returns results describing the annual series (i.e
   \item{ann.stats.only}{
 logical. If TRUE, statistics describing the annual series only are returned.}
 	\item{hydro.year}{
-logical. If TRUE, each record is first assigned to a hydrologic year based on the timing of minimum flows. See \code{\link{hydro.year}} for further details.
+logical. If TRUE, each record is first assigned to a hydrologic year based on the timing of minimum flows. See \code{\link{hydro.year}} for further details.}
+	\item{facs}{
+A vector of factors used to break the time series into sub-groups for analysis. The default is NULL.
 }
 }
 \details{
@@ -51,7 +56,8 @@ logical. If TRUE, each record is first assigned to a hydrologic year based on th
 }
 
 \value{
-%%  ~Describe the value returned
+Returns a dataframe with the following columns.
+
 low flow indices
 \item{low.spell.threshold }{The low spell threshold applied in the analysis}
 \item{avg.low.spell.duration }{Average duration of spell events}
