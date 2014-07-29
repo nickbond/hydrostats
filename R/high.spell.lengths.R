@@ -1,5 +1,5 @@
 high.spell.lengths <- function(flow.ts, quant = 0.9, user.threshold = F, defined.threshold, ind.days = 5, ignore.zeros = T, 
-    ctf.threshold = 0.1, hydro.year = FALSE) {
+    ctf.threshold = 0.1) {
     
     if (hydro.year == TRUE) {
         flow.ts <- hydro.year(flow.ts, hydro.year = "hydro")
