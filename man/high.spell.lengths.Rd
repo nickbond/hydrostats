@@ -11,7 +11,7 @@ Independence criteria allow short periods below the spell threshold to be ignore
 }
 \usage{
 high.spell.lengths(flow.ts, quant = 0.9, user.threshold = F, defined.threshold,
-ind.days = 5, ignore.zeros = T, ctf.threshold = 0.1, hydro.year=FALSE)
+ind.days = 5, ignore.zeros = T, ctf.threshold = 0.1)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -32,9 +32,6 @@ logical. If TRUE, days below a user defined cease-to-flow threshold (default 0.1
 }
   \item{ctf.threshold}{
 values below this threshold are treated as zero for the purpose of percentile based calculations (see ignore zeros).
-}
-	\item{hydro.year}{
-logical. If TRUE, each record is first assigned to a hydrologic year based on the timing of minimum flows. See \code{\link{hydro.year}} for further details.
 }
 }
 \details{
@@ -64,8 +61,6 @@ data(Cooper)
 Cooper<-ts.format(Cooper)
 
 high.spell.lengths(Cooper, user.threshold=TRUE, defined.threshold=50000)
-
-high.spell.lengths(Cooper, user.threshold=TRUE, defined.threshold=50000, hydro.year=TRUE)
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
