@@ -5,13 +5,13 @@
 Calculate the length of all high flow spells
 }
 \description{
-Returns the length of all high flow spell events above a given percentile or user defined threshold. 
+Returns the length (and start date) of all flow spells above (or below) a given percentile or user defined threshold. 
 
 Independence criteria allow short periods below the spell threshold to be ignored and flows below a threshold (e.g. zero flows) can be ignored when calculating percentile flows (useful in ephemeral rivers).
 }
 \usage{
 high.spell.lengths(flow.ts, quant = 0.9, user.threshold = F, defined.threshold,
-ind.days = 5, ignore.zeros = T, ctf.threshold = 0.1)
+ind.days = 5, ignore.zeros = T, ctf.threshold = 0.1, inter.flood=FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -28,11 +28,12 @@ A user supplied threshold for defining spells. This would typically be derived f
   \item{ind.days}{
 Periods between spells of less than ind.days (default 5) are considered to be 'in spell' for the purpose of further calculations. A value of 0 means spells 1 day apart are considered indpedendent.}
   \item{ignore.zeros}{
-logical. If TRUE, days below a user defined cease-to-flow threshold (default 0.1) will be excluded when estimating the spell threshold for a given percentile. This is primarily of interest in highly ephemeral rivers, where flow may only occur for a small fraction of the time. In such cases, the inclusion of zeros will skew estimates of high flow events downwards, which may be undesirable.
-}
+logical. If TRUE, days below a user defined cease-to-flow threshold (default 0.1) will be excluded when estimating the spell threshold for a given percentile. This is primarily of interest in highly ephemeral rivers, where flow may only occur for a small fraction of the time. In such cases, the inclusion of zeros will skew estimates of high flow events downwards, which may be undesirable.}
   \item{ctf.threshold}{
-values below this threshold are treated as zero for the purpose of percentile based calculations (see ignore zeros).
-}
+values below this threshold are treated as zero for the purpose of percentile based calculations (see ignore zeros).}
+	\item{inter.flood}{
+logical. If TRUE, the function returns the spell lengths and start dates for periods below (rather than above) the defined threshold.
+	}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~

@@ -1,13 +1,9 @@
 high.spell.lengths <- function(flow.ts, quant = 0.9, user.threshold = F, defined.threshold, ind.days = 5, ignore.zeros = T, 
-    ctf.threshold = 0.1) {
+    ctf.threshold = 0.1, inter.flood=FALSE) {
     
-    if (hydro.year == TRUE) {
-        flow.ts <- hydro.year(flow.ts, hydro.year = "hydro")
-        record.year <- flow.ts$year
-    } else {
-        record.year <- strftime(flow.ts[[1]], format = "%Y")
-        flow.ts <- data.frame(flow.ts, year = record.year)
-    }
+    record.year <- strftime(flow.ts[[1]], format = "%Y")
+    flow.ts <- data.frame(flow.ts, year = record.year)
+    
     n.years <- nlevels(as.factor(record.year))
     
     
@@ -56,8 +52,15 @@ high.spell.lengths <- function(flow.ts, quant = 0.9, user.threshold = F, defined
     spell.starts <- c(1, cumsum(head(flow.runs.lengths, -1)) + 1)
     spell.lengths <- data.frame(flow.runs.values, start.date = flow.ts[spell.starts, 1], spell.length = flow.runs.lengths)
     
+    if(inter.flood==TRUE) {
+    	
+    spell.lengths <- subset(spell.lengths, flow.runs.values == 0, select = names(spell.lengths) %in% c("start.date", "spell.length"))
+    	
+    	
+    } else {
     spell.lengths <- subset(spell.lengths, flow.runs.values == 1, select = names(spell.lengths) %in% c("start.date", "spell.length"))
     
+    }
     if (nrow(spell.lengths) == 0) {
         spell.lengths <- data.frame(start.date = NA, spell.length = NA)
         
