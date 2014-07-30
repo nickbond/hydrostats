@@ -99,10 +99,10 @@ high.spells <- function(flow.ts, quant = 0.9, user.threshold = FALSE, defined.th
             
             if (ignore.zeros == T) {
                 
-                flow.threshold <- quantile(flow.ts[which(flow.ts[[2]] > ctf.threshold), 2], quant, na.rm = T)
+                flow.threshold <- quantile(flow.ts[which(flow.ts[,'Q'] > ctf.threshold), 2], quant, na.rm = T)
                 names(flow.threshold) <- NULL
             } else {
-                flow.threshold <- quantile(flow.ts[, 2], quant, na.rm = T)
+                flow.threshold <- quantile(flow.ts[, 'Q'], quant, na.rm = T)
                 names(flow.threshold) <- NULL
             }
             
@@ -112,7 +112,7 @@ high.spells <- function(flow.ts, quant = 0.9, user.threshold = FALSE, defined.th
         
         
         
-        high.flows <- ifelse(flow.ts[, 2] > flow.threshold, 1, 0)
+        high.flows <- ifelse(flow.ts[, 'Q'] > flow.threshold, 1, 0)
         
         if (ind.days > 0) {
             
@@ -166,8 +166,8 @@ high.spells <- function(flow.ts, quant = 0.9, user.threshold = FALSE, defined.th
         
         if (volume == TRUE) {
             spell.factor <- rep(seq_along(high.flow.runs$lengths), times = high.flow.runs$lengths)
-            spells <- split(flow.ts[[2]], spell.factor)
-            spell.volumes <- flow.ts[[2]]
+            spells <- split(flow.ts[,'Q'], spell.factor)
+            spell.volumes <- flow.ts[,'Q']
             spell.volumes <- sapply(spells, sum)
             spell.volumes.below.threshold <- sapply(spells, length) * flow.threshold
             spell.volumes <- spell.volumes[which(high.flow.runs$values == 1)] - spell.volumes.below.threshold[which(high.flow.runs$values == 
@@ -177,9 +177,9 @@ high.spells <- function(flow.ts, quant = 0.9, user.threshold = FALSE, defined.th
         
         
         if (plot == TRUE) {
-            plot(flow.ts[[1]], flow.ts[[2]], type = "l", main = gauge, xlab = "Date", ylab = "Q")
+            plot(flow.ts[[1]], flow.ts[,'Q'], type = "l", main = gauge, xlab = "Date", ylab = "Q")
             
-            points(flow.ts[which(high.flows == 1), 1], flow.ts[which(high.flows == 1), 2], col = "red", cex = 0.25)
+            points(flow.ts[which(high.flows == 1), 'Date'], flow.ts[which(high.flows == 1), 'Q'], col = "red", cex = 0.25)
             
             abline(h = flow.threshold)
         }
