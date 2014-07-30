@@ -160,8 +160,8 @@ high.spells <- function(flow.ts, quant = 0.9, user.threshold = FALSE, defined.th
             
             sd.interval <- sd(high.flow.runs$lengths[which(high.flow.runs$values == 0)], na.rm = T)
             cv.interval <- sd.interval/avg.interval * 100
-            return(data.frame(ofs.threshold = flow.threshold, avg.ofs.interval = avg.interval, min.ofs.interval = min.interval, 
-                max.ofs.interval = max.interval))
+            return(data.frame(high.spell.threshold = flow.threshold, average.interval = avg.interval, min.interval = min.interval, 
+                max.interval = max.interval))
         }
         
         if (volume == TRUE) {
