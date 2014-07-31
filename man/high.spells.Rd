@@ -61,7 +61,7 @@ logical. If TRUE, statistics describing inter-flood spell characteristics are re
 logical. If TRUE, each record is first assigned to a hydrologic year based on the timing of minimum flows. See \code{\link{hydro.year}} for further details.
 }
 	\item{facs}{
-A vector of factors used to break the time series into sub-groups for analysis. The default is NULL.
+A vector of factors used to break the time series into sub-groups for analysis. The default is NULL. When set this argument still requires the use of ddply (e.g.: ddply(df, .(facs), function(x) high.spells(x))).
 }
 }
 \details{
@@ -125,7 +125,9 @@ high.spells(Cooper, quant=0.9, ann.stats=FALSE, plot=FALSE)
 high.spells(Cooper, quant=0.9, ann.stats=FALSE, ignore.zeros=TRUE)
 
 high.spells(Cooper, quant=0.9, ann.stats=FALSE, ignore.zeros=TRUE, hydro.year=TRUE)
-         
+
+Cooper$year<-year(Cooper$Date)
+ddply(Cooper, .(year), function(x) high.spells(x))
 
 }
 

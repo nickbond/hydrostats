@@ -40,7 +40,7 @@ high.spells <- function(flow.ts, quant = 0.9, user.threshold = FALSE, defined.th
             if(!is.null(facs)) {
             	facs2<-c(facs, "year")
             	ann.maxs <- ddply(flow.ts.comp, facs2, summarise, max = max(Q, na.rm = T))
-            	mean.ann <- ddply(flow.ts.comp, facs, summarise, mean = mean (Q, na.rm =T))
+            	mean.ann <- ddply(flow.ts.comp, facs, summarise, mean = mean(Q, na.rm =T))
             	ann.max.days <- ddply(flow.ts.comp, facs2, subset, Q == max(Q))
             	
             	
@@ -85,7 +85,7 @@ high.spells <- function(flow.ts, quant = 0.9, user.threshold = FALSE, defined.th
     }
     if (ann.stats.only == T) {
         
-        return(data.frame(avg.max.ann = ann.maxs.mean, cv.max.ann = cv.max.ann, flood.timing = avg.max.day[[1]], flood.predictability = avg.max.day[[2]], 
+        return(data.frame(avg.max.ann = ann.maxs.mean, cv.max.ann = cv.max.ann, flood.timing = avg.max.day[, 'mean.doy'], flood.predictability = avg.max.day[, 'sd.doy'], 
             flood.skewness = flood.skewness, avg.ann.duration = avg.ann.duration, cv.ann.duration = cv.ann.duration))
         
     } else {

@@ -57,8 +57,8 @@ low.spells <- function(flow.ts, quant = 0.1, user.threshold = FALSE, defined.thr
             ann.min.days <- ddply(flow.ts.comp, .(year), subset, Q == min(Q))
             
             
-            ann.mins.mean <- mean(ann.mins$min, na.rm = T)
-            ann.mins.sd <- sd(ann.mins$min, na.rm = T)
+            ann.mins.mean <- data.frame(mean.min=mean(ann.mins$min, na.rm = T))
+            ann.mins.sd <- data.frame(sd.min=sd(ann.mins$min, na.rm = T))
             
             
             avg.ann.min.days <- ddply(ann.min.days, .(year), function(x) day.dist(x$Date))
@@ -75,7 +75,7 @@ low.spells <- function(flow.ts, quant = 0.1, user.threshold = FALSE, defined.thr
         
         
         
-        return(data.frame(avg.min.ann = ann.mins.mean, cv.min.ann = cv.min.ann, timing.min.flow = avg.min.day[[1]], pred.min.flow = avg.min.day[[2]]))
+        return(data.frame(avg.min.ann = ann.mins.mean, cv.min.ann = cv.min.ann, timing.min.flow = avg.min.day[,'mean.doy'], pred.min.flow = avg.min.day[, 'sd.doy']))
         
     } else {
         
@@ -143,8 +143,8 @@ low.spells <- function(flow.ts, quant = 0.1, user.threshold = FALSE, defined.thr
     }
     
     return(data.frame(low.spell.threshold = flow.threshold, avg.low.spell.duration = avg.duration, max.low.duration = max.duration, 
-        low.spell.freq = low.spell.frequency, avg.min.ann = ann.mins.mean, cv.min.ann = cv.min.ann, timing.min.flow = avg.min.day[[1]], 
-        pred.min.flow = avg.min.day[[2]]))
+        low.spell.freq = low.spell.frequency, avg.min.ann = ann.mins.mean, cv.min.ann = cv.min.ann, timing.min.flow = avg.min.day[, 'mean.doy'], 
+        pred.min.flow = avg.min.day[, 'sd.doy']))
     
     
     

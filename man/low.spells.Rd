@@ -13,7 +13,7 @@ It is possible for there to be multiple days with the same low flow value (espec
 
 Missing values are allowed for convenience (NA's are removed and the time-series is concatenated before functions are applied), but of course may lead to biased results. For the purpose of the annual statistics years with fewer than 350 days of available record are ignored.
 
-Note that at this stage the timing and predictability statistics are not computed seperately when a factor is used to split the time-series into different periods, for example using ddply.
+Note that at this stage the timing and predictability statistics are not computed seperately when a factor is used to split the time-series into different periods, for example using ddply. (e.g.: ddply(df, .(facs), function(df) low.spells(df))).
 
 }
 \usage{
@@ -48,7 +48,8 @@ logical. If TRUE, statistics describing the annual series only are returned.}
 	\item{hydro.year}{
 logical. If TRUE, each record is first assigned to a hydrologic year based on the timing of minimum flows. See \code{\link{hydro.year}} for further details.}
 	\item{facs}{
-A vector of factors used to break the time series into sub-groups for analysis. The default is NULL.
+A vector of factors used to break the time series into sub-groups for analysis. The default is NULL. When set this argument still requires the use of ddply (e.g.: ddply(df, .(facs), function(x) low.spells(x))).
+}
 }
 }
 \details{
@@ -93,7 +94,8 @@ low.spells(Cooper, quant=0.1)
 
 low.spells(Cooper, quant=0.1, hydro.year=TRUE)
 
-
+Cooper$year<-year(Cooper$Date)
+ddply(Cooper, .(year), function(x) low.spells(x))
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
