@@ -1,4 +1,4 @@
-low.spells <- function(flow.ts, quant = 0.1, user.threshold = FALSE, defined.threshold = NULL, duration = T, volume = T, plot = T, 
+low.spells <- function(flow.ts, quant = 0.1, defined.threshold = NULL, duration = T, volume = T, plot = T, 
 											 ann.stats = T, ann.stats.only = F, hydro.year = FALSE) {
     gauge <- deparse(substitute(flow.ts))
     Q <- NULL
@@ -80,7 +80,7 @@ low.spells <- function(flow.ts, quant = 0.1, user.threshold = FALSE, defined.thr
         
     } else {
         
-    	if (user.threshold == T) {
+    	if (!is.null(defined.threshold)) {
     		
     		
     		flow.threshold <- defined.threshold
@@ -143,10 +143,16 @@ low.spells <- function(flow.ts, quant = 0.1, user.threshold = FALSE, defined.thr
         
     }
     
+    if (ann.stats == F) {
+    	return(data.frame(low.spell.threshold = flow.threshold, avg.low.spell.duration = avg.duration, max.low.duration = max.duration, 
+    										low.spell.freq = low.spell.frequency))
+    	
+    } else {
+    
     return(data.frame(low.spell.threshold = flow.threshold, avg.low.spell.duration = avg.duration, max.low.duration = max.duration, 
         low.spell.freq = low.spell.frequency, avg.min.ann = ann.mins.mean, cv.min.ann = cv.min.ann, timing.min.flow = avg.min.day[, 'mean.doy'], 
         pred.min.flow = avg.min.day[, 'sd.doy']))
-    
+    }
     
     
 } 

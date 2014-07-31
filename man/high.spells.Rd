@@ -16,7 +16,7 @@ Missing values are allowed for convenience (NA's are removed and the time-series
 
 }
 \usage{
-high.spells(flow.ts, quant = 0.9, user.threshold = FALSE, defined.threshold = NULL,
+high.spells(flow.ts, quant = 0.9, defined.threshold = NULL,
 ind.days = 5, duration = TRUE, volume = TRUE, plot = TRUE, ignore.zeros = FALSE,
 ctf.threshold = 0.1, ann.stats = TRUE, ann.stats.only = FALSE, inter.flood = FALSE, 
 hydro.year=FALSE)
@@ -29,9 +29,6 @@ hydro.year=FALSE)
     }
   \item{quant}{Percentile/quantile to use for defining event magnitude (default 0.9). A value of 0.9 is the upper 90th percentile (i.e. a volume exceeded 10\% of the time).
   }
-  \item{user.threshold}{
-logical. If TRUE, the function returns results based on a user defined volume to define spell events (see defined.threshold). 
-}
   \item{defined.threshold}{
 A user supplied threshold for defining spells. This would typically be derived from hydraulic models or similar knowledge pertaining to a gauge site.
 }

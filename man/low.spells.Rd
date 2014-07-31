@@ -17,7 +17,7 @@ Note that at this stage the timing and predictability statistics are not compute
 
 }
 \usage{
-low.spells(flow.ts, quant = 0.1, user.threshold=FALSE, defined.threshold=NULL, 
+low.spells(flow.ts, quant = 0.1, defined.threshold=NULL, 
 duration = T, volume = T, plot = T, ann.stats = T, ann.stats.only = F, 
 hydro.year=FALSE)
 }
@@ -29,9 +29,6 @@ Dataframe consisting of date in column one and flow in column two. Date must be 
 	If a third column exists then this is assumed to provide a vector of years for the purpose of calculating annual spell statistics based on a predetermined hydrologic year.}
   \item{quant}{
 Percentile/quantile to use for defining event magnitude (default 0.1). A value of 0.1 is the lower 10th percentile (i.e. a volume exceeded 90\% of the time).}
-  \item{user.threshold}{
-logical. If TRUE, the function returns results based on a user defined volume to define spell events (see defined.threshold). 
-}
   \item{defined.threshold}{
 A user supplied threshold for defining spells. This would typically be derived from hydraulic models or similar knowledge pertaining to a gauge site.
 }
@@ -41,7 +38,7 @@ logical. Should statistics describing spell duration be returned?}
 logical. Should statistics describing spell volumes be returned?}
   \item{plot}{
 logical. Should the time-series be plotted? Data points considered 'within spell' are identifed using red circles and the threshold is identified with a horizontal line.}
-  \item{annual.stats}{
+  \item{ann.stats}{
 logical. If TRUE, the function returns results describing the annual series (i.e. that describing the characteristics of the spells associated with the lowest annual daily flow).}
   \item{ann.stats.only}{
 logical. If TRUE, statistics describing the annual series only are returned.}

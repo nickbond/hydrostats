@@ -7,7 +7,7 @@ high.spell.lengths <- function(flow.ts, quant = 0.9, user.threshold = F, defined
     n.years <- nlevels(as.factor(record.year))
     
     
-    if (user.threshold == T) {
+    if (!is.null(defined.threshold)) {
         
         
         flow.threshold <- defined.threshold
