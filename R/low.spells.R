@@ -1,8 +1,9 @@
 low.spells <- function(flow.ts, quant = 0.1, user.threshold = FALSE, defined.threshold = NULL, duration = T, volume = T, plot = T, 
-											 annual.stats = T, ann.stats.only = F, hydro.year = FALSE, facs=NULL) {
+											 ann.stats = T, ann.stats.only = F, hydro.year = FALSE) {
     gauge <- deparse(substitute(flow.ts))
     Q <- NULL
     Year <- NULL
+    facs=NULL
     
     if (hydro.year == TRUE) {
         print("Returning results based on hydrologic year")
@@ -15,7 +16,7 @@ low.spells <- function(flow.ts, quant = 0.1, user.threshold = FALSE, defined.thr
     
     n.years <- nlevels(as.factor(record.year))
     
-    if (annual.stats == T) {
+    if (ann.stats == T) {
         # calculate annual minimum flow
         flow.ts.comp <- na.omit(flow.ts)
         

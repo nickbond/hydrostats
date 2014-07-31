@@ -18,8 +18,8 @@ Note that at this stage the timing and predictability statistics are not compute
 }
 \usage{
 low.spells(flow.ts, quant = 0.1, user.threshold=FALSE, defined.threshold=NULL, 
-duration = T, volume = T, plot = T, annual.stats = T, ann.stats.only = F, 
-hydro.year=FALSE, facs=NULL)
+duration = T, volume = T, plot = T, ann.stats = T, ann.stats.only = F, 
+hydro.year=FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -47,10 +47,6 @@ logical. If TRUE, the function returns results describing the annual series (i.e
 logical. If TRUE, statistics describing the annual series only are returned.}
 	\item{hydro.year}{
 logical. If TRUE, each record is first assigned to a hydrologic year based on the timing of minimum flows. See \code{\link{hydro.year}} for further details.}
-	\item{facs}{
-A vector of factors used to break the time series into sub-groups for analysis. The default is NULL. When set this argument still requires the use of ddply (e.g.: ddply(df, .(facs), function(x) low.spells(x))).
-}
-}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~

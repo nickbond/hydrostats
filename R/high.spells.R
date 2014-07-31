@@ -1,10 +1,11 @@
 high.spells <- function(flow.ts, quant = 0.9, user.threshold = FALSE, defined.threshold = NULL, ind.days = 5, duration = TRUE, 
     volume = TRUE, plot = TRUE, ignore.zeros = FALSE, ctf.threshold = 0.1, ann.stats = TRUE, ann.stats.only = FALSE, inter.flood = FALSE, 
-    hydro.year = FALSE, facs=NULL) {
+    hydro.year = FALSE) {
     
     gauge <- deparse(substitute(flow.ts))
     Q <- NULL
     Year <- NULL
+    facs <- NULL
     
     if (hydro.year == TRUE) {
         print("Returning results based on hydrologic year")
@@ -109,7 +110,7 @@ high.spells <- function(flow.ts, quant = 0.9, user.threshold = FALSE, defined.th
             
         }
         
-        
+        rise.fall <- c(NA, flow.ts[2:nrow(flow.ts), 'Q'] - flow.ts[1:nrow(flow.ts) - 1, 'Q'])
         
         
         
@@ -132,7 +133,9 @@ high.spells <- function(flow.ts, quant = 0.9, user.threshold = FALSE, defined.th
         high.flow.av <- mean(flow.ts[which(high.flows == 1), 'Q'], na.rm = T)
         high.flow.sd <- sd(flow.ts[which(high.flows == 1), 'Q'], na.rm = T)
         
-        
+        high.flow.rf <- rise.fall[which(high.flows == 1)]
+        mean.rise<-mean(high.flow.rf[high.flow.rf>0], na.rm = T)
+        mean.fall<-mean(high.flow.rf[high.flow.rf<0], na.rm = T)
         
         good.high.flow.runs <- which(!is.na(high.flow.runs$values))
         flow.runs.values <- high.flow.runs$values[good.high.flow.runs]
@@ -190,11 +193,11 @@ high.spells <- function(flow.ts, quant = 0.9, user.threshold = FALSE, defined.th
     if (ann.stats == F) {
         return(data.frame(n.years = n.years, high.spell.threshold = flow.threshold, n.events = n.events, spell.frequency = flood.frequency, 
             ari = 1/flood.frequency, avg.high.spell.duration = avg.duration, med.high.spell.duration = med.duration, max.high.spell.duration = max.duration, 
-            avg.spell.volume = mean(spell.volumes, na.rm = T), avg.spell.peak = high.flow.av, sd.spell.peak = high.flow.sd))
+            avg.spell.volume = mean(spell.volumes, na.rm = T), avg.spell.peak = high.flow.av, sd.spell.peak = high.flow.sd, avg.rise = mean.rise, avg.fall = mean.fall))
     } else {
         return(data.frame(n.years = n.years, high.spell.threshold = flow.threshold, n.events = n.events, spell.freq = flood.frequency, 
             ari = 1/flood.frequency, avg.high.spell.duration = avg.duration, med.high.spell.duration = med.duration, max.high.spell.duration = max.duration, 
-            avg.spell.volume = mean(spell.volumes, na.rm = T), avg.spell.peak = high.flow.av, sd.spell.peak = high.flow.sd, 
+            avg.spell.volume = mean(spell.volumes, na.rm = T), avg.spell.peak = high.flow.av, sd.spell.peak = high.flow.sd, avg.rise = mean.rise, avg.fall = mean.fall,
             avg.max.ann = ann.maxs.mean, cv.max.ann = cv.max.ann, flood.skewness = flood.skewness, flood.timing = avg.max.day[,'mean.doy'], 
             flood.predictability = avg.max.day[,'sd.doy'], avg.ann.duration = avg.ann.duration, cv.ann.duration = cv.ann.duration))
     }

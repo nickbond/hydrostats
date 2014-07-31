@@ -19,7 +19,7 @@ Missing values are allowed for convenience (NA's are removed and the time-series
 high.spells(flow.ts, quant = 0.9, user.threshold = FALSE, defined.threshold = NULL,
 ind.days = 5, duration = TRUE, volume = TRUE, plot = TRUE, ignore.zeros = FALSE,
 ctf.threshold = 0.1, ann.stats = TRUE, ann.stats.only = FALSE, inter.flood = FALSE, 
-hydro.year=FALSE, facs=NULL)
+hydro.year=FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -60,9 +60,6 @@ logical. If TRUE, statistics describing inter-flood spell characteristics are re
 	\item{hydro.year}{
 logical. If TRUE, each record is first assigned to a hydrologic year based on the timing of minimum flows. See \code{\link{hydro.year}} for further details.
 }
-	\item{facs}{
-A vector of factors used to break the time series into sub-groups for analysis. The default is NULL. When set this argument still requires the use of ddply (e.g.: ddply(df, .(facs), function(x) high.spells(x))).
-}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
@@ -82,6 +79,8 @@ flood indices
 \item{avg.spell.volume}{Average spell volume (volumes above the threshold only)}
 \item{avg.spell.peak}{Average spell peak}
 \item{sd.spell.peak}{Standard deviation in spell speaks}
+\item{avg.rise}{Average rate of daily rise during spell events}
+\item{avg.fall}{Average rate of daily fall during spell events}
 
 interflood indices
 \item{average.interval}{The average time between spells (years)}
@@ -127,6 +126,7 @@ high.spells(Cooper, quant=0.9, ann.stats=FALSE, ignore.zeros=TRUE)
 high.spells(Cooper, quant=0.9, ann.stats=FALSE, ignore.zeros=TRUE, hydro.year=TRUE)
 
 Cooper$year<-year(Cooper$Date)
+
 ddply(Cooper, .(year), function(x) high.spells(x))
 
 }

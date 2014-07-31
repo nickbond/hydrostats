@@ -10,8 +10,8 @@ partial.series <- function(flow.ts, ari = 2, ind.days = 7, duration = T, plot = 
     n.events <- ceiling(n.years/ari)
     p.series <- vector("list", n.events)
     
-    rising <- flow.ts[2:nrow(flow.ts), 2] - flow.ts[1:nrow(flow.ts) - 1, 2]
-    falling <- flow.ts[3:nrow(flow.ts), 2] - flow.ts[2:nrow(flow.ts) - 2, 2]
+    rising <- flow.ts[2:nrow(flow.ts), 2] - flow.ts[1:nrow(flow.ts) - 1, 'Q']
+    falling <- flow.ts[3:nrow(flow.ts), 2] - flow.ts[2:nrow(flow.ts) - 2, 'Q']
     
     peak.search <- data.frame(flow.ts, rising = c(NA, rising), falling = c(falling, NA, NA))
     peaks <- flow.ts[which(peak.search[, "rising"] > 0 & peak.search[, "falling"] < 0), ]
