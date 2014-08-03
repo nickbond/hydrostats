@@ -1,4 +1,4 @@
-high.spell.lengths <- function(flow.ts, quant = 0.9, user.threshold = F, defined.threshold, ind.days = 5, ignore.zeros = T, 
+high.spell.lengths <- function(flow.ts, quant = 0.9, defined.threshold=NULL, ind.days = 5, ignore.zeros = T, 
     ctf.threshold = 0.1, inter.flood=FALSE) {
     
     record.year <- strftime(flow.ts[,'Date'], format = "%Y")

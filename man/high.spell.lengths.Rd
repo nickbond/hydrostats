@@ -59,7 +59,7 @@ Nick Bond
 data(Cooper)
 Cooper<-ts.format(Cooper)
 
-high.spell.lengths(Cooper, user.threshold=TRUE, defined.threshold=50000)
+high.spell.lengths(Cooper, defined.threshold=50000)
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
