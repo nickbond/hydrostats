@@ -1,11 +1,11 @@
 hydro.year <- function(flow.ts, hydro.year = "hydro", year.only = FALSE) {
     
-    begin <- head(flow.ts[[1]], 1)
-    finish <- tail(flow.ts[[1]], 1)
+    begin <- head(flow.ts[, 1], 1)
+    finish <- tail(flow.ts[, 1], 1)
     
     if (hydro.year == "hydro") {
         month.runs <- c()
-        month.means <- aggregate(flow.ts[[2]], by = list(month = strftime(flow.ts[[1]], format = "%m")), sum, na.rm = T)
+        month.means <- aggregate(flow.ts[, 2], by = list(month = strftime(flow.ts[, 1], format = "%m")), sum, na.rm = T)
         month.runs[1] <- sum(month.means[1:6, 2])
         month.runs[2] <- sum(month.means[2:7, 2])
         month.runs[3] <- sum(month.means[3:8, 2])
@@ -21,8 +21,8 @@ hydro.year <- function(flow.ts, hydro.year = "hydro", year.only = FALSE) {
         
         alt.month <- which.min(month.runs)
         year <- c()
-        year <- ifelse(as.numeric(strftime(flow.ts[[1]], format = "%m")) < alt.month, as.numeric(strftime(flow.ts[[1]], 
-            format = "%Y")) - 1, as.numeric(strftime(flow.ts[[1]], format = "%Y")))
+        year <- ifelse(as.numeric(strftime(flow.ts[, 1], format = "%m")) < alt.month, as.numeric(strftime(flow.ts[, 1], format = "%Y")) - 1, as.numeric(strftime(flow.ts[, 
+            1], format = "%Y")))
     }
     if (year.only == TRUE) {
         return(year)

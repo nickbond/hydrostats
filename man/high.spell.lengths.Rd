@@ -10,7 +10,7 @@ Returns the length (and start date) of all flow spells above (or below) a given 
 Independence criteria allow short periods below the spell threshold to be ignored and flows below a threshold (e.g. zero flows) can be ignored when calculating percentile flows (useful in ephemeral rivers).
 }
 \usage{
-high.spell.lengths(flow.ts, quant = 0.9, defined.threshold,
+high.spell.lengths(flow.ts, quant = 0.9, threshold,
 ind.days = 5, ignore.zeros = T, ctf.threshold = 0.1, inter.flood=FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
@@ -20,7 +20,7 @@ Dataframe consisting of date in column one and flow in column two. Date must be 
 }
   \item{quant}{
 Percentile/quantile to use for defining event magnitude (default 0.9). A value of 0.9 is the upper 90th percentile (i.e. a volume exceeded 10\% of the time).}
-  \item{defined.threshold}{
+  \item{threshold}{
 A user supplied threshold for defining spells. This would typically be derived from hydraulic models or similar knowledge pertaining to a gauge site.
 }
   \item{ind.days}{
@@ -59,7 +59,7 @@ Nick Bond
 data(Cooper)
 Cooper<-ts.format(Cooper)
 
-high.spell.lengths(Cooper, defined.threshold=50000)
+high.spell.lengths(Cooper, threshold=50000)
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

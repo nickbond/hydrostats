@@ -9,15 +9,14 @@ Calculates a suite of statistics describing low-flow spell characteristics, such
 
 For the purpose of deriving annual low-flow spell statistics, the function can also be applied based on the hydrologic year. This is advisable where the low flow season spans calendar years, such that prolonged spells may be split at the transition from one calendar year to the next. This first requires the time series be processed using the hydro.year function. This adds an additional column indicating the hydrologic year to which each row belongs, which is used for deriving annual spell characteristics.
 
-It is possible for there to be multiple days with the same low flow value (especially zero flows). In estimating the average timing (and sd) of of minimum flows function calculates the average doy of minimum flows in each year first, before calculating the average across years. Circular functions are used to address the proximity between days toward the beginning and end of the year.
+It is possible for there to be multiple days with the same low flow value (especially zero flows). In estimating the average timing (and sd of timing) of minimum flows, the function calculates the average DOY (day of year) of minimum flows in each year first, before calculating the average across years. Circular functions are used to address the proximity between days toward the beginning and end of the year.
 
 Missing values are allowed for convenience (NA's are removed and the time-series is concatenated before functions are applied), but of course may lead to biased results. For the purpose of the annual statistics years with fewer than 350 days of available record are ignored.
 
-Note that at this stage the timing and predictability statistics are not computed seperately when a factor is used to split the time-series into different periods, for example using ddply. (e.g.: ddply(df, .(facs), function(df) low.spells(df))).
-
+When used with ddply to compute outputs for multiple gauges or time periods simultaneously, results, icluding graphs are produced for each factor level, including graphs. Note however that the funtion will return warnings if annual stats are calculated when year is used as a factor.
 }
 \usage{
-low.spells(flow.ts, quant = 0.1, defined.threshold=NULL, 
+low.spells(flow.ts, quant = 0.1, threshold=NULL, 
 duration = T, volume = T, plot = T, ann.stats = T, ann.stats.only = F, 
 hydro.year=FALSE)
 }
@@ -29,7 +28,7 @@ Dataframe consisting of date in column one and flow in column two. Date must be 
 	If a third column exists then this is assumed to provide a vector of years for the purpose of calculating annual spell statistics based on a predetermined hydrologic year.}
   \item{quant}{
 Percentile/quantile to use for defining event magnitude (default 0.1). A value of 0.1 is the lower 10th percentile (i.e. a volume exceeded 90\% of the time).}
-  \item{defined.threshold}{
+  \item{threshold}{
 A user supplied threshold for defining spells. This would typically be derived from hydraulic models or similar knowledge pertaining to a gauge site.
 }
   \item{duration}{
@@ -60,8 +59,9 @@ low flow indices
 
 Annual low flow statistics
 \item{avg.min.ann}{The average annual minimum flow}
-\item{timing.min.flow}{The average day of the year (0-366) on which the minimum flow occurs.}
-\item{pred.min.flow}{circular standard deviation of the average timing of annual minimum flows}
+\item{cv.min.ann}{The coefficient of variation of annual minimum flows}
+\item{ann.min.timing}{The average day of the year (0-366) on which the minimum flow occurs.}
+\item{ann.min.timing.sd}{circular standard deviation of the average timing of annual minimum flows}
 }
 \references{
 %% ~put references to the literature/web site here ~

@@ -17,15 +17,13 @@ data(Acheron)
 \format{
 A data frame with 10944 observations (from 1971-2000) on 2 variables.
 
-[,1] date (format dd/mm/yy)
-[,2] discharge (ML/day)  
+[,'Date'] date (format dd/mm/yy)
+[,'Q'] discharge (ML/day)  
 }
 
 \source{
-Approval yet to be granted.
 
-
-Department of Sustainability and Environment, Victorian Government, Australia.
+Data provided  by the State of Victoria, Department of Environment and Primary Industries, under Creative Commons Licence 3.0.
 
 }
 \examples{

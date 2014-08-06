@@ -9,14 +9,15 @@ Calculates a suite of statistics describing flood characteristics, such as the t
 
 For the purpose of deriving annual flood statistics, the function can also be applied based on the hydrologic year. This is advisable where the high flow season spans years, such that prolonged spells may span years. This first requires the time series be processed using the hydro.year function. This adds an additional column indicating the hydrologic year to which each row belongs, which is used for deriving annual spell characteristics.
 
-It is possible for there to be multiple days with the same annual maximum flow value (although less likely than for low flows). In estimating the average timing (and sd) of of minimum flows function calculates the average doy of minimum flows in each year first, before calculating the average across years. Circular functions are used to address the proximity between days toward the beginning and end of the year.
+It is possible for there to be multiple days with the same annual maximum flow value (although less likely than for low flows). In estimating the average timing (and sd of timing) of minimum flows, the function calculates the average day of year (DOY) of minimum flows in each year first, before calculating the average across years. Circular functions are used to address the proximity between days toward the beginning and end of the year.
 
 Missing values are allowed for convenience (NA's are removed and the time-series is concatenated before functions are applied), but of course may lead to biased results. For the purpose of the annual statistics years with fewer than 350 days of available record are ignored.
 
+When used with ddply to compute outputs for multiple gauges or time periods simultaneously, results, icluding graphs are produced for each factor level, including graphs. Note the funtion will return warnings if annual stats are calculated when year is used as a factor.
 
 }
 \usage{
-high.spells(flow.ts, quant = 0.9, defined.threshold = NULL,
+high.spells(flow.ts, quant = 0.9, threshold = NULL,
 ind.days = 5, duration = TRUE, volume = TRUE, plot = TRUE, ignore.zeros = FALSE,
 ctf.threshold = 0.1, ann.stats = TRUE, ann.stats.only = FALSE, inter.flood = FALSE, 
 hydro.year=FALSE)
@@ -29,7 +30,7 @@ hydro.year=FALSE)
     }
   \item{quant}{Percentile/quantile to use for defining event magnitude (default 0.9). A value of 0.9 is the upper 90th percentile (i.e. a volume exceeded 10\% of the time).
   }
-  \item{defined.threshold}{
+  \item{threshold}{
 A user supplied threshold for defining spells. This would typically be derived from hydraulic models or similar knowledge pertaining to a gauge site.
 }
   \item{ind.days}{
@@ -76,20 +77,20 @@ flood indices
 \item{avg.spell.volume}{Average spell volume (volumes above the threshold only)}
 \item{avg.spell.peak}{Average spell peak}
 \item{sd.spell.peak}{Standard deviation in spell speaks}
-\item{avg.rise}{Average rate of daily rise during spell events}
-\item{avg.fall}{Average rate of daily fall during spell events}
+\item{avg.rise}{Average absolute rate of daily rise during spell events}
+\item{avg.fall}{Average absolute rate of daily fall during spell events}
 
 interflood indices
 \item{average.interval}{The average time between spells (years)}
 \item{min.interval}{The mininum time between spells (years)}
-\item{max.interval }{The maximum time between spells (years)}
+\item{max.interval}{The maximum time between spells (years)}
 
 Annual flood statistics
 \item{avg.max.ann}{The average annual maximum flow}
 \item{cv.max.ann}{The coefficient of variation of annual maximum flows}
 \item{flood.skewness}{The average annual maximum / mean daily flow}
-\item{flood.timing}{The average day of the year (0-366) on which maximum flows occur}
-\item{flood.predictability}{circular standard deviation of the average timing of annual maximum flows}
+\item{ann.max.timing}{The average day of the year (0-366) on which maximum flows occur}
+\item{ann.max.timing.sd}{circular standard deviation of the average timing of annual maximum flows}
 \item{avg.ann.duration}{The average duration of the annual maximum spells}
 \item{cv.ann.duration}{The coefficient of variation of the duration of annual maximum spells}
 

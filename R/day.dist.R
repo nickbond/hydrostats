@@ -1,6 +1,6 @@
 day.dist <- function(Dates = NULL, days = NULL, years = NULL) {
     
-    if (any(class(Dates) == "POSIXct") | any(class(Dates) == "Date") ==T) {
+    if (any(class(Dates) == "POSIXct") | any(class(Dates) == "Date") == T) {
         
         days <- as.numeric(strftime(Dates, format = "%j"))
         years <- as.numeric(strftime(Dates, format = "%Y"))

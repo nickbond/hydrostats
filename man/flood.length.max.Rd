@@ -9,14 +9,14 @@ Calculates the maximum flood length above a user defined threshold in a time ser
 
 Alternatively, the function high.spell.lengths can be used to return the length of all events above a threshold, not just the longest event in each year.}
 \usage{
-flood.length.max(flow.ts, flow.threshold, ind.days = 5)
+flood.length.max(flow.ts, threshold, ind.days = 5)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{flow.ts}{
 Dataframe consisting of date in column one and flow in column two. Date must be in POSIX format (see ts.format). 
 }
-  \item{flow.threshold}{
+  \item{threshold}{
 A user supplied threshold for defining spells. This would typically be derived from hydraulic models or similar knowledge pertaining to a gauge site.}
   \item{ind.days}{
 Periods between spells of less than ind.days (default 5) are considered to be 'in spell' for the purpose of further calculations. A value of 0 means spells 1 day apart are considered indpedendent.}

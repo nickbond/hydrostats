@@ -1,16 +1,15 @@
-high.spell.lengths <- function(flow.ts, quant = 0.9, defined.threshold=NULL, ind.days = 5, ignore.zeros = T, 
-    ctf.threshold = 0.1, inter.flood=FALSE) {
+high.spell.lengths <- function(flow.ts, quant = 0.9, threshold = NULL, ind.days = 5, ignore.zeros = T, ctf.threshold = 0.1, inter.flood = FALSE) {
     
-    record.year <- strftime(flow.ts[,'Date'], format = "%Y")
+    record.year <- strftime(flow.ts[, 1], format = "%Y")
     flow.ts <- data.frame(flow.ts, year = record.year)
     
     n.years <- nlevels(as.factor(record.year))
     
     
-    if (!is.null(defined.threshold)) {
+    if (!is.null(threshold)) {
         
         
-        flow.threshold <- defined.threshold
+        flow.threshold <- threshold
         # names(flow.threshold)<-NULL #normallyhide
         
     } else {
@@ -18,10 +17,10 @@ high.spell.lengths <- function(flow.ts, quant = 0.9, defined.threshold=NULL, ind
         
         if (ignore.zeros == T) {
             
-            flow.threshold <- quantile(flow.ts[which(flow.ts[,'Q'] > ctf.threshold), 'Q'], quant, na.rm = T)
+            flow.threshold <- quantile(flow.ts[which(flow.ts[, 2] > ctf.threshold), 2], quant, na.rm = T)
             names(flow.threshold) <- NULL  #normally hide
         } else {
-            flow.threshold <- quantile(flow.ts[, 'Q'], quant, na.rm = T)
+            flow.threshold <- quantile(flow.ts[, 2], quant, na.rm = T)
             names(flow.threshold) <- NULL  #normallyhide
         }
         
@@ -31,7 +30,7 @@ high.spell.lengths <- function(flow.ts, quant = 0.9, defined.threshold=NULL, ind
     
     
     
-    high.flows <- ifelse(flow.ts[, 'Q'] > flow.threshold, 1, 0)
+    high.flows <- ifelse(flow.ts[, 2] > flow.threshold, 1, 0)
     
     if (ind.days > 0) {
         
@@ -52,14 +51,14 @@ high.spell.lengths <- function(flow.ts, quant = 0.9, defined.threshold=NULL, ind
     spell.starts <- c(1, cumsum(head(flow.runs.lengths, -1)) + 1)
     spell.lengths <- data.frame(flow.runs.values, start.date = flow.ts[spell.starts, 1], spell.length = flow.runs.lengths)
     
-    if(inter.flood==TRUE) {
-    	
-    spell.lengths <- subset(spell.lengths, flow.runs.values == 0, select = names(spell.lengths) %in% c("start.date", "spell.length"))
-    	
-    	
+    if (inter.flood == TRUE) {
+        
+        spell.lengths <- subset(spell.lengths, flow.runs.values == 0, select = names(spell.lengths) %in% c("start.date", "spell.length"))
+        
+        
     } else {
-    spell.lengths <- subset(spell.lengths, flow.runs.values == 1, select = names(spell.lengths) %in% c("start.date", "spell.length"))
-    
+        spell.lengths <- subset(spell.lengths, flow.runs.values == 1, select = names(spell.lengths) %in% c("start.date", "spell.length"))
+        
     }
     if (nrow(spell.lengths) == 0) {
         spell.lengths <- data.frame(start.date = NA, spell.length = NA)
