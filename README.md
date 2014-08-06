@@ -2,8 +2,17 @@ Hydrostats is a set of r functions to compute a suite of flow indices commonly u
 
 It is not yet available via CRAN but is in the final stages of development prior to submission.
 
-To install the latest development version: 
+To install the latest development version run the following code: 
 
-First, you will need to install plyr and lubridate from CRAN. Then run
+install.packages("plyr", "lubridate", "devtools")
+
+devtools::install_github("devtools")
+
+for Mac and Linux:
 
 install_github("nickbond/hydrostats")
+
+for Windows:
+install_github("nickbond/hydrostats", repos=NULL)
+
+unlink("devtools.zip")
