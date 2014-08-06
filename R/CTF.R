@@ -1,5 +1,5 @@
 CTF <- function(flow.ts, threshold = 0.1) {
-    
+    names(flow.ts)[1:2]<-c("Date", "Q")
     flow.ts <- na.omit(flow.ts)
     
     if (length(flow.ts[, "Q"]) == 0 | sum(flow.ts[, "Q"]) == 0) {
