@@ -19,6 +19,7 @@ for Mac and Linux:
 	devtools::install_github("nickbond/hydrostats")
 
 for Windows:
+
 	devtools::build_github_devtools()
 	
 	#### Restart R before continuing ####
