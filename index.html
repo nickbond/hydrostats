@@ -18,7 +18,7 @@
     <div class="wrapper">
       <header>
         <h1>Hydrostats</h1>
-        <p>Calculate hydrologic indices from daily streamflow data</p>
+        <p>Calculate hydrologic indices from daily streamflow data using R.</p>
         <p class="view"><a href="https://github.com/nickbond/hydrostats">View the Project on GitHub <small>nickbond/hydrostats</small></a></p>
         <ul>
           <li><a href="https://github.com/nickbond/hydrostats/zipball/master">Download <strong>ZIP File</strong></a></li>
@@ -30,7 +30,7 @@
         <h1>
 <a name="hydrostats" class="anchor" href="#hydrostats"><span class="octicon octicon-link"></span></a>Hydrostats</h1>
 
-<p>hydrostats is a set of tools to compute streamflow indices commonly used in hydrology and ecology such as:</p>
+<p>hydrostats is a set of R functions to compute streamflow indices commonly used in hydrology and ecology such as:</p>
 
 <ul>
 <li>basic summary statistics</li>
@@ -40,7 +40,7 @@
 <li>Colwell's indices</li>
 <li>partial series</li>
 <li>baseflow components</li>
-</ul><p>Most of the functions can be used with plyr to return a dataframe of indices based on an additional splitting factor. This allows the analysis (for example) of data from multiple gauges simultaneously, without the need to write a for loop. As well as summary indices, several functions will instead return a dataframe of individual spell charactersistics for use in subsequent analysis and plotting.</p>
+</ul><p>Most of the functions can be used with Hadley Wickham's plyr package to return a dataframe of indices based on an additional splitting factor. This allows the analysis (for example) of data from multiple gauges simultaneously, without the need to write a for loop. As well as summary indices, several functions will instead return a dataframe of individual spell charactersistics for use in subsequent analysis and plotting.</p>
 
 <h1>
 <a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h1>
