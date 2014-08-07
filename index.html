@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Hydrostats by nickbond</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Hydrostats</h1>
+        <p>Calculate hydrologic indices from daily streamflow data</p>
+        <p class="view"><a href="https://github.com/nickbond/hydrostats">View the Project on GitHub <small>nickbond/hydrostats</small></a></p>
+        <ul>
+          <li><a href="https://github.com/nickbond/hydrostats/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/nickbond/hydrostats/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/nickbond/hydrostats">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="hydrostats" class="anchor" href="#hydrostats"><span class="octicon octicon-link"></span></a>Hydrostats</h1>
+
+<p>hydrostats is a set of tools to compute streamflow indices commonly used in hydrology and ecology such as:</p>
+
+<ul>
+<li>basic summary statistics</li>
+<li>high spells (magnitude, frequency, duration, timing etc.)</li>
+<li>low spells</li>
+<li>cease-to-flow spells</li>
+<li>Colwell's indices</li>
+<li>partial series</li>
+<li>baseflow components</li>
+</ul><p>Most of the functions can be used with plyr to return a dataframe of indices based on an additional splitting factor. This allows the analysis (for example) of data from multiple gauges simultaneously, without the need to write a for loop. As well as summary indices, several functions will instead return a dataframe of individual spell charactersistics for use in subsequent analysis and plotting.</p>
+
+<h1>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h1>
+
+<p>To install the latest development version run the following code: </p>
+
+<pre><code>#install dependencies (devtools required only to install from Github)
+install.packages(c("plyr", "lubridate", "devtools"))
+
+#install pacakge
+devtools::install_github("nickbond/hydrostats")
+
+# Remove the package zip after installation
+unlink("hydrostats.zip")
+</code></pre>
+
+<p><img src="https://github.com/nickbond/hydrostats/blob/master/high_spells.png" alt="Plot showing high spell events above the 10th percentile flow."></p>
+
+<h1>
+<a name="developer" class="anchor" href="#developer"><span class="octicon octicon-link"></span></a>Developer</h1>
+
+<p>Nick Bond <a href="mailto:n.bond@griffith.edu.au">n.bond@griffith.edu.au</a></p>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/nickbond">nickbond</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
