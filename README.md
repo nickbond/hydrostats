@@ -1,7 +1,12 @@
-**Hydrostats**
-Hydrostats is a set of R functions to compute a suite of flow indices commonly used in hydrology and ecology.
+**Hydrostats pacakge**
 
-It is not yet available via CRAN but is in the final stages of development prior to submission.
+The *hydrostats* package provides a set of R functions to compute a suite of flow indices commonly used in hydrology and ecology, such as:
+- high spells (magnitude, frequency, duration, timing etc.)
+- low spells
+- cease-to-flow spells
+- Colwells indices
+- partial series
+- baseflow components
 
 To install the latest development version run the following code: 
 
