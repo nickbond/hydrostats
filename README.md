@@ -1,8 +1,8 @@
 #Hydrostats
 
  hydrostats is a set of tools to compute streamflow indices commonly used in hydrology and ecology, such as:
-	* high spells (magnitude, frequency, duration, timing etc.)
-	* low spells
+    * high spells (magnitude, frequency, duration, timing etc.)
+    * low spells
 	* cease-to-flow spells
 	* Colwells indices
 	* partial series
