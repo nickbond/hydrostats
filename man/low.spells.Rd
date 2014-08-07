@@ -91,11 +91,11 @@ low.spells(Cooper, quant=0.1, hydro.year=TRUE)
 Cooper$year<-strftime(Cooper$Date, format="%Y")
 
 require(plyr)
-ddply(Cooper, .(year), function(x) low.spells(x, ann.stats=F))
+ddply(Cooper, .(year), function(x) low.spells(x, threshold=20, ann.stats=F))
 
-#generate seperate results before and after 1986.
-Cooper$pre_post<-ifelse(Cooper$year<1986,"pre","post")
-ddply(Cooper, .(pre_post), function(x) low.spells(x, ann.stats=F))
+#generate seperate results prior to 1980.
+Cooper$time.period<-ifelse(Cooper$year<1980,"pre_1980","post_1980")
+ddply(Cooper, .(time.period), function(x) low.spells(x, threshold=20, ann.stats=F))
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

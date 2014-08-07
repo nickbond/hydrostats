@@ -128,9 +128,9 @@ require(plyr)
 Cooper$year<-strftime(Cooper$Date, format="%Y")
 ddply(Cooper, .(year), function(x) high.spells(x, ann.stats=F)
 
-#generate seperate results before and after 1982.
-Cooper$pre_post<-ifelse(Cooper$year<1982,"pre","post")
-ddply(Cooper, .(pre_post), function(x) low.spells(x, ann.stats=F))
+#generate seperate results before/after 1980.
+Cooper$time.period<-ifelse(Cooper$year<1980,"pre_1980","post_1980")
+ddply(Cooper, .(time.period), function(x) low.spells(x, ann.stats=F))
 
 }
 
