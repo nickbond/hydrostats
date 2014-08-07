@@ -88,7 +88,7 @@ low.spells(Cooper, quant=0.1)
 low.spells(Cooper, quant=0.1, hydro.year=TRUE)
 
 #generate results for each year
-Cooper$year<-strftime(Cooper$Date, format="%Y")
+Cooper$year<-strftime(Cooper$Date, format="\%Y")
 
 require(plyr)
 ddply(Cooper, .(year), function(x) low.spells(x, threshold=20, ann.stats=F))
