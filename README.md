@@ -6,8 +6,6 @@ To install the latest development version run the following code:
 
 install.packages("plyr", "lubridate", "devtools")
 
-devtools::install_github("devtools")
-
 for Mac and Linux:
 
 install_github("nickbond/hydrostats")
