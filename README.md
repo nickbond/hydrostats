@@ -16,9 +16,13 @@ To install the latest development version run the following code:
 
 for Mac and Linux:
 
-	install_github("nickbond/hydrostats")
+	devtools::install_github("nickbond/hydrostats")
 
 for Windows:
-	install_github("nickbond/hydrostats", repos=NULL)
+	devtools::build_github_devtools()
+	
+	#### Restart R before continuing ####
+	devtools::install_github("nickbond/hydrostats", repos=NULL)
 
+	# Remove the package after installation
 	unlink("hydrostats.zip")
