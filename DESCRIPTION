@@ -7,5 +7,4 @@ Author: Nick Bond
 Maintainer: Nick Bond <n.bond@griffith.edu.au>
 Description: Calculates a suite of hydrologic indices for daily time series data that are widely used in hydrology and stream ecology.
 License: GPL (>= 2)
-Depends: plyr, lubridate
-
+Imports: plyr, lubridate
