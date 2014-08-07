@@ -12,9 +12,11 @@ Most of the functions can be used with plyr to return a dataframe of indices bas
 
 To install the latest development version run the following code: 
 
+	#install dependencies (devtools required only to install from Github)
 	install.packages(c("plyr", "lubridate", "devtools"))
 
+	#install pacakge
 	devtools::install_github("nickbond/hydrostats")
 
-# Remove the package after installation
+	# Remove the package zip after installation
 	unlink("hydrostats.zip")
