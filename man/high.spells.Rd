@@ -123,9 +123,10 @@ high.spells(Cooper, quant=0.9, ann.stats=FALSE, ignore.zeros=TRUE)
 
 high.spells(Cooper, quant=0.9, ann.stats=FALSE, ignore.zeros=TRUE, hydro.year=TRUE)
 
-Cooper$year<-year(Cooper$Date)
-
-ddply(Cooper, .(year), function(x) high.spells(x))
+#generate results for each year
+require(plyr)
+Cooper$year<-strftime(Cooper$Date, format="%Y")
+ddply(Cooper, .(year), function(x) high.spells(x, ann.stats=F)
 
 }
 
