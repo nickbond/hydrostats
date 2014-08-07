@@ -12,7 +12,7 @@ Most of the he functions can be used with plyr to return a dataframe of indices 
 
 To install the latest development version run the following code: 
 
-	install.packages("plyr", "lubridate", "devtools")
+	install.packages(c("plyr", "lubridate", "devtools"))
 
 for Mac and Linux:
 
