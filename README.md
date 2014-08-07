@@ -1,12 +1,14 @@
 #Hydrostats
 
  hydrostats is a set of tools to compute streamflow indices commonly used in hydrology and ecology such as:
+- basic summary statistics
 - high spells (magnitude, frequency, duration, timing etc.)
 - low spells
 - cease-to-flow spells
-- Colwells indices
+- Colwell's indices
 - partial series
 - baseflow components
+
 	
 Most of the functions can be used with plyr to return a dataframe of indices based on an additional splitting factor. This allows the analysis (for example) of data from multiple gauges simultaneously, without the need to write a for loop. As well as summary indices, several functions will instead return a dataframe of individual spell charactersistics for use in subsequent analysis and plotting.
 
