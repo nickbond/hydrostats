@@ -46,7 +46,7 @@ Nick Bond <nrb.ski@gmail.com>
 }
 \examples{
 data(Cooper)
-Cooper<-ts.format(Cooper)
+cooper<-ts.format(Cooper)
 ann.cv(Cooper)
 
 
