@@ -17,7 +17,7 @@ Date: \tab 2013-12-20\cr
 License: \tab GPL (>= 2) \cr
 }
 
-For most functions data must be provided as a dataframe in which the first column is the date in POSIXct format (see \code{\link[hydrostats:ts.format]{ts.format}}) and the second column contains the flow data.
+Data must be provided as a dataframe in which the first column is the date in POSIXct format (see \code{\link[hydrostats:ts.format]{ts.format}}) and the second column contains the flow data. These columns should be named "Date" and "Q" respectively.
 
 Includes several sample datasets.\cr
 data(Cooper) - Flow data for Coopers Creek, Australia. Gauge 003101@Currareva \cr
