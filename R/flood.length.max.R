@@ -1,6 +1,6 @@
 flood.length.max <- function(flow.ts, threshold, ind.days = 5) {
     
-    high.flows <- ifelse(flow.ts[, 'Q'] > threshold, 1, 0)
+    high.flows <- ifelse(flow.ts[, "Q"] > threshold, 1, 0)
     
     high.flow.runs <- rle(high.flows)
     too.short <- which(high.flow.runs$lengths < ind.days & high.flow.runs$values == 0)
