@@ -126,12 +126,12 @@ high.spells(Cooper, quant=0.9, ann.stats=FALSE, ignore.zeros=TRUE, hydro.year=TR
 %generate results for each year
 require(plyr)
 Cooper$year<-strftime(Cooper$Date, format="\%Y")
-ddply(Cooper, .(year), function(x) high.spells(x, ann.stats=F))
+ddply(Cooper, .(year), function(x) high.spells(x, ann.stats=FALSE))
 
 %generate seperate results before/after 1980.
 Cooper$time.period <- ifelse(Cooper$year<1980,"pre_1980","post_1980")
 
-ddply(Cooper, .(time.period), function(x) low.spells(x, ann.stats=F))
+ddply(Cooper, .(time.period), function(x) low.spells(x, ann.stats=FALSE))
 
 }
 
