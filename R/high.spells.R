@@ -40,34 +40,25 @@ high.spells <- function(flow.ts, quant = 0.9, threshold = NULL, ind.days = 5, du
             
             if (!is.null(facs)) {
                 facs2 <- c(facs, "year")
-                #ann.maxs <- ddply(flow.ts.comp, facs2, summarise, max = max(Q, na.rm = T))    
                 ann.maxs <- aggregate(flow.ts.comp['Q'], flow.ts.comp[facs2], max, na.rm=T)
-                #mean.ann <- ddply(flow.ts.comp, facs, summarise, mean = mean(Q, na.rm = T))
                 mean.ann <- aggregate(flow.ts.comp['Q'], flow.ts.comp[facs], mean, na.rm=T)
-                #ann.max.days <- ddply(flow.ts.comp, facs2, subset, Q == max(Q))
                 ann.max.days <- merge(ann.maxs, flow.ts.comp)
                 
-                #ann.maxs.mean <- ddply(ann.maxs, facs, summarise, mean.max = mean(max, na.rm = T))
                 ann.maxs.mean <- aggregate(ann.maxs['Q'], ann.maxs[facs], mean, na.rm = T)
-                #ann.maxs.sd <- ddply(ann.maxs, facs, summarise, sd.max = sd(max, na.rm = T))
                 ann.maxs.sd <- aggregate(ann.maxs['Q'], ann.maxs[facs], sd, na.rm=T)
                 
-                #avg.ann.max.days <- ddply(ann.max.days, facs2, function(x) day.dist(x$Date))
                 avg.ann.max.days <- aggregate(ann.max.days['Date'], ann.max.days[facs2], function(x) t(day.dist(x)))
                 
-                #avg.max.day <- ddply(avg.ann.max.days, facs, function(x) day.dist(days = x$mean.doy, years = x$year))
                 avg.max.day <- as.data.frame(t(sapply(split(avg.ann.max.days,avg.ann.max.days[facs]), function(x) day.dist(days=x[,'Date'][,1],years=x[,'year']))))
                 
             } else {
                 
                 
-                #ann.maxs <- ddply(flow.ts.comp, .(year), summarise, max = max(Q, na.rm = T))
                 ann.maxs <- aggregate(flow.ts.comp['Q'], flow.ts.comp['year'], max, na.rm=T)
                 
                 mean.ann <- data.frame(mean = mean(flow.ts.comp$Q, na.rm = T))
                 
                 
-                #ann.max.days <- ddply(flow.ts.comp, .(year), subset, Q == max(Q))
                 ann.max.days <- merge(ann.maxs, flow.ts.comp)
                 
                 
@@ -75,7 +66,6 @@ high.spells <- function(flow.ts, quant = 0.9, threshold = NULL, ind.days = 5, du
                 
                 ann.maxs.sd <- data.frame(sd.max = sd(ann.maxs[,'Q'], na.rm = T))
                 
-                #avg.ann.max.days <- ddply(ann.max.days, .(year), function(x) day.dist(x$Date))
                 avg.ann.max.days <- aggregate(ann.max.days['Date'], ann.max.days['year'], function(x) t(day.dist(x)))
                 
                 avg.max.day <- day.dist(days = avg.ann.max.days[,'Date'][,1], years = avg.ann.max.days[,'year'])
