@@ -2,7 +2,7 @@ seasonality <- function(flow.ts, monthly.range = FALSE) {
     
     
     month.runs <- c()
-    month.means <- aggregate(flow.ts[, 2], by = list(month = strftime(flow.ts[[1]], format = "%m")), mean, na.rm = T)
+    month.means <- aggregate(flow.ts[, 'Q'], by = list(month = strftime(flow.ts[[1]], format = "%m")), mean, na.rm = T)
     month.runs[1] <- sum(month.means[1:6, 2], na.rm = T)
     month.runs[2] <- sum(month.means[2:7, 2], na.rm = T)
     month.runs[3] <- sum(month.means[3:8, 2], na.rm = T)
@@ -32,8 +32,7 @@ seasonality <- function(flow.ts, monthly.range = FALSE) {
         max.months <- apply(month.year.means, 1, which.max)
         av.ann.month.range <- mean(month.range[2, ] - month.range[1, ])
         month.difs <- factor(as.character(abs(max.months - min.months)))
-        month.difs <- mapvalues(month.difs, from = c("11", "10", "9", "8", "7"), to = c("1", "2", "3", "4", "5"), warn_missing = FALSE)
-        
+        month.difs <-as.factor(recode(month.difs, oldvalue=c("11", "10", "9", "8", "7"), newvalue=c("1", "2", "3", "4", "5")))
         
         return(list(seasonality = out, monthly.means, avg.ann.month.range = av.ann.month.range, max.min.time.dif = round(mean(as.numeric(levels(month.difs)[month.difs])), 
             0)))
