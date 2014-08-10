@@ -63,16 +63,17 @@ high.spells <- function(flow.ts, quant = 0.9, threshold = NULL, ind.days = 5, du
                 
                 #ann.maxs <- ddply(flow.ts.comp, .(year), summarise, max = max(Q, na.rm = T))
                 ann.maxs <- aggregate(flow.ts.comp['Q'], flow.ts.comp['year'], max, na.rm=T)
-                #mean.ann <- data.frame(mean = mean(flow.ts.comp$Q, na.rm = T))
-                mean.ann <- aggregate(flow.ts.comp['Q'], flow.ts.comp['year'], mean, na.rm=T)
+                
+                mean.ann <- data.frame(mean = mean(flow.ts.comp$Q, na.rm = T))
+                
                 
                 #ann.max.days <- ddply(flow.ts.comp, .(year), subset, Q == max(Q))
                 ann.max.days <- merge(ann.maxs, flow.ts.comp)
                 
                 
-                ann.maxs.mean <- data.frame(mean.max = mean(ann.maxs$max, na.rm = T))
+                ann.maxs.mean <- data.frame(mean.max = mean(ann.maxs[,'Q'], na.rm = T))
                 
-                ann.maxs.sd <- data.frame(sd.max = sd(ann.maxs$max, na.rm = T))
+                ann.maxs.sd <- data.frame(sd.max = sd(ann.maxs[,'Q'], na.rm = T))
                 
                 #avg.ann.max.days <- ddply(ann.max.days, .(year), function(x) day.dist(x$Date))
                 avg.ann.max.days <- aggregate(ann.max.days['Date'], ann.max.days['year'], function(x) t(day.dist(x)))
@@ -81,14 +82,14 @@ high.spells <- function(flow.ts, quant = 0.9, threshold = NULL, ind.days = 5, du
                 
             }
             
-            max.ann.flow.threshold <- min(ann.maxs$max, na.rm = T)
+            max.ann.flow.threshold <- min(ann.maxs$Q, na.rm = T)
             
-            ann.max.spells <- ifelse(flow.ts[, 2] > max.ann.flow.threshold, 1, 0)
+            ann.max.spells <- ifelse(flow.ts[, 'Q'] > max.ann.flow.threshold, 1, 0)
             ann.max.spell.runs <- rle(ann.max.spells)
             avg.ann.duration <- mean(ann.max.spell.runs$lengths[which(ann.max.spell.runs$values == 1)], na.rm = T)
             max.ann.duration <- max(ann.max.spell.runs$lengths[which(ann.max.spell.runs$values == 1)], na.rm = T)
             cv.max.ann <- (ann.maxs.sd[, "sd.max"]/ann.maxs.mean[, "mean.max"]) * 100
-            flood.skewness <- ann.maxs.mean[, "mean.max"]/mean.ann[, "Q"]
+            flood.skewness <- ann.maxs.mean[, "mean.max"]/mean.ann[, "mean"]
             cv.ann.duration <- (sd(ann.max.spell.runs$lengths[which(ann.max.spell.runs$values == 1)], na.rm = T)/mean(ann.max.spell.runs$lengths[which(ann.max.spell.runs$values == 
                 1)], na.rm = T)) * 100
             
@@ -120,11 +121,11 @@ high.spells <- function(flow.ts, quant = 0.9, threshold = NULL, ind.days = 5, du
             
         }
         
-        rise.fall <- c(NA, flow.ts[2:nrow(flow.ts), 2] - flow.ts[1:nrow(flow.ts) - 1, 2])
+        rise.fall <- c(NA, flow.ts[2:nrow(flow.ts), 'Q'] - flow.ts[1:nrow(flow.ts) - 1, 'Q'])
         
         
         
-        high.flows <- ifelse(flow.ts[, 2] > flow.threshold, 1, 0)
+        high.flows <- ifelse(flow.ts[, 'Q'] > flow.threshold, 1, 0)
         
         if (ind.days > 0) {
             
@@ -179,8 +180,8 @@ high.spells <- function(flow.ts, quant = 0.9, threshold = NULL, ind.days = 5, du
         
         if (volume == TRUE) {
             spell.factor <- rep(seq_along(high.flow.runs$lengths), times = high.flow.runs$lengths)
-            spells <- split(flow.ts[, 2], spell.factor)
-            spell.volumes <- flow.ts[, 2]
+            spells <- split(flow.ts[, 'Q'], spell.factor)
+            spell.volumes <- flow.ts[, 'Q']
             spell.volumes <- sapply(spells, sum)
             spell.volumes.below.threshold <- sapply(spells, length) * flow.threshold
             spell.volumes <- spell.volumes[which(high.flow.runs$values == 1)] - spell.volumes.below.threshold[which(high.flow.runs$values == 1)]
@@ -189,9 +190,9 @@ high.spells <- function(flow.ts, quant = 0.9, threshold = NULL, ind.days = 5, du
         
         
         if (plot == TRUE) {
-            plot(flow.ts[, 1], flow.ts[, 2], type = "l", main = gauge, xlab = "Date", ylab = "Q")
+            plot(flow.ts[, 'Date'], flow.ts[, 'Q'], type = "l", main = gauge, xlab = "Date", ylab = "Q")
             
-            points(flow.ts[which(high.flows == 1), 1], flow.ts[which(high.flows == 1), 2], col = "red", cex = 0.25)
+            points(flow.ts[which(high.flows == 1), 'Date'], flow.ts[which(high.flows == 1), 'Q'], col = "red", cex = 0.25)
             
             abline(h = flow.threshold)
         }
