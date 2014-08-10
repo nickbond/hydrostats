@@ -29,5 +29,5 @@ day.dist <- function(Dates = NULL, days = NULL, years = NULL) {
     
     
     data.frame(mean.doy = round(m.deg, 0), sd.doy = round(sd.deg, 0))
-
+    
 } 
