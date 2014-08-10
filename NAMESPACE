@@ -15,6 +15,3 @@ export(ann.cv,
 			 partial.series,
 			 seasonality,
 			 ts.format)
-importFrom(plyr, ddply)
-importFrom(lubridate, dmy)
-importFrom(lubridate, year)
