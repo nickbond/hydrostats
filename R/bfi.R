@@ -72,8 +72,8 @@ bfi <- function(flow.ts, a = 0.975, ts = "mean") {
             obs <- nrow(red.flow.ts)
             prop.obs = obs/all.days
             
-            return(data.frame(prop.obs = prop.obs, MDF = mean(out[, 2], na.rm = T), Q50 = median(out[, 2], na.rm = T), mean.bf = mean(out[, 3], na.rm = T), mean.bfi = mean(out[, 
-                3], na.rm = T)/mean(out[, 2], na.rm = T)))
+            return(data.frame(prop.obs = prop.obs, MDF = mean(out[, 2], na.rm = T), Q50 = median(out[, 2], na.rm = T), mean.bf = mean(out[, 3], 
+                na.rm = T), mean.bfi = mean(out[, 3], na.rm = T)/mean(out[, 2], na.rm = T)))
             
         }
     }
