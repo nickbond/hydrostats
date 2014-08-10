@@ -3,9 +3,7 @@ high.spells <- function(flow.ts, quant = 0.9, threshold = NULL, ind.days = 5, du
     
     gauge <- deparse(substitute(flow.ts))
     names(flow.ts)[1:2] <- c("Date", "Q")
-    Q <- NULL
-    Year <- NULL
-    facs <- NULL
+   
     
     if (hydro.year == TRUE) {
         print("Returning results based on hydrologic year")
@@ -38,22 +36,7 @@ high.spells <- function(flow.ts, quant = 0.9, threshold = NULL, ind.days = 5, du
             record.year <- flow.ts.comp[, "year"]
             n.years <- nlevels(as.factor(record.year))
             
-            if (!is.null(facs)) {
-                facs2 <- c(facs, "year")
-                ann.maxs <- aggregate(flow.ts.comp['Q'], flow.ts.comp[facs2], max, na.rm=T)
-                mean.ann <- aggregate(flow.ts.comp['Q'], flow.ts.comp[facs], mean, na.rm=T)
-                ann.max.days <- merge(ann.maxs, flow.ts.comp)
-                
-                ann.maxs.mean <- aggregate(ann.maxs['Q'], ann.maxs[facs], mean, na.rm = T)
-                ann.maxs.sd <- aggregate(ann.maxs['Q'], ann.maxs[facs], sd, na.rm=T)
-                
-                avg.ann.max.days <- aggregate(ann.max.days['Date'], ann.max.days[facs2], function(x) t(day.dist(x)))
-                
-                avg.max.day <- as.data.frame(t(sapply(split(avg.ann.max.days,avg.ann.max.days[facs]), function(x) day.dist(days=x[,'Date'][,1],years=x[,'year']))))
-                
-            } else {
-                
-                
+                   
                 ann.maxs <- aggregate(flow.ts.comp['Q'], flow.ts.comp['year'], max, na.rm=T)
                 
                 mean.ann <- data.frame(mean = mean(flow.ts.comp$Q, na.rm = T))
@@ -70,7 +53,7 @@ high.spells <- function(flow.ts, quant = 0.9, threshold = NULL, ind.days = 5, du
                 
                 avg.max.day <- day.dist(days = avg.ann.max.days[,'Date'][,1], years = avg.ann.max.days[,'year'])
                 
-            }
+            
             
             max.ann.flow.threshold <- min(ann.maxs$Q, na.rm = T)
             
