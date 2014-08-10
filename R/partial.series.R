@@ -63,9 +63,11 @@ partial.series <- function(flow.ts, ari = 2, ind.days = 7, duration = T, plot = 
         
         
         if (series == TRUE) {
-            return(list(p.series = p.series, n.events = n.events, flow.threshold = flow.threshold, avg.duration = avg.duration, max.duration = max.duration, med.spell.volume = median(spell.volumes)))
+            return(list(p.series = p.series, n.events = n.events, flow.threshold = flow.threshold, avg.duration = avg.duration, max.duration = max.duration, 
+                med.spell.volume = median(spell.volumes)))
         } else {
-            return(data.frame(n.events = n.events, flow.threshold = flow.threshold, avg.duration = avg.duration, max.duration = max.duration, med.spell.volume = median(spell.volumes)))
+            return(data.frame(n.events = n.events, flow.threshold = flow.threshold, avg.duration = avg.duration, max.duration = max.duration, 
+                med.spell.volume = median(spell.volumes)))
         }
     } else {
         if (series == TRUE) {
