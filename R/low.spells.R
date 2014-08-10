@@ -1,9 +1,7 @@
 low.spells <- function(flow.ts, quant = 0.1, threshold = NULL, duration = T, volume = T, plot = T, ann.stats = T, ann.stats.only = F, hydro.year = FALSE) {
     gauge <- deparse(substitute(flow.ts))
     names(flow.ts)[1:2] <- c("Date", "Q")
-    Q <- NULL
-    Year <- NULL
-    facs = NULL
+
     
     if (hydro.year == TRUE) {
         print("Returning results based on hydrologic year")
@@ -35,24 +33,7 @@ low.spells <- function(flow.ts, quant = 0.1, threshold = NULL, duration = T, vol
             record.year <- flow.ts.comp[, "year"]
             n.years <- nlevels(as.factor(record.year))
             
-            if (!is.null(facs)) {
-                facs2 <- c(facs, "year")
-                ann.mins <- aggregate(flow.ts.comp['Q'], flow.ts.comp[facs2], min, na.rm=T)
-                
-                ann.min.days <- merge(ann.mins, flow.ts.comp)
-                
-                
-                ann.mins.mean <- aggregate(ann.mins['Q'], ann.mins[facs], mean, na.rm = T)
-                
-                ann.mins.sd <- aggregate(ann.mins['Q'], ann.mins[facs], sd, na.rm=T)
-                
-                avg.ann.min.days <- aggregate(ann.min.days['Date'], ann.min.days[facs2], function(x) t(day.dist(x)))
-                
-                avg.min.day <- as.data.frame(t(sapply(split(avg.ann.min.days,avg.ann.min.days[facs]), function(x) day.dist(days=x[,'Date'][,1],years=x[,'year']))))
-                
-                
-            } else {
-                
+                 
                 ann.mins <- aggregate(flow.ts.comp['Q'], flow.ts.comp['year'], min, na.rm=T)
                 
                 ann.min.days <- merge(ann.mins, flow.ts.comp)
@@ -66,7 +47,7 @@ low.spells <- function(flow.ts, quant = 0.1, threshold = NULL, duration = T, vol
                 
                 avg.min.day <- day.dist(days = avg.ann.min.days[,'Date'][,1], years = avg.ann.min.days[,'year'])
                 
-            }
+            
             
             cv.min.ann <- (ann.mins.sd/ann.mins.mean) * 100
         }
