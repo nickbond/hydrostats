@@ -1,6 +1,6 @@
-ts.format <- function(x, format = "%d/%m/%Y") {
-    x[[1]] <- strptime(x[, 1], format = format)
-    x[[1]] <- as.POSIXct(x[[1]])
-    names(x)[1] <- "Date"
+ts.format <- function(x, format = "%d/%m/%Y", cols=c(1,2)) {
+		names(x)[cols] <- c("Date", "Q")
+    x[['Date']] <- strptime(x[['Date']], format = format)
+    x[['Date']] <- as.POSIXct(x[['Date']])
     return(x)
 } 
