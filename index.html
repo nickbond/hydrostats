@@ -30,7 +30,7 @@
         <h1>
 <a name="hydrostats" class="anchor" href="#hydrostats"><span class="octicon octicon-link"></span></a>Hydrostats</h1>
 
-<p>hydrostats is a set of R functions to compute streamflow indices commonly used in hydrology and ecology such as:</p>
+<p>hydrostats is a set of tools to compute streamflow indices commonly used in hydrology and ecology such as:</p>
 
 <ul>
 <li>basic summary statistics</li>
@@ -40,15 +40,15 @@
 <li>Colwell's indices</li>
 <li>partial series</li>
 <li>baseflow components</li>
-</ul><p>Most of the functions can be used with Hadley Wickham's plyr package to return a dataframe of indices based on an additional splitting factor. This allows the analysis (for example) of data from multiple gauges simultaneously, without the need to write a for loop. As well as summary indices, several functions will instead return a dataframe of individual spell charactersistics for use in subsequent analysis and plotting.</p>
+</ul><p>Most of the functions can be used with plyr to return a dataframe of indices based on an additional splitting factor. This allows the analysis (for example) of data from multiple gauges simultaneously, without the need to write a for loop. As well as summary indices, several functions will instead return a dataframe of individual spell charactersistics for use in subsequent analysis and plotting.</p>
 
 <h1>
 <a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h1>
 
 <p>To install the latest development version run the following code: </p>
 
-<pre><code>#install dependencies (devtools required only to install from Github)
-install.packages(c("plyr", "lubridate", "devtools"))
+<pre><code>#install dependencies/suggests (devtools required only to install from Github; plyr required for examples).
+install.packages(c("devtools", "plyr"))
 
 #install pacakge
 devtools::install_github("nickbond/hydrostats")
