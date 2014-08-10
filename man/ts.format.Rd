@@ -5,23 +5,25 @@
 Format dates as POSIXct
 }
 \description{
-Converts dates from class character (format dd/mm/yyyy or other as specified) into class POSIXct}
+Converts dates from class character (format dd/mm/yyyy or other as specified) into class POSIXct and renames columns for use with other functions in the hydrostats package.}
 \usage{
-ts.format(x, format="\%d/\%m/\%Y")
+ts.format(x, format="\%d/\%m/\%Y", cols=c(1,2))
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-dates of class character
+Dates of class character
 }
   \item{format}{
-format of dates in existing data frame}
+Format of dates in existing data frame.}
+  \item{cols}{
+A vector of column indices for the date and discharge data. Used to rename columns.}
 }
 
 \details{
-Assumes date is of class character and in the first column of the data frame. For more flexibility in formatting dates/times see the lubridate package.}
+Default assumes the date is of class character and in the first column, with discharge in the second column of the data frame. These columns can be specified if the defaults are not appropriate. The date and discharge columns are renamed to 'Date' and 'Q' respectively. For more flexibility in formatting dates/times see the lubridate package.}
 \value{
-A dataframe with the first (Date) column formatted as POSIXct
+A dataframe with the dates formatted as POSIXct and named columns Date and Q.  
 %%  ~Describe the value returned
 %%  If it is a LIST, use
 %%  \item{comp1 }{Description of 'comp1'}
