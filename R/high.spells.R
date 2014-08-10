@@ -88,7 +88,7 @@ high.spells <- function(flow.ts, quant = 0.9, threshold = NULL, ind.days = 5, du
             avg.ann.duration <- mean(ann.max.spell.runs$lengths[which(ann.max.spell.runs$values == 1)], na.rm = T)
             max.ann.duration <- max(ann.max.spell.runs$lengths[which(ann.max.spell.runs$values == 1)], na.rm = T)
             cv.max.ann <- (ann.maxs.sd[, "sd.max"]/ann.maxs.mean[, "mean.max"]) * 100
-            flood.skewness <- ann.maxs.mean[, "mean.max"]/mean.ann[, "mean"]
+            flood.skewness <- ann.maxs.mean[, "mean.max"]/mean.ann[, "Q"]
             cv.ann.duration <- (sd(ann.max.spell.runs$lengths[which(ann.max.spell.runs$values == 1)], na.rm = T)/mean(ann.max.spell.runs$lengths[which(ann.max.spell.runs$values == 
                 1)], na.rm = T)) * 100
             
