@@ -64,7 +64,7 @@ Colwell, R.K. 1974. Predictability, constancy, and contingency of periodic pheno
 Gan, K.C., McMahon, T.A., and Finlayson, B.L. 1991. Analysis of periodicity in streamflow and rainfall data by Colwell's indices. Journal of Hydrology 123(1-2): 105-18.
 }
 \author{
-Nick Bond
+Nick Bond <n.bond@griffith.edu.au>
 }
 \examples{
 data(Cooper)
