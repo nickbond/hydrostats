@@ -12,7 +12,7 @@ CTF(flow.ts, threshold = 0.1)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{flow.ts}{
-Dataframe consisting of date in column one and flow in column two. Date must be in POSIX format (see ts.format).}
+Dataframe with date and discharge data in columns named "Date" and "Q" respectively. Date must be in POSIX format (see ts.format).}
   \item{threshold}{
 values below this threshold (default 0.1) are treated as zero for the purpose of defining cease to flow spells to account for the fact that cease to flow levels are poorly defined for many gauging sites.}
 }
