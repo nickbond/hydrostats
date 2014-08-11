@@ -47,16 +47,16 @@ ts="daily"
 Lynne, V., Hollick, M. (1979) Stochastic time-variable rainfall-runoff modelling. In: pp. 89-93 Institute of Engineers Australia National Conference. Perth.
 }
 \author{
-Nick Bond
+Nick Bond <n.bond@griffith.edu.au>
 }
 
 \examples{
-data(Cooper)
-Cooper<-ts.format(Cooper)
+data(Acheron)
+Acheron<-ts.format(Acheron)
 
-baseflows(Cooper,a=0.975, ts="mean")
-baseflows(Cooper,a=0.975, ts="annual")
-baseflows(Cooper,a=0.975, ts="daily")
+baseflows(Acheron,a=0.975, ts="mean")
+baseflows(Acheron,a=0.975, ts="annual")
+head(baseflows(Acheron,a=0.975, ts="daily"))
 
 
 }
