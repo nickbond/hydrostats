@@ -23,9 +23,7 @@ A vector of days in numeric format. Not required if POSIXct dates are provided}
 \item{years}{
 A vector of years in numeric format. Not required if POSIXct dates are provided}
 }
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
+
 \value{
 Returns a list of length 2
 %%  If it is a LIST, use
@@ -39,15 +37,6 @@ Bayliss, A. C., Jones, R. C. (1993) Peaks-over-threshold flood database: Summary
 \author{
 Nick Bond
 }
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
 days<-c(366,1,365,1,366)
 years<-c("1968","1975","1983","1990","2004")
@@ -59,9 +48,5 @@ day.dist(days=days, years=years)
 dates<-c("1968-06-18", "1975-06-29", "1983-01-01", "1990-12-31", "2004-06-18")
 dates<-as.POSIXct(dates, format = "\%Y-\%m-\%d", tz="")
 day.dist(Dates=dates)
-}
 
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+}
