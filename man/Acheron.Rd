@@ -12,7 +12,6 @@ Daily discharge time series in megalitres per day (ML/day) for Acheron River @ T
 \usage{
 data(Acheron)
 }
-%- maybe also 'usage' for other objects documented here.
 
 \format{
 A data frame with 10944 observations (from 1971-2000) on 2 variables.
