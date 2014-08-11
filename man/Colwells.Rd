@@ -13,7 +13,7 @@ base = 2, from = 0.5, by = 0.25)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{flow.ts}{
-Dataframe consisting of date in column one and flow in column two. Date must be in POSIX format (see ts.format). Missing values are ignored.
+Dataframe with date and discharge data in columns named "Date" and "Q" respectively. Date must be in POSIX format (see ts.format). Missing values are ignored.
 }
   \item{fn}{
 The function used to summarise daily data (default mean) and for scaling break points when binning data. Can also use median, min, max.}
