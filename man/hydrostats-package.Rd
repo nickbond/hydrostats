@@ -12,8 +12,8 @@ A package to calculate a range of hydrologic statistics based on daily time seri
 \tabular{ll}{
 Package: \tab hydrostats\cr
 Type: \tab Package\cr
-Version: \tab 0.1\cr
-Date: \tab 2013-12-20\cr
+Version: \tab 0.2\cr
+Date: \tab 2014-08-14\cr
 License: \tab GPL (>= 2) \cr
 }
 
