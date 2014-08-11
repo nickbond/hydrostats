@@ -21,9 +21,6 @@ daily.cv(flow.ts)
 %%     ~~Describe \code{flow.ts} here~~
 }
 }
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
 \value{
 A dataframe with 1 column (daily CV).
 %%  ~Describe the value returned
@@ -37,22 +34,11 @@ A dataframe with 1 column (daily CV).
 }
 \author{
 Nick Bond}
-\note{
-%%  ~~further notes~~
-}
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
 data(Cooper)
 Cooper<-ts.format(Cooper)
 
 daily.cv(Cooper)
+
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
