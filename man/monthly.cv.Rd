@@ -14,28 +14,16 @@ monthly.cv(flow.ts)
   \item{flow.ts}{Dataframe with date and discharge data in columns named "Date" and "Q" respectively. Date must be in POSIX format (see ts.format). Missing values are ignored.
 }
 }
-\details{
-Requires date to be in POSIX format. See ts.format
-}
+
 \value{
 %%  ~Describe the value returned
 Dataframe with 1 column (monthly CV).
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
+
 \author{
-Nick Bond
-}
-\note{
-%%  ~~further notes~~
+Nick Bond <n.bond@griffith.edu.au>
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
 data(Cooper)
 cooper<-ts.format(Cooper)
