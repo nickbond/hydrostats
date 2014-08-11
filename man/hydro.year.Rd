@@ -25,25 +25,14 @@ logical. If FALSE (default), a column indicating the hydrologic year of each rec
 	}
 }
 
-
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
 \value{
 %%  ~Describe the value returned
 If year.only=FALSE (default), the function returns the original dataframe with an added column "year" indicating the hydrologic year to which each case belongs. Otherwise, if year.only=TRUE, a vector of hydrologic years is returned.
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
+
 \author{
-Nick Bond}
-\note{
-%%  ~~further notes~~
+Nick Bond <n.bond@griffith.edu.au>
 }
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
 \seealso{
 \code{\link{high.spells}}, \code{\link{low.spells}}.
 }
@@ -53,10 +42,4 @@ Cooper<-ts.format(Cooper)
 
 head(hydro.year(Cooper))
 head(hydro.year(Cooper, year.only=TRUE))
-
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
-
