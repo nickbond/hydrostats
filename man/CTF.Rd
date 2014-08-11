@@ -16,9 +16,7 @@ Dataframe with date and discharge data in columns named "Date" and "Q" respectiv
   \item{threshold}{
 values below this threshold (default 0.1) are treated as zero for the purpose of defining cease to flow spells to account for the fact that cease to flow levels are poorly defined for many gauging sites.}
 }
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
+
 \value{
 A dataframe with 4 columns (see below).
 
@@ -28,31 +26,17 @@ A dataframe with 4 columns (see below).
 \item{min.CTF }{Minimum cease-to-flow spell duration}
 \item{max.CTF }{Maximum cease-to-flow spell duration}
 
-%% ...
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
+
 \author{
 Nick Bond
 }
-\note{
-%%  ~~further notes~~
-}
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
 data(Cooper)
 Cooper<-ts.format(Cooper)
 
 CTF(Cooper)
 CTF(Cooper, threshold=0)
+
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
