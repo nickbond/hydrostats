@@ -12,8 +12,7 @@ ts.format(x, format="\%d/\%m/\%Y", cols=c(1,2))
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-Dates of class character
-}
+Dataframe including date and discharge data. Dates are assumed to be of class character (see format). The columns containing date and discharge data are required (defaults to renaming columns 1 and 2 to Date and Q respectively if no other columns are specified (see cols)).}
   \item{format}{
 Format of dates in existing data frame.}
   \item{cols}{
