@@ -20,7 +20,6 @@ low.spells(flow.ts, quant = 0.1, threshold=NULL,
 duration = T, volume = T, plot = T, ann.stats = T, ann.stats.only = F, 
 hydro.year=FALSE)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{flow.ts}{
 Dataframe with date and discharge data in columns named "Date" and "Q" respectively. Date must be in POSIX format (see ts.format). 
@@ -44,9 +43,6 @@ logical. If TRUE, statistics describing the annual series only are returned.}
 	\item{hydro.year}{
 logical. If TRUE, each record is first assigned to a hydrologic year based on the timing of minimum flows. See \code{\link{hydro.year}} for further details.}
 }
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
 
 \value{
 Returns a dataframe with the following columns.
@@ -63,21 +59,11 @@ Annual low flow statistics
 \item{ann.min.timing}{The average day of the year (0-366) on which the minimum flow occurs.}
 \item{ann.min.timing.sd}{circular standard deviation of the average timing of annual minimum flows}
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
+
 \author{
-Nick Bond
-}
-\note{
-%%  ~~further notes~~
+Nick Bond <n.bond@griffith.edu.au>
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
 
 data(Cooper)
@@ -98,7 +84,3 @@ Cooper$time.period<-ifelse(Cooper$year<1980,"pre_1980","post_1980")
 ddply(Cooper, .(time.period), function(x) low.spells(x, threshold=20, ann.stats=FALSE))
 
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
