@@ -27,19 +27,14 @@ data(Acheron) - Flow data for Acheron River, Australia, Gauge 405209@Taggerty
 \author{
 Nick Bond
 Maintainer: Nick Bond <n.bond@griffith.edu.au>
+}
 
-}
-\references{
-%~~ Literature or other references for background information ~~
-}
-\keyword{ package 
-~~ Optionally other standard keywords, one per line, from file KEYWORDS in ~~
-~~ the R documentation directory ~~
-}
-\seealso{
-%~~ Optional links to other man pages, e.g. ~~
-%~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
-}
 \examples{
-%~~ simple examples of the most important functions ~~
+data(Acheron)
+Acheron<-ts.format(Acheron)
+with(Acheron, plot(Q~Date))
+
+high.spell.lengths(Acheron, threshold=50000)
+
+
 }
