@@ -17,7 +17,7 @@ Date: \tab 2014-08-14\cr
 License: \tab GPL (>= 2) \cr
 }
 
-Data must be provided as a dataframe in which the date is in POSIXct format. The function \code{\link[hydrostats:ts.format]{ts.format}} can be used to specify the Date and discharge columns in a dataframe and convert dates to POSIXct format. By default Dates are assumed to be in the first column and discharge data in the second column.
+Data must be provided as a dataframe in which the date is in POSIXct format. The function \code{\link[hydrostats:ts.format]{ts.format}} can be used to specify the Date and discharge columns (named Date and Q respectively) in a dataframe, and convert dates to POSIXct format. The date and discharge data must be in columns labelled "Date" and "Q" for the functions to work.
 
 Includes several sample datasets.\cr
 data(Cooper) - Flow data for Coopers Creek, Australia. Gauge 003101@Currareva \cr
