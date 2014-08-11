@@ -13,7 +13,7 @@ hydro.year(flow.ts, hydro.year = "hydro", year.only=FALSE)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{flow.ts}{
-Dataframe consisting of date in column one and flow in column two. Date must be in POSIX format (see ts.format).}
+Dataframe with date and discharge data in columns named "Date" and "Q" respectively. Date must be in POSIX format (see ts.format).}
   \item{hydro.year}{
 hydro.year="hydro" calculates the hydrologic year and returns a dataframe with an additional column indiating the hydrologic year to which each observation belongs. The hydrologic year is defined as starting in the first month of the average driest 6 month period across all years. This maximises the likelihood that low-flow and high-flow spells will be contained within a rolling 12 month period.
 
