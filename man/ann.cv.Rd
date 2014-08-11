@@ -24,7 +24,7 @@ A dataframe with 1 column (ann.cv).
 }
 
 \author{
-Nick Bond <nrb.ski@gmail.com>
+Nick Bond <n.bond@griffith.edu.au>
 }
 
 \examples{
