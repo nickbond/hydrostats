@@ -26,8 +26,8 @@ Periods between spells of less than ind.days (default 5) are considered to be 'i
 returns a dataframe with 1 column (Maximum spell duration)
 }
 \author{
-Nick Bond}
-
+Nick Bond <n.bond@griffith.edu.au>
+}
 \examples{
 
 data(Cooper)
