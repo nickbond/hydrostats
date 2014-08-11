@@ -1,14 +1,12 @@
 low.spells <- function(flow.ts, quant = 0.1, threshold = NULL, duration = T, volume = T, plot = T, ann.stats = T, ann.stats.only = F, hydro.year = FALSE) {
     gauge <- deparse(substitute(flow.ts))
-    names(flow.ts)[1:2] <- c("Date", "Q")
-    
     
     if (hydro.year == TRUE) {
         print("Returning results based on hydrologic year")
         flow.ts <- hydro.year(flow.ts, year = "hydro")
         record.year <- flow.ts[, "year"]
     } else {
-        record.year <- strftime(flow.ts[, 1], format = "%Y")
+        record.year <- strftime(flow.ts[, "Date"], format = "%Y")
         flow.ts <- data.frame(flow.ts, year = record.year)
     }
     
@@ -18,12 +16,13 @@ low.spells <- function(flow.ts, quant = 0.1, threshold = NULL, duration = T, vol
         # calculate annual minimum flow
         flow.ts.comp <- na.omit(flow.ts)
         
-        n.days <- tapply(flow.ts.comp[, 2], flow.ts.comp[, "year"], length)
+        n.days <- tapply(flow.ts.comp[, "Q"], flow.ts.comp[, "year"], length)
         n.most.days <- which(n.days >= 350)
         if (length(n.most.days) == 0) {
             ann.mins.mean <- NA
             cv.min.ann <- NA
-            avg.min.day <- cbind(NA, NA)
+            avg.min.day <- data.frame(mean.doy=NA, sd.doy=NA)
+           
             
             
         } else {
@@ -39,8 +38,8 @@ low.spells <- function(flow.ts, quant = 0.1, threshold = NULL, duration = T, vol
             ann.min.days <- merge(ann.mins, flow.ts.comp)
             
             
-            ann.mins.mean <- data.frame(mean.min = mean(ann.mins[, "Q"], na.rm = T))
-            ann.mins.sd <- data.frame(sd.min = sd(ann.mins[, "Q"], na.rm = T))
+            ann.mins.mean <- mean(ann.mins[, "Q"], na.rm = T)
+            ann.mins.sd <- sd(ann.mins[, "Q"], na.rm = T)
             
             
             avg.ann.min.days <- aggregate(ann.min.days["Date"], ann.min.days["year"], function(x) t(day.dist(x)))
@@ -83,7 +82,7 @@ low.spells <- function(flow.ts, quant = 0.1, threshold = NULL, duration = T, vol
         low.flow.runs <- rle(low.flows)
         
         
-        low.spell.days <- as.numeric(strftime(flow.ts[which(low.flows == 1), 1], format = "%j"))
+        low.spell.days <- as.numeric(strftime(flow.ts[which(low.flows == 1), "Date"], format = "%j"))
         
         good.low.flow.runs <- which(!is.na(low.flow.runs$values))
         flow.runs.values <- low.flow.runs$values[good.low.flow.runs]
@@ -126,13 +125,14 @@ low.spells <- function(flow.ts, quant = 0.1, threshold = NULL, duration = T, vol
     }
     
     if (ann.stats == F) {
-        return(data.frame(low.spell.threshold = flow.threshold, avg.low.spell.duration = avg.duration, max.low.duration = max.duration, low.spell.freq = low.spell.frequency))
+        return(data.frame(low.spell.threshold = flow.threshold, avg.low.spell.duration = avg.duration, max.low.duration = max.duration, 
+            low.spell.freq = low.spell.frequency))
         
     } else {
         
-        return(data.frame(low.spell.threshold = flow.threshold, avg.low.spell.duration = avg.duration, max.low.duration = max.duration, low.spell.freq = low.spell.frequency, 
-            avg.min.ann = ann.mins.mean, cv.min.ann = cv.min.ann, ann.min.timing = avg.min.day[, "mean.doy"], ann.min.timing.sd = avg.min.day[, 
-                "sd.doy"]))
+        return(data.frame(low.spell.threshold = flow.threshold, avg.low.spell.duration = avg.duration, max.low.duration = max.duration, 
+            low.spell.freq = low.spell.frequency, avg.min.ann = ann.mins.mean, cv.min.ann = cv.min.ann, ann.min.timing = avg.min.day[, "mean.doy"], 
+            ann.min.timing.sd = avg.min.day[, "sd.doy"]))
     }
     
     
