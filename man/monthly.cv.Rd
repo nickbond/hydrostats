@@ -11,7 +11,7 @@ monthly.cv(flow.ts)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{flow.ts}{Dataframe consisting of date in column one and flow in column two. Date must be in POSIX format (see ts.format). Missing values are ignored.
+  \item{flow.ts}{Dataframe with date and discharge data in columns named "Date" and "Q" respectively. Date must be in POSIX format (see ts.format). Missing values are ignored.
 }
 }
 \details{
