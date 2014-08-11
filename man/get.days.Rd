@@ -14,36 +14,17 @@ get.days(year)
   \item{year}{
 A vector of years in numeric format}
 }
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
+
 \value{
 A vector containing the number of days in each year in the input vector
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
+
 \author{
-Nick Bond}
-\note{
-%%  ~~further notes~~
+Nick Bond <n.bond@griffith.edu.au>
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
 years<-c("1968","1975","1983","1990","2004")
 get.days(years)
+
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
