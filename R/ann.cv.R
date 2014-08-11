@@ -1,5 +1,4 @@
 ann.cv <- function(flow.ts) {
-    Q <- NULL
     flow.ts$year <- strftime(flow.ts$Date, format = "%Y")
     ann.stats <- aggregate(. ~ year, flow.ts, function(x) c(mean = mean(x), sd = sd(x)))
 
