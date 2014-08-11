@@ -1,6 +1,6 @@
 \name{Colwells}
 \alias{Colwells}
-%- Also NEED an '\alias' for EACH other topic documented here.
+
 \title{
 Colwells indices }
 \description{
@@ -56,7 +56,7 @@ Predictability measures how tightly an event is linked to a season; Constancy me
  \item{M }{Contingency}
  \item{CP }{C/P}
  \item{MP }{M/P}
-%% ...
+
 }
 \references{
 Colwell, R.K. 1974. Predictability, constancy, and contingency of periodic phenomena. Ecology 55(5): 1148-53.
@@ -65,15 +65,6 @@ Gan, K.C., McMahon, T.A., and Finlayson, B.L. 1991. Analysis of periodicity in s
 }
 \author{
 Nick Bond
-}
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
 data(Cooper)
@@ -88,8 +79,3 @@ Colwells(Cooper, boundaries="Gan", from=1,by=1, s=4)
 Colwells(Cooper, boundaries="Gan", from=0.25,by=0.25, s=9)
 
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }
-% __ONLY ONE__ keyword per line
