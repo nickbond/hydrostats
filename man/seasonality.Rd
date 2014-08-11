@@ -23,15 +23,16 @@ monthly.range=FALSE\cr
 a dataframe with 1 column describing the percentage of annual runoff delivered during the average driest 6 month period.
 
 monthly.range=TRUE\cr
-a list with the following elements
-\item{Seasonality }{Description of 'comp1'}
-\item{average monthly flow }{Description of 'comp2'}
-\item{average annual monthly range }{Description of 'comp2'}
-\item{average number of months between the highest and lowest monthly runoff }
+
+a list with the following elements:
+\item{Seasonality}{The percentage of annual runoff delivered during the driest 6 months}
+\item{Average monthly flow}{Average flow in each month of the year}
+\item{Average annual monthly range}{Average difference between the monthly minimum and maximum}
+\item{Average number of months between the highest and lowest monthly runoff}{Difference in months (max=6)}
 }
-}
+
 \author{
-Nick Bond
+Nick Bond <n.bond@griffith.edu.au>
 }
 
 \examples{
