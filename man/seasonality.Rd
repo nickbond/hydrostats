@@ -17,9 +17,7 @@ Dataframe with date and discharge data in columns named "Date" and "Q" respectiv
   \item{monthly.range}{
 logical. If FALSE (default), the function returns the percentage of runoff occurring during the average driest 6 month period (as defined across all years). If true, additional statistics describing cumulative average monthly flows, the range between the runoff in the wettest and driest months, and the average number of months between the wettest and driest periods of runoff.}
 }
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
+
 \value{
 monthly.range=FALSE\cr
 a dataframe with 1 column describing the percentage of annual runoff delivered during the average driest 6 month period.
@@ -29,23 +27,13 @@ a list with the following elements
 \item{Seasonality }{Description of 'comp1'}
 \item{average monthly flow }{Description of 'comp2'}
 \item{average annual monthly range }{Description of 'comp2'}
-\item{average number of months between the highest and lowest monthly runoff }{Description of 'comp2'}
-%% ...
+\item{average number of months between the highest and lowest monthly runoff }
 }
-\references{
-%% ~put references to the literature/web site here ~
 }
 \author{
-Nick Bond}
-\note{
-%%  ~~further notes~~
+Nick Bond
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
 
 data(Cooper)
@@ -54,7 +42,3 @@ Cooper<-ts.format(Cooper)
 seasonality(Cooper, monthly.range=TRUE)
 
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
