@@ -16,24 +16,14 @@ A vector of POSIXct dates, presumably with some years (often those earlier than 
 The year (in four digit format) indicating the cutoff for setting the century to 1900's or 2000's.
 }
 }
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
+
 \value{
 A vector of same length as input.
+}
 
-}
-\references{
-%% ~put references to the literature/web site here ~
-}
 \author{
-Nick Bond
+Nick Bond <n.bond@griffith.edu.au>
 }
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
 \code{\link{strptime}}.
@@ -46,7 +36,3 @@ x
 four.digit.year(x, year=1968)
 four.digit.year(x, year=1942)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
