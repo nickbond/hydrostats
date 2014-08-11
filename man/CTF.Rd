@@ -18,7 +18,7 @@ values below this threshold (default 0.1) are treated as zero for the purpose of
 }
 
 \value{
-A dataframe with 4 columns (see below).
+A dataframe with 5 columns (see below).
 
 \item{p.CTF }{Fraction time cease to flows occur}
 \item{avg.CTF }{Average cease-to-flow spell duration}
@@ -29,7 +29,7 @@ A dataframe with 4 columns (see below).
 }
 
 \author{
-Nick Bond
+Nick Bond <n.bond@griffith.edu.au>
 }
 
 \examples{
