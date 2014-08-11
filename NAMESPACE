@@ -1,5 +1,5 @@
 export(ann.cv,
-			 bfi,
+			 baseflows,
 			 CTF,
 			 Colwells,
 			 daily.cv, 
