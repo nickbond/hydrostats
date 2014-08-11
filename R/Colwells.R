@@ -1,12 +1,11 @@
 Colwells <- function(flow.ts, fn = "mean", boundaries = "transform", s = 11, base = 2, from = 0.5, by = 0.25) {
     fn <- match.fun(fn)
     
-    names(flow.ts[1:2]) <- c("Date", "Q")
     
     # fn<-summary.stat
     
-    flow.ts$month <- factor(strftime(flow.ts[, 1], format = "%m"))
-    flow.ts$year <- factor(strftime(flow.ts[, 1], format = "%Y"))
+    flow.ts$month <- factor(strftime(flow.ts[, "Date"], format = "%m"))
+    flow.ts$year <- factor(strftime(flow.ts[, "Date"], format = "%Y"))
     # flow.ts.monthly <- ddply(flow.ts, .(month,year), summarise, Q = getFunction(fn) (Q, na.rm = TRUE))
     
     flow.ts.monthly <- aggregate(Q ~ month + year, flow.ts, fn, na.rm = TRUE)
