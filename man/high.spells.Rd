@@ -59,9 +59,7 @@ logical. If TRUE, statistics describing inter-flood spell characteristics are re
 logical. If TRUE, each record is first assigned to a hydrologic year based on the timing of minimum flows. See \code{\link{hydro.year}} for further details.
 }
 }
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
+
 \value{
 Returns a dataframe with the following columns.
 
@@ -95,21 +93,12 @@ Annual flood statistics
 \item{cv.ann.duration}{The coefficient of variation of the duration of annual maximum spells}
 
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
+
 \author{
-Nick Bond
-}
-\note{
-%%  ~~further notes~~
+Nick Bond <n.bond@griffith.edu.au>
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
 
 data(Cooper)
@@ -134,11 +123,3 @@ Cooper$time.period <- ifelse(Cooper$year<1980,"pre_1980","post_1980")
 ddply(Cooper, .(time.period), function(x) low.spells(x, ann.stats=FALSE))
 
 }
-
-%%end function
-
-
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
