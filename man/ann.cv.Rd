@@ -1,6 +1,5 @@
 \name{ann.cv}
 \alias{ann.cv}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Calculate interannual coefficient of variation}
 \description{
@@ -13,7 +12,6 @@ Missing values are ignored.
 \usage{
 ann.cv(flow.ts)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{flow.ts}{Dataframe with date and discharge data in columns named "Date" and "Q" respectively. Date must be in POSIX format (see ts.format). Missing values are ignored.
   }
@@ -23,31 +21,15 @@ Requires date to be in POSIX format. See ts.format
 }
 \value{
 A dataframe with 1 column (ann.cv).
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
+
 \author{
 Nick Bond <nrb.ski@gmail.com>
 }
-\note{
-%%  ~~further notes~~
-}
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
 data(Cooper)
 cooper<-ts.format(Cooper)
 ann.cv(Cooper)
-
 
 }
