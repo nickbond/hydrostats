@@ -1,19 +1,19 @@
-CTF <- function(flow.ts, threshold = 0.1) {
-    names(flow.ts)[1:2] <- c("Date", "Q")
+CTF <- function(flow.ts, threshold = 0.001) {
+    
     flow.ts <- na.omit(flow.ts)
     
-    if (length(flow.ts[, "Q"]) == 0 | sum(flow.ts[, "Q"]) == 0) {
+    if (length(flow.ts[, 'Q']) == 0 | sum(flow.ts[, 'Q']) == 0) {
         
         return(data.frame(p.CTF = 1, avg.CTF = NA, med.CTF = NA, min.CTF = NA, max.CTF = NA))
     }
     
     
-    if (sum(flow.ts[, "Q"] <= threshold) < 1) {
+    if (sum(flow.ts[, 'Q'] <= threshold) < 1) {
         
         return(data.frame(p.CTF = 0, avg.CTF = 0, med.CTF = 0, min.CTF = 0, max.CTF = 0))
     } else {
         
-        CTF.ts <- ifelse(flow.ts[, "Q"] > threshold, 1, 0)
+        CTF.ts <- ifelse(flow.ts[, 'Q'] > threshold, 1, 0)
         
         CTF.runs <- rle(CTF.ts)
         p.CTF <- sum(CTF.ts == 0)/length(CTF.ts)
