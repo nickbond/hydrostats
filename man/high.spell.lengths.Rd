@@ -16,7 +16,7 @@ ind.days = 5, ignore.zeros = T, ctf.threshold = 0.1, inter.flood=FALSE)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{flow.ts}{
-Dataframe consisting of date in column one and flow in column two. Date must be in POSIX format (see ts.format).
+Dataframe with date and discharge data in columns named "Date" and "Q" respectively. Date must be in POSIX format (see ts.format).
 }
   \item{quant}{
 Percentile/quantile to use for defining event magnitude (default 0.9). A value of 0.9 is the upper 90th percentile (i.e. a volume exceeded 10\% of the time).}
