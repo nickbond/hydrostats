@@ -35,7 +35,7 @@ Returns a list of length 2
 Bayliss, A. C., Jones, R. C. (1993) Peaks-over-threshold flood database: Summary statistics and seasonality. Institute of Hydrology. Wallingford, UK.
 }
 \author{
-Nick Bond
+Nick Bond <n.bond@griffith.edu.au>
 }
 \examples{
 days<-c(366,1,365,1,366)
