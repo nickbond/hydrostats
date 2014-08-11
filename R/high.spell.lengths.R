@@ -1,6 +1,6 @@
 high.spell.lengths <- function(flow.ts, quant = 0.9, threshold = NULL, ind.days = 5, ignore.zeros = T, ctf.threshold = 0.1, inter.flood = FALSE) {
     
-    record.year <- strftime(flow.ts[, 1], format = "%Y")
+    record.year <- strftime(flow.ts[, "Date"], format = "%Y")
     flow.ts <- data.frame(flow.ts, year = record.year)
     
     n.years <- nlevels(as.factor(record.year))
@@ -17,11 +17,11 @@ high.spell.lengths <- function(flow.ts, quant = 0.9, threshold = NULL, ind.days 
         
         if (ignore.zeros == T) {
             
-            flow.threshold <- quantile(flow.ts[which(flow.ts[, 2] > ctf.threshold), 2], quant, na.rm = T)
-            names(flow.threshold) <- NULL  #normally hide
+            flow.threshold <- quantile(flow.ts[which(flow.ts[, "Q"] > ctf.threshold), "Q"], quant, na.rm = T)
+            names(flow.threshold) <- NULL  
         } else {
-            flow.threshold <- quantile(flow.ts[, 2], quant, na.rm = T)
-            names(flow.threshold) <- NULL  #normallyhide
+            flow.threshold <- quantile(flow.ts[, "Q"], quant, na.rm = T)
+            names(flow.threshold) <- NULL  
         }
         
     }
@@ -30,7 +30,7 @@ high.spell.lengths <- function(flow.ts, quant = 0.9, threshold = NULL, ind.days 
     
     
     
-    high.flows <- ifelse(flow.ts[, 2] > flow.threshold, 1, 0)
+    high.flows <- ifelse(flow.ts[, "Q"] > flow.threshold, 1, 0)
     
     if (ind.days > 0) {
         
@@ -49,7 +49,7 @@ high.spell.lengths <- function(flow.ts, quant = 0.9, threshold = NULL, ind.days 
     flow.runs.values <- high.flow.runs$values[good.high.flow.runs]
     flow.runs.lengths <- high.flow.runs$lengths[good.high.flow.runs]
     spell.starts <- c(1, cumsum(head(flow.runs.lengths, -1)) + 1)
-    spell.lengths <- data.frame(flow.runs.values, start.date = flow.ts[spell.starts, 1], spell.length = flow.runs.lengths)
+    spell.lengths <- data.frame(flow.runs.values, start.date = flow.ts[spell.starts, "Date"], spell.length = flow.runs.lengths)
     
     if (inter.flood == TRUE) {
         
