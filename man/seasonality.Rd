@@ -12,7 +12,7 @@ seasonality(flow.ts, monthly.range = FALSE)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{flow.ts}{
-Dataframe consisting of date in column one and flow in column two. Date must be in POSIX format (see ts.format). Missing values are ignored.
+Dataframe with date and discharge data in columns named "Date" and "Q" respectively. Date must be in POSIX format (see ts.format). Missing values are ignored.
 }
   \item{monthly.range}{
 logical. If FALSE (default), the function returns the percentage of runoff occurring during the average driest 6 month period (as defined across all years). If true, additional statistics describing cumulative average monthly flows, the range between the runoff in the wettest and driest months, and the average number of months between the wettest and driest periods of runoff.}
