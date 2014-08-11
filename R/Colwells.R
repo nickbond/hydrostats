@@ -6,7 +6,6 @@ Colwells <- function(flow.ts, fn = "mean", boundaries = "transform", s = 11, bas
     
     flow.ts$month <- factor(strftime(flow.ts[, "Date"], format = "%m"))
     flow.ts$year <- factor(strftime(flow.ts[, "Date"], format = "%Y"))
-    # flow.ts.monthly <- ddply(flow.ts, .(month,year), summarise, Q = getFunction(fn) (Q, na.rm = TRUE))
     
     flow.ts.monthly <- aggregate(Q ~ month + year, flow.ts, fn, na.rm = TRUE)
     
