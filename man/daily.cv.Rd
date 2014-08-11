@@ -17,23 +17,14 @@ daily.cv(flow.ts)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{flow.ts}{Dataframe with date and discharge data in columns named "Date" and "Q" respectively. Date must be in POSIX format (see ts.format).}
-  {
-%%     ~~Describe \code{flow.ts} here~~
-}
 }
 \value{
 A dataframe with 1 column (daily CV).
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
+
 \author{
-Nick Bond}
+Nick Bond <n.bond@griffith.edu.au>
+}
 
 \examples{
 data(Cooper)
