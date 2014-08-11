@@ -11,7 +11,7 @@ four.digit.year(x, year=1968)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-A vector of POSIX dates, presumably with some years (often those earlier than 1969) assigned to the wrong century.}
+A vector of POSIXct dates, presumably with some years (often those earlier than 1969) assigned to the wrong century.}
 	\item{year}{
 The year (in four digit format) indicating the cutoff for setting the century to 1900's or 2000's.
 }
