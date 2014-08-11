@@ -24,7 +24,7 @@ seasonality <- function(flow.ts, monthly.range = FALSE) {
     if (monthly.range == TRUE) {
         flow.ts$Year <- as.factor(strftime(flow.ts$Date, format = "%Y"))
         flow.ts$month <- as.factor(strftime(flow.ts$Date, format = "%m"))
-        month.year.means <- tapply(flow.ts[, 2], flow.ts[c("Year", "month")], sum)
+        month.year.means <- tapply(flow.ts[, "Q"], flow.ts[c("Year", "month")], sum)
         month.year.means <- na.omit(month.year.means)
         monthly.means <- apply(month.year.means, 2, mean, na.rm = T)
         month.range <- apply(month.year.means, 1, range, na.rm = T)
