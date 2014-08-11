@@ -13,7 +13,7 @@ bfi(flow.ts, a, ts = "mean")
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{flow.ts}{
-Dataframe consisting of date in column one and flow in column two. Date must be in POSIX format (see ts.format). Missing values are ignored.
+Dataframe with date and discharge data in columns named "Date" and "Q" respectively. Date must be in POSIX format (see ts.format). Missing values are ignored.
 }
   \item{a}{
 The alpha value used in the Lynne-Hollick filter for digital baseflow separation. Default value is 0.975  
