@@ -13,7 +13,7 @@ Independence criteria allow short periods below the spell threshold to be ignore
 high.spell.lengths(flow.ts, quant = 0.9, threshold,
 ind.days = 5, ignore.zeros = T, ctf.threshold = 0.1, inter.flood=FALSE)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{flow.ts}{
 Dataframe with date and discharge data in columns named "Date" and "Q" respectively. Date must be in POSIX format (see ts.format).
@@ -33,27 +33,13 @@ values below this threshold are treated as zero for the purpose of percentile ba
 logical. If TRUE, the function returns the spell lengths and start dates for periods below (rather than above) the defined threshold.
 	}
 }
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
+
 \value{
-%%  ~Describe the value returned
 Returns a dataframe of spell lengths and their associated starting dates.
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
+
 \author{
-Nick Bond
-}
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+Nick Bond <n.bond@griffith.edu.au>
 }
 \examples{
 data(Cooper)
@@ -62,7 +48,3 @@ Cooper<-ts.format(Cooper)
 high.spell.lengths(Cooper, threshold=50000)
 
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
