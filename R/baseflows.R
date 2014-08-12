@@ -46,7 +46,6 @@ baseflows <- function(flow.ts, a = 0.975, ts = "mean") {
     bf <- lh3(Q, a)
     bfi <- ifelse(Q == 0, 0, bf/Q)
     out <- data.frame(Date, bf, bfi)
-    #full.flow.ts$Date <- as.POSIXct(full.flow.ts$Date)
     out <- merge(full.flow.ts, out, by = "Date", all.x = T)
     names(out) <- c("Date", "Q", "bf", "bfi")
     
