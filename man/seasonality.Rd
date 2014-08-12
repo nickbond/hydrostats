@@ -19,16 +19,14 @@ logical. If FALSE (default), the function returns the percentage of runoff occur
 }
 
 \value{
-monthly.range=FALSE\cr
-a dataframe with 1 column describing the percentage of annual runoff delivered during the average driest 6 month period.
+If monthly.range=FALSE (default) the function returns a dataframe with 1 column describing the percentage of annual runoff delivered during the average driest 6 month period.
 
-monthly.range=TRUE\cr
+If monthly.range=TRUE, the function returns a list with the following elements:
 
-a list with the following elements:
-\item{Seasonality}{The percentage of annual runoff delivered during the driest 6 months}
-\item{Average monthly flow}{Average flow in each month of the year}
-\item{Average annual monthly range}{Average difference between the monthly minimum and maximum}
-\item{Average number of months between the highest and lowest monthly runoff}{Difference in months (max=6)}
+\item{seasonality}{The percentage of annual runoff delivered during the driest 6 months}
+\item{monthly.means}{Average flow in each month of the year}
+\item{avg.ann.month.range}{Average difference between the monthly minimum and maximum}
+\item{max.min.time.dif}{Average number of months between the highest and lowest monthly runoff}
 }
 
 \author{
