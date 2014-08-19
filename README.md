@@ -15,7 +15,9 @@ Most of the functions can be used with plyr to return a dataframe of indices bas
 #Installation
 To install the latest development version run the following code: 
 
-	#install dependencies/suggests (devtools required only to install from Github; plyr required for examples).
+	# install dependencies/suggests:
+	# devtools required only to install from Github; 
+	# plyr required for examples
 	install.packages(c("devtools", "plyr"))
 
 	#install pacakge
