@@ -13,5 +13,6 @@ export(ann.cv,
 			 low.spells,
 			 monthly.cv,
 			 partial.series,
+			 recode, 
 			 seasonality,
 			 ts.format)
