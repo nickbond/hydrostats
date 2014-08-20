@@ -5,25 +5,23 @@
 Calculates the maximum flood length in a time series. 
 }
 \description{
-Calculates the maximum flood length above a user defined threshold in a time series. Used with ddply (from the plyr package) it will return a vector of maximum annual flood lengths (see examples). 
-
-Alternatively, the function high.spell.lengths can be used to return the length of all events above a threshold, not just the longest event in each year.}
+Calculates the maximum flood length above a user defined threshold in a time series. Used with ddply (from the plyr package) it can be used to return a vector of maximum flood lengths for multiple gauges or for multiple years (see examples). Alternatively, the function \code{\link[hydrostats:high.spell.lengths]{high.spell.lengths}} can be used to return the length of all events above a threshold.}
 \usage{
 flood.length.max(flow.ts, threshold, ind.days = 5)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{flow.ts}{
-Dataframe with date and discharge data in columns named "Date" and "Q" respectively. Date must be in POSIX format (see ts.format). 
+Dataframe with date and discharge data in columns named "Date" and "Q" respectively. Date must be in POSIX format (see ts.format)
 }
   \item{threshold}{
-A user supplied threshold for defining spells. This would typically be derived from hydraulic models or similar knowledge pertaining to a gauge site.}
+A user supplied threshold for defining spells. This would typically be derived from hydraulic models or similar knowledge pertaining to a gauge site}
   \item{ind.days}{
-Periods between spells of less than ind.days (default 5) are considered to be 'in spell' for the purpose of further calculations. A value of 0 means spells 1 day apart are considered indpedendent.}
+Periods between spells of less than ind.days (default 5) are considered to be 'in spell' for the purpose of further calculations. A value of 0 means spells 1 day apart are considered indpedendent}
 }
 
 \value{
-returns a dataframe with 1 column (Maximum spell duration)
+A dataframe with one column (flood.length.max).
 }
 \author{
 Nick Bond <n.bond@griffith.edu.au>
