@@ -16,10 +16,10 @@ daily.cv(flow.ts)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{flow.ts}{Dataframe with date and discharge data in columns named "Date" and "Q" respectively. Date must be in POSIX format (see ts.format).}
+  \item{flow.ts}{Dataframe with date and discharge data in columns named "Date" and "Q" respectively. Date must be in POSIX format (see ts.format)}
 }
 \value{
-A dataframe with 1 column (daily CV).
+A dataframe with one column (daily.cv).
 }
 
 \author{
