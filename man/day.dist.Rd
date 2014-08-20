@@ -15,7 +15,7 @@ day.dist(Dates, days, years)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{Dates}{
-A vector of POSIXct dates from which days and years are extracted. If Dates are not provided, days and years must be }
+A vector of POSIX dates from which days and years are extracted. If Dates are not provided, days and years must be }
 
 \item{days}{
 A vector of days in numeric format. Not required if POSIXct dates are provided}
@@ -25,11 +25,10 @@ A vector of years in numeric format. Not required if POSIXct dates are provided}
 }
 
 \value{
-Returns a list of length 2
-%%  If it is a LIST, use
+A dataframe with two columns.
   \item{mean.doy }{mean day of year events occur on}
   \item{sd.doy }{standard deviation indicating the spread of event timing}
-%% ...
+
 }
 \references{
 Bayliss, A. C., Jones, R. C. (1993) Peaks-over-threshold flood database: Summary statistics and seasonality. Institute of Hydrology. Wallingford, UK.
