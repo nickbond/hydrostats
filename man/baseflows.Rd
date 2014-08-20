@@ -2,7 +2,7 @@
 \alias{baseflows}
 
 \title{
-Measures of central tendency and baseflow via the Lynne-Hollick baseflow filter
+Measures of central tendency and baseflow via the Lynne-Hollick (LH) baseflow filter
 }
 \description{
 Calculate measure of central tendency and baseflow indices using the Lynne-Hollick filter
@@ -27,9 +27,10 @@ ts="daily" returns complete series}
 Technically the LH filter cannot be calculated where there are missing data. Here the function removes missing values and is applied to a concatenated version of the time series. Missing dates are reinserted after the filter has been applied for the purpose of returning annual or daily series. The function further reports the number of missing values leaving the user to decide on the reliability of the baseflow estimates.
 }
 \value{
-Returns a dataframe. See below for details.
+A dataframe. See below for details.
 
 ts="mean" 
+ \item{n.years }{The number of years of record in the series}
  \item{prop.obs }{proportion of non-missing observations}
  \item{MDF }{mean daily flow}
  \item{Q50 }{median daily flow}
