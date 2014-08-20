@@ -5,13 +5,13 @@
 Calculates high flow spell statistics
 }
 \description{
-Calculates a suite of statistics describing flood characteristics, such as the timing, frequency and duration of events. The event threshold can be defined as a flow quantile (e.g. upper 90th percentile) or a specific threshold volume (e.g. ML/day).
+Calculates a suite of statistics describing flood characteristics, such as the timing, frequency and duration of events. The event threshold can be defined as a flow quantile (e.g. upper 90th percentile [default]) or a specific threshold volume (e.g. ML/day).
 
 For the purpose of deriving annual flood statistics, the function can also be applied based on the hydrologic year. This is advisable where the high flow season spans years, such that prolonged spells may span years. This first requires the time series be processed using the hydro.year function. This adds an additional column indicating the hydrologic year to which each row belongs, which is used for deriving annual spell characteristics.
 
 It is possible for there to be multiple days with the same annual maximum flow value (although less likely than for low flows). In estimating the average timing (and sd of timing) of minimum flows, the function calculates the average day of year (DOY) of minimum flows in each year first, before calculating the average across years. Circular functions are used to address the proximity between days toward the beginning and end of the year.
 
-Missing values are allowed for convenience (NA's are removed and the time-series is concatenated before functions are applied), but of course may lead to biased results. For the purpose of the annual statistics years with fewer than 350 days of available record are ignored.
+Missing values are allowed for convenience (NA's are removed and the time-series is concatenated before functions are applied), but may lead to biased results. For the purpose of the annual statistics years with fewer than 350 days of available record are ignored.
 
 When used with ddply to compute outputs for multiple gauges or time periods simultaneously, results, icluding graphs are produced for each factor level, including graphs. Note the funtion will return warnings if annual stats are calculated when year is used as a factor.
 
@@ -28,7 +28,7 @@ hydro.year=FALSE)
     
     If a third column exists then this is assumed to provide a vector of years for the purpose of calculating annual spell statistics based on a predetermined hydrologic year.
     }
-  \item{quant}{Percentile/quantile to use for defining event magnitude (default 0.9). A value of 0.9 is the upper 90th percentile (i.e. a volume exceeded 10\% of the time).
+  \item{quant}{Percentile/quantile to use for defining event magnitude (default 0.9). A value of 0.9 is the upper 90th percentile (i.e. a volume exceeded 10\% of the time), and corresponds to Q90.
   }
   \item{threshold}{
 A user supplied threshold for defining spells. This would typically be derived from hydraulic models or similar knowledge pertaining to a gauge site.
@@ -61,10 +61,9 @@ logical. If TRUE, each record is first assigned to a hydrologic year based on th
 }
 
 \value{
-Returns a dataframe with the following columns.
+A dataframe with the following columns.
 
 flood indices
-\item{n.years }{The number of years of record in the series}
 \item{high.spell.threshold }{The high spell threshold applied in the analysis)}
 \item{n.events }{The number of events in the series greater than or equal to the high.spell.threshold}
 \item{spell.freq}{The frequency of spell events (no. per year)}
@@ -74,7 +73,7 @@ flood indices
 \item{max.high.spell.duration}{Maximum duration of spell events}
 \item{avg.spell.volume}{Average spell volume (volumes above the threshold only)}
 \item{avg.spell.peak}{Average spell peak}
-\item{sd.spell.peak}{Standard deviation in spell speaks}
+\item{sd.spell.peak}{Standard deviation of spell speaks}
 \item{avg.rise}{Average absolute rate of daily rise during spell events}
 \item{avg.fall}{Average absolute rate of daily fall during spell events}
 
