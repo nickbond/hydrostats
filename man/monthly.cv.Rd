@@ -15,8 +15,7 @@ monthly.cv(flow.ts)
 }
 
 \value{
-%%  ~Describe the value returned
-Dataframe with 1 column (monthly CV).
+a dataframe with 1 column (monthly.cv)
 }
 
 \author{
@@ -27,12 +26,4 @@ Nick Bond <n.bond@griffith.edu.au>
 data(Cooper)
 cooper<-ts.format(Cooper)
 ann.cv(Cooper)
-
-## The function is currently defined as
-function (flow.ts) 
-{
-    monthly.cv <- (sd(flow.ts$Q, na.rm = T)/mean(flow.ts$Q, na.rm = T)) * 
-        100
-    return(list(monthly.cv = monthly.cv))
-  }
 }

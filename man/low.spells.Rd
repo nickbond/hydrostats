@@ -5,7 +5,7 @@
 Calculate low flow spell statistics
 }
 \description{
-Calculates a suite of statistics describing low-flow spell characteristics, such as the timing, frequency and duration of events below a threshold. The event threshold can be defined as a flow quantile (e.g. the 10th  percentile, that is flows exceeded 90\% of the time) or a specific threshold volume (e.g. ML/day).
+Calculates a suite of statistics describing low-flow spell characteristics, such as the timing, frequency and duration of events below a threshold. The event threshold can be defined as a flow quantile (e.g. the 10th  percentile, which is flows exceeded 90\% of the time, corresponding to Q10) or a specific threshold volume (e.g. ML/day).
 
 For the purpose of deriving annual low-flow spell statistics, the function can also be applied based on the hydrologic year. This is advisable where the low flow season spans calendar years, such that prolonged spells may be split at the transition from one calendar year to the next. This first requires the time series be processed using the hydro.year function. This adds an additional column indicating the hydrologic year to which each row belongs, which is used for deriving annual spell characteristics.
 
@@ -45,7 +45,7 @@ logical. If TRUE, each record is first assigned to a hydrologic year based on th
 }
 
 \value{
-Returns a dataframe with the following columns.
+A dataframe with the following columns.
 
 low flow indices
 \item{low.spell.threshold }{The low spell threshold applied in the analysis}
@@ -56,7 +56,7 @@ low flow indices
 Annual low flow statistics
 \item{avg.min.ann}{The average annual minimum flow}
 \item{cv.min.ann}{The coefficient of variation of annual minimum flows}
-\item{ann.min.timing}{The average day of the year (0-366) on which the minimum flow occurs.}
+\item{ann.min.timing}{The average day of the year (0-366) on which the minimum flow(s) occur.}
 \item{ann.min.timing.sd}{circular standard deviation of the average timing of annual minimum flows}
 }
 

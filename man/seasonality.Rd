@@ -19,7 +19,7 @@ logical. If FALSE (default), the function returns the percentage of runoff occur
 }
 
 \value{
-If monthly.range=FALSE (default) the function returns a dataframe with 1 column describing the percentage of annual runoff delivered during the average driest 6 month period.
+If monthly.range=FALSE (default) the function returns a dataframe with one column with the percentage of annual runoff delivered during the average driest 6 month period.
 
 If monthly.range=TRUE, the function returns a list with the following elements:
 
