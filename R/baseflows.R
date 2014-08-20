@@ -2,7 +2,7 @@ baseflows <- function(flow.ts, a = 0.975, ts = "mean") {
     
     full.flow.ts <- flow.ts[c("Date", "Q")]
     record.year <- strftime(full.flow.ts[, "Date"], format = "%Y")
-    n.years <- factor(record.year)
+    n.years <- length(factor(record.year))
     
     red.flow.ts <- full.flow.ts[complete.cases(full.flow.ts[, "Date"], full.flow.ts[, "Q"]), ]
     
