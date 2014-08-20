@@ -6,7 +6,7 @@
 Acheron River flow data
 }
 \description{
-Daily discharge time series in megalitres per day (ML/day) for Acheron River @ Taggerty (Gauge No. 405209), Victoria, Australia, from 1971-2000.
+Daily discharge time series in megalitres per day (ML/day) for the Acheron River @ Taggerty (Gauge No. 405209), Victoria, Australia, from 1971-2000.
 
 }
 \usage{
@@ -28,7 +28,7 @@ Data provided  by the State of Victoria, Department of Environment and Primary I
 \examples{
 data(Acheron)
 Acheron<-ts.format(Acheron)
-plot(Acheron[[1]],Acheron[[2]],type="l", xlab="Date",ylab="Discharge (ML/day)")
+plot(Acheron[,"Date"],Acheron[,"Q"],type="l", xlab="Date",ylab="Discharge (ML/day)")
 
 
 }
