@@ -16,11 +16,8 @@ ann.cv(flow.ts)
   \item{flow.ts}{Dataframe with date and discharge data in columns named "Date" and "Q" respectively. Date must be in POSIX format (see ts.format). Missing values are ignored.
   }
 }
-\details{
-Requires date to be in POSIX format. See ts.format
-}
 \value{
-A dataframe with 1 column (ann.cv).
+A dataframe with one column (ann.cv).
 }
 
 \author{
