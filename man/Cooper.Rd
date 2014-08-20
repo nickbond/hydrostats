@@ -28,7 +28,7 @@ Data provided by the State of Queensland, Department of Natural Resources and Mi
 \examples{
 data(Cooper)
 Cooper<-ts.format(Cooper)
-plot(Cooper[[1]],Cooper[[2]],type="l", xlab="Date",ylab="Discharge (ML/day)")
+plot(Cooper[, "Date"],Cooper[, "Q"],type="l", xlab="Date",ylab="Discharge (ML/day)")
 
 
 }
