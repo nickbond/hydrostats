@@ -1,0 +1,17 @@
+hydrostats 0.2.1
+----------------------------------------------------------------
+
+BUG FIXES AND MINOR IMPROVEMENTS
+
+* fixed a bug in baseflow function that caused issues when date and 
+	discharge data were in columns other than columns 1 and 2.
+
+* added to Colwells function the ability to output a dataframe of the 
+	indices only.
+
+*	shifted the reporting of record length from high.spells to baseflows
+	function so that if outputs are combined in a dataframe, record
+	length is now the first variable if baseflows is the first function run.
+
+* various corrections/edits to the manual pages.
+	
