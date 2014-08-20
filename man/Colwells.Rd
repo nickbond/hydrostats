@@ -8,7 +8,7 @@ Calculates Colwell's (1974), which provide a measure of the seasonal predictabil
 \usage{
 Colwells(flow.ts, fn = "mean", 
 boundaries = "transform", s = 11, 
-base = 2, from = 0.5, by = 0.25)
+base = 2, from = 0.5, by = 0.25, indices.only=FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -44,11 +44,15 @@ The lowest break point for defining classes when using the "Gan" boundaries (def
   \item{by}{
 The bin width when using the "Gan" boundaries (default 0.25) 
 }
+  \item{indices.only}{
+Logical. If FALSE (default), the function returns a list of length 3, including the breaks, a table of frequencies, and Colwell's indices. If TRUE, the function returns just a dataframe of indices, useful for combining output with that from other functions.}
 }
 \details{
 Predictability measures how tightly an event is linked to a season; Constancy measures how uniformly the event occurs through all seasons, and Contingency measures the repeatability of season patterns. Predictability is the sum of Constancy and Contingency, and reflects the likelihood of being able to predict a flow occurrence. It is maximized when the flow is constant throughout the year (Constancy Maximised), or if the pattern of high or low flow occurrence is repeated across all years (Contingency maximized).
 }
 \value{
+A list or dataframe (see above).
+
  \item{breaks }{shows the break points used between classes. Not returned for all boundary options. The upper and lower classes are always open even if -Inf/Inf are not shown.}
  \item{flow.table }{Table showing the number of times the monthly flows fall into each flow class in each month. Useful for examining the results of different binning techniques.}
  \item{P }{Predictability}
@@ -78,4 +82,15 @@ Colwells(Cooper, boundaries="weighted_log_class_size", s=11)
 Colwells(Cooper, boundaries="Gan", from=1,by=1, s=4)
 Colwells(Cooper, boundaries="Gan", from=0.25,by=0.25, s=9)
 
+Colwells(Cooper, boundaries="Gan", from=0.25,by=0.25, s=9, indices.only=TRUE)
+
+
+%Calculate indices for two gauges (Acheron River and Cooper Creek) simultaneously using the plyr package.
+require(plyr)
+data(Acheron)
+Acheron<-ts.format(Acheron)
+flow.ts<-rbind(data.frame(River="Acheron", Acheron), data.frame(River="Cooper", Cooper))
+
+ddply(flow.ts, .(River), function(x) 
+Colwells(x, boundaries="weighted_log_class_size", s=11, indices.only=TRUE))
 }
