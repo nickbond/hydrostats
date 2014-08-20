@@ -1,9 +1,9 @@
-recode <- function(data, oldvalue, newvalue) {
+recode <- function(x, oldvalue, newvalue) {
     
     # convert any factors to characters
     
-    if (is.factor(data)) 
-        data <- as.character(data)
+    if (is.factor(x)) 
+        x <- as.character(x)
     if (is.factor(oldvalue)) 
         oldvalue <- as.character(oldvalue)
     if (is.factor(newvalue)) 
@@ -11,11 +11,11 @@ recode <- function(data, oldvalue, newvalue) {
     
     # create the return vector
     
-    newvec <- data
+    newvec <- x
     
     # put recoded values into the correct position in the return vector
     
-    for (i in unique(oldvalue)) newvec[data == i] <- newvalue[oldvalue == i]
+    for (i in unique(oldvalue)) newvec[x == i] <- newvalue[oldvalue == i]
     
     return(newvec)
     
