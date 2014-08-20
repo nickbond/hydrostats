@@ -4,7 +4,7 @@
 \title{
 Correct conversion of years to four digit format}
 \description{
-Converts from two to four digit representation of years correcting the century for years earlier than that specified. Addresses the fact that under POSIX specifications, values 00 to 68 are prefixed by 20 and 69 to 99 by 19 when converting from two digit years. }
+Converts from two to four digit representation of years correcting the century for years earlier than that specified. Addresses the fact that under POSIX specifications, values 00 to 68 are prefixed by 20 and 69 to 99 by 19 when converting from two digit years, which can affectlonger time series and older data sets. }
 \usage{
 four.digit.year(x, year=1968)
 }
@@ -18,7 +18,7 @@ The year (in four digit format) indicating the cutoff for setting the century to
 }
 
 \value{
-A vector of same length as input.
+A vector of same length as input with years in four digit format.
 }
 
 \author{
