@@ -9,7 +9,7 @@ high.spells <- function(flow.ts, quant = 0.9, threshold = NULL, ind.days = 5, du
         flow.ts <- hydro.year(flow.ts, year = "hydro")
         record.year <- flow.ts[, "year"]
     } else {
-        record.year <- strftime(flow.ts[, "Date"], format = "%Y")
+        record.year <- strftime(flow.ts[["Date"]], format = "%Y")
         flow.ts <- data.frame(flow.ts, year = record.year)
     }
     n.years <- nlevels(as.factor(record.year))
