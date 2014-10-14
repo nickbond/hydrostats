@@ -2,6 +2,17 @@ hydrostats 0.2.1
 ----------------------------------------------------------------
 
 BUG FIXES AND MINOR IMPROVEMENTS
+* Modified the code to prevent an error when used with the 'do' 
+	function in dplyr, which allows the use of arbitrary functions 
+	with the group_by function.
+
+
+
+
+hydrostats 0.2.1
+----------------------------------------------------------------
+
+BUG FIXES AND MINOR IMPROVEMENTS
 
 * fixed a bug in baseflow function that caused issues when date and 
 	discharge data were in columns other than columns 1 and 2.
