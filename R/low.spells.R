@@ -6,7 +6,7 @@ low.spells <- function(flow.ts, quant = 0.1, threshold = NULL, duration = T, vol
         flow.ts <- hydro.year(flow.ts, year = "hydro")
         record.year <- flow.ts[, "year"]
     } else {
-        record.year <- strftime(flow.ts[, "Date"], format = "%Y")
+        record.year <- strftime(flow.ts[["Date"]], format = "%Y")
         flow.ts <- data.frame(flow.ts, year = record.year)
     }
     
