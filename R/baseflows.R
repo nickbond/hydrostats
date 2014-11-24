@@ -6,10 +6,11 @@ baseflows <- function(flow.ts, a = 0.975, ts = "mean") {
     
     red.flow.ts <- full.flow.ts[complete.cases(full.flow.ts[["Date"]], full.flow.ts[["Q"]]), ]
     
-    Date <- red.flow.ts[, 1]
-    Q <- red.flow.ts[, 2]
+    Date <- red.flow.ts[[1]]
+    Q <- red.flow.ts[[2]]
     
     lh3 <- function(Q, a) {
+    
         qb1 <- lh(Q, a)
         qb2 <- lh(rev(qb1), a)
         qb3 <- lh(rev(qb2), a)
