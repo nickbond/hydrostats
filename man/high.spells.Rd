@@ -68,6 +68,7 @@ flood indices
 \item{n.events }{The number of events in the series greater than or equal to the high.spell.threshold}
 \item{spell.freq}{The frequency of spell events (no. per year)}
 \item{ari}{Average Recurrence Interval of events in years (1/spell.freq)}
+\item{min.high.spell.duration}{Minimum duration of spell events}
 \item{avg.high.spell.duration}{Average duration of spell events}
 \item{med.high.spell.duration}{Median duration of spell events}
 \item{max.high.spell.duration}{Maximum duration of spell events}

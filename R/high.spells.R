@@ -130,7 +130,8 @@ high.spells <- function(flow.ts, quant = 0.9, threshold = NULL, ind.days = 5, du
         
         
         if (duration == TRUE) {
-            
+      
+        		min.duration <- min(high.flow.runs$lengths[which(high.flow.runs$values == 1)], na.rm = T)
             avg.duration <- mean(high.flow.runs$lengths[which(high.flow.runs$values == 1)], na.rm = T)
             med.duration <- quantile(high.flow.runs$lengths[which(high.flow.runs$values == 1)], 0.5, na.rm = T, names = F)
             max.duration <- max(high.flow.runs$lengths[which(high.flow.runs$values == 1)], na.rm = T)
@@ -173,11 +174,11 @@ high.spells <- function(flow.ts, quant = 0.9, threshold = NULL, ind.days = 5, du
     
     if (ann.stats == F) {
         return(data.frame(high.spell.threshold = flow.threshold, n.events = n.events, spell.frequency = flood.frequency, 
-            ari = 1/flood.frequency, avg.high.spell.duration = avg.duration, med.high.spell.duration = med.duration, max.high.spell.duration = max.duration, 
+            ari = 1/flood.frequency, min.high.spell.duration = min.duration, avg.high.spell.duration = avg.duration, med.high.spell.duration = med.duration, max.high.spell.duration = max.duration, 
             avg.spell.volume = mean(spell.volumes, na.rm = T), avg.spell.peak = high.flow.av, sd.spell.peak = high.flow.sd, avg.rise = mean.rise, 
             avg.fall = mean.fall))
     } else {
-        return(data.frame(high.spell.threshold = flow.threshold, n.events = n.events, spell.freq = flood.frequency, ari = 1/flood.frequency, 
+        return(data.frame(high.spell.threshold = flow.threshold, n.events = n.events, spell.freq = flood.frequency, ari = 1/flood.frequency, min.high.spell.duration = min.duration,
             avg.high.spell.duration = avg.duration, med.high.spell.duration = med.duration, max.high.spell.duration = max.duration, avg.spell.volume = mean(spell.volumes, 
                 na.rm = T), avg.spell.peak = high.flow.av, sd.spell.peak = high.flow.sd, avg.rise = mean.rise, avg.fall = mean.fall, avg.max.ann = ann.maxs.mean, 
             cv.max.ann = cv.max.ann, flood.skewness = flood.skewness, ann.max.timing = avg.max.day[, "mean.doy"], ann.max.timing.sd = avg.max.day[, 
