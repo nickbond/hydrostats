@@ -49,7 +49,9 @@ A dataframe with the following columns.
 
 low flow indices
 \item{low.spell.threshold }{The low spell threshold applied in the analysis}
+\item{min.low.spell.duration }{Minimum duration of spell events}
 \item{avg.low.spell.duration }{Average duration of spell events}
+\item{med.low.spell.duration }{Median duration of spell events}
 \item{max.low.duration }{Maximum duration of spell events}
 \item{low.spell.freq}{The frequency of spell events (no. per year)}
 

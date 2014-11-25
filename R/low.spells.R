@@ -96,8 +96,9 @@ low.spells <- function(flow.ts, quant = 0.1, threshold = NULL, duration = T, vol
         
         
         if (duration == TRUE) {
-            
+        		min.duration <- min(low.flow.runs$lengths[which(low.flow.runs$values == 1)], na.rm = T)
             avg.duration <- mean(low.flow.runs$lengths[which(low.flow.runs$values == 1)], na.rm = T)
+            med.duration <- median(low.flow.runs$lengths[which(low.flow.runs$values == 1)], na.rm = T)
             max.duration <- max(low.flow.runs$lengths[which(low.flow.runs$values == 1)], na.rm = T)
             sd.duration <- sd(low.flow.runs$lengths[which(low.flow.runs$values == 1)], na.rm = T)
             cv.duration <- sd.duration/avg.duration
@@ -125,12 +126,12 @@ low.spells <- function(flow.ts, quant = 0.1, threshold = NULL, duration = T, vol
     }
     
     if (ann.stats == F) {
-        return(data.frame(low.spell.threshold = flow.threshold, avg.low.spell.duration = avg.duration, max.low.duration = max.duration, 
+        return(data.frame(low.spell.threshold = flow.threshold, min.low.spell.duration = min.duration, avg.low.spell.duration = avg.duration, med.low.spell.duration = med.duration, max.low.duration = max.duration, 
             low.spell.freq = low.spell.frequency))
         
     } else {
         
-        return(data.frame(low.spell.threshold = flow.threshold, avg.low.spell.duration = avg.duration, max.low.duration = max.duration, 
+        return(data.frame(low.spell.threshold = flow.threshold, min.low.spell.duration = min.duration, avg.low.spell.duration = avg.duration, med.low.spell.duration = med.duration, max.low.duration = max.duration, 
             low.spell.freq = low.spell.frequency, avg.min.ann = ann.mins.mean, cv.min.ann = cv.min.ann, ann.min.timing = avg.min.day[, "mean.doy"], 
             ann.min.timing.sd = avg.min.day[, "sd.doy"]))
     }
