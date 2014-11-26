@@ -1,8 +1,20 @@
-hydrostats 0.2.1
+hydrostats 0.2.3
 ----------------------------------------------------------------
 
 BUG FIXES AND MINOR IMPROVEMENTS
-* Modified the code to prevent an error when used with the 'do' 
+* Modified the baseflow prevent an error when used with the 'do' 
+	function in dplyr, which allows the use of arbitrary functions 
+	with the group_by function.
+
+* added minimum and median spell duration to the results returned by 
+	the low.spells and high.spells functions.
+
+
+hydrostats 0.2.2
+----------------------------------------------------------------
+
+BUG FIXES AND MINOR IMPROVEMENTS
+* Modified the code for high.spells and low.spells to prevent an error when used with the 'do' 
 	function in dplyr, which allows the use of arbitrary functions 
 	with the group_by function.
 
