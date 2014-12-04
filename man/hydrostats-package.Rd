@@ -6,7 +6,7 @@
 calculate hydrologic statistics
 }
 \description{
-A package to calculate a range of hydrologic statistics based on daily time series data and which are widely used in hydrology and ecological applications.
+Calculate a range of hydrologic statistics based on daily time series data and which are widely used in hydrology and ecological applications.
 }
 \details{
 \tabular{ll}{
