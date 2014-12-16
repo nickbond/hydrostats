@@ -37,7 +37,7 @@ logical. Should statistics describing spell volumes be returned?}
   \item{plot}{
 logical. Should the time-series be plotted? Data points considered 'within spell' are identifed using red circles and the threshold is identified with a horizontal line.}
   \item{ann.stats}{
-logical. If TRUE, the function returns results describing the annual series (i.e. that describing the characteristics of the spells associated with the lowest annual daily flow).}
+logical. If TRUE, the function returns results describing the annual series (i.e. the characteristics of the spells associated with the lowest annual daily flow). The duration of each annual low spell is defined as the number of days below the smallest annual minimum for the lowest (and longest) low flow event in each year.}
   \item{ann.stats.only}{
 logical. If TRUE, statistics describing the annual series only are returned.}
 	\item{hydro.year}{
@@ -60,6 +60,9 @@ Annual low flow statistics
 \item{cv.min.ann}{The coefficient of variation of annual minimum flows}
 \item{ann.min.timing}{The average day of the year (0-366) on which the minimum flow(s) occur.}
 \item{ann.min.timing.sd}{circular standard deviation of the average timing of annual minimum flows}
+\item{ann.min.min.dur}{Minimum duration of the annual maximum spells (always equal to 1)}
+\item{ann.min.avg.dur}{Average duration of the annual maximum spells}
+\item{ann.min.max.dur}{Maximum duration of the annual maximum spells}
 }
 
 \author{
