@@ -60,7 +60,7 @@ partial.series <- function(flow.ts, ari = 2, ind.days = 7, duration = T, plot = 
         plot(flow.ts[["Date"]], flow.ts[["Q"]], type = "l", main = gauge, xlab = "Date", ylab = "Q")
         
         points(p.series$Date, p.series$Q, col = "red", cex = 0.25)
-        abline(h = (tail(p.series[2], 1) - 1))
+        abline(h = (tail(p.series["Q"], 1) - 1))
     }
     
     high.flows <- ifelse(flow.ts[["Q"]] >= flow.threshold, 1, 0)
