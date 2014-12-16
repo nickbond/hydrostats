@@ -19,7 +19,7 @@ series = FALSE)
   \item{flow.ts}{Dataframe with date and discharge data in columns named "Date" and "Q" respectively. Date must be in POSIX format (see ts.format)
 }
   \item{ari}{
-The desired average return interval. As a partial series, an ari of 1 will return statistics for the n largest floods in n years of record, irrespective of timing. Annual series can be derived from high.spells with annual.stats=T}
+The desired average return interval. As a partial series, an ari of 1 will return statistics for the n largest floods in n years of record (also referred to as the annual exceedence series).  The annual maximum series can be derived from high.spells with annual.stats=T}
   \item{ind.days}{
 Spells of less than ind.days (default 7) are considered to be non-independent, and only the larger of the two spells is included in the results. This behaviour differs from high.spells, where periods below the determined spell threshold of less than the independence period are infilled for the purposes of determining spell duration. This behaviour may change in the future}
   \item{duration}{
@@ -39,6 +39,7 @@ A list or dataframe dependening on whether series = TRUE. If TRUE, a list is ret
 %%  If it is a LIST, use
 Indices
 \item{p.series }{A dataframe containing an ordered partial series\cr showing the timing and peak magnitude of events}.
+\item{n.years }{Number of (almost) complete years in the series. Years with fewer than 350 non-missing values are ignored}.
 \item{n.events }{Number of events in the partial series}{}
 \item{flow.threshold }{the peak volume of the smallest event include in the series}{}
 \item{avg.duration }{the average duration of events in the series}{}
