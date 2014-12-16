@@ -27,7 +27,7 @@ logical. If FALSE (default), a column indicating the hydrologic year of each rec
 
 \value{
 %%  ~Describe the value returned
-If year.only=FALSE (default), the function returns the original dataframe with an added column "year" indicating the hydrologic year to which each case belongs. Otherwise, if year.only=TRUE, a vector of hydrologic years is returned.
+If year.only=FALSE (default), the function returns the original dataframe with an added column "hydro.year" indicating the hydrologic year to which each case belongs. Otherwise, if year.only=TRUE, a vector of hydrologic years is returned.
 }
 
 \author{
