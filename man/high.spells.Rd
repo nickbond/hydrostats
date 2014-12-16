@@ -7,7 +7,7 @@ Calculates high flow spell statistics
 \description{
 Calculates a suite of statistics describing flood characteristics, such as the timing, frequency and duration of events. The event threshold can be defined as a flow quantile (e.g. upper 90th percentile [default]) or a specific threshold volume (e.g. ML/day).
 
-For the purpose of deriving annual flood statistics, the function can also be applied based on the hydrologic year. This is advisable where the high flow season spans years, such that prolonged spells may span years. This first requires the time series be processed using the hydro.year function. This adds an additional column indicating the hydrologic year to which each row belongs, which is used for deriving annual spell characteristics.
+For the purpose of deriving annual flood statistics, the function can also be applied based on the hydrologic year. This is advisable where the high flow season spans years, such that prolonged spells may span years. Setting the parameter hydro.year=TRUE uses the hydro.year function to determine the appropriate hydrologic year for each record, which is then used for deriving annual spell characteristics.
 
 It is possible for there to be multiple days with the same annual maximum flow value (although less likely than for low flows). In estimating the average timing (and sd of timing) of minimum flows, the function calculates the average day of year (DOY) of minimum flows in each year first, before calculating the average across years. Circular functions are used to address the proximity between days toward the beginning and end of the year.
 
@@ -48,10 +48,10 @@ logical. If TRUE, days below a user defined cease-to-flow threshold (default 0.1
 values below this threshold are treated as zero for the purpose of percentile based calculations (see ignore zeros).
 }
   \item{ann.stats}{
-logical. If TRUE, the function returns results describing the annual series (i.e. that describing the characteristics of the largest flood event in each year of the time-series).
+logical. If TRUE, the function returns results describing the annual maximum series (i.e. that describing the characteristics of the largest flood event in each year of the time-series). The duration of each annual high.spell is defined as the number of days above the smallest annual maximum for the largest (and longest) high.spell event in each year.
 }
   \item{ann.stats.only}{
-logical. If TRUE, statistics describing the annual series only are returned.}
+logical. If TRUE, statistics describing the annual series only are returned. }
 
   \item{inter.flood}{
 logical. If TRUE, statistics describing inter-flood spell characteristics are reported.}
@@ -68,10 +68,10 @@ flood indices
 \item{n.events }{The number of events in the series greater than or equal to the high.spell.threshold}
 \item{spell.freq}{The frequency of spell events (no. per year)}
 \item{ari}{Average Recurrence Interval of events in years (1/spell.freq)}
-\item{min.high.spell.duration}{Minimum duration of spell events}
-\item{avg.high.spell.duration}{Average duration of spell events}
-\item{med.high.spell.duration}{Median duration of spell events}
-\item{max.high.spell.duration}{Maximum duration of spell events}
+\item{min.high.spell.dur}{Minimum duration of spell events}
+\item{avg.high.spell.dur}{Average duration of spell events}
+\item{med.high.spell.dur}{Median duration of spell events}
+\item{max.high.spell.dur}{Maximum duration of spell events}
 \item{avg.spell.volume}{Average spell volume (volumes above the threshold only)}
 \item{avg.spell.peak}{Average spell peak}
 \item{sd.spell.peak}{Standard deviation of spell speaks}
@@ -89,8 +89,10 @@ Annual flood statistics
 \item{flood.skewness}{The average annual maximum / mean daily flow}
 \item{ann.max.timing}{The average day of the year (0-366) on which maximum flows occur}
 \item{ann.max.timing.sd}{circular standard deviation of the average timing of annual maximum flows}
-\item{avg.ann.duration}{The average duration of the annual maximum spells}
-\item{cv.ann.duration}{The coefficient of variation of the duration of annual maximum spells}
+\item{ann.max.min.dur}{Minimum duration of the annual maximum spells (always equal to 1)}
+\item{ann.max.avg.dur}{Average duration of the annual maximum spells}
+\item{ann.max.max.dur}{Maximum duration of the annual maximum spells}
+\item{ann.max.cv.dur}{The coefficient of variation of the duration of annual maximum spells}
 
 }
 
@@ -120,6 +122,6 @@ ddply(Cooper, .(year), function(x) high.spells(x, ann.stats=FALSE))
 %generate seperate results before/after 1980.
 Cooper$time.period <- ifelse(Cooper$year<1980,"pre_1980","post_1980")
 
-ddply(Cooper, .(time.period), function(x) low.spells(x, ann.stats=FALSE))
+ddply(Cooper, .(time.period), function(x) high.spells(x, ann.stats=FALSE))
 
 }
