@@ -16,7 +16,7 @@ partial.series <- function(flow.ts, ari = 2, ind.days = 7, duration = T, plot = 
     if (ari > n.years) {
         print("warning(time-series is shorter than ari. Please provide a smaller ari")
         if (volume == FALSE) {
-            return(data.frame(ari = ari, n.years = n.years, n.events = NA, flow.threshold = NA, avg.duration = N, max.duration = NA))
+            return(data.frame(ari = ari, n.years = n.years, n.events = NA, flow.threshold = NA, avg.duration = NA, max.duration = NA))
         } else {
             return(data.frame(ari = ari, n.years = n.years, n.events = NA, flow.threshold = NA, avg.duration = NA, max.duration = NA, med.spell.volume = NA))
         }
