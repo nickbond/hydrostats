@@ -10,6 +10,8 @@ BUG FIXES AND MINOR IMPROVEMENTS
 
 * added number of years and ARI to the partial series output.
 
+* fixed an error in high.spells and low.spells, which could produce an error in the duration statistics for annual series.
+
 
 hydrostats 0.2.2
 ----------------------------------------------------------------
