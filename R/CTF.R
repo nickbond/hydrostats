@@ -15,7 +15,7 @@ CTF <- function(flow.ts, threshold = 0.1) {
         
         CTF.ts <- ifelse(flow.ts["Q"] > threshold, 1, 0)
         
-        CTF.runs <- rle(CTF.ts[,"Q"])
+        CTF.runs <- rle(CTF.ts[, "Q"])
         p.CTF <- sum(CTF.ts == 0)/length(CTF.ts)
         avg.CTF <- mean(CTF.runs$lengths[which(CTF.runs$values == 0)], na.rm = T)
         med.CTF <- median(CTF.runs$lengths[which(CTF.runs$values == 0)], na.rm = T)

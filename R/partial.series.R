@@ -1,13 +1,13 @@
 partial.series <- function(flow.ts, ari = 2, ind.days = 7, duration = T, plot = F, volume = T, series = FALSE) {
     gauge <- deparse(substitute(flow.ts))
-		
+    
     record.year <- strftime(flow.ts[["Date"]], format = "%Y")
     flow.ts <- data.frame(flow.ts, hydro.year = record.year)
-    flow.ts.comp<-na.omit(flow.ts)
+    flow.ts.comp <- na.omit(flow.ts)
     n.days <- tapply(flow.ts.comp[["Q"]], flow.ts.comp[["hydro.year"]], length)
     n.most.days <- which(n.days >= 350)
     flow.ts.comp <- flow.ts.comp[which(flow.ts.comp[["hydro.year"]] %in% names(n.most.days)), ]
-    flow.ts.comp[["hydro.year"]] <-factor(flow.ts.comp[["hydro.year"]])
+    flow.ts.comp[["hydro.year"]] <- factor(flow.ts.comp[["hydro.year"]])
     record.year <- flow.ts.comp[["hydro.year"]]
     
     n.years <- length(n.most.days)
@@ -15,17 +15,16 @@ partial.series <- function(flow.ts, ari = 2, ind.days = 7, duration = T, plot = 
     
     if (ari > n.years) {
         print("warning(time-series is shorter than ari. Please provide a smaller ari")
-        if(volume==FALSE) {
-        return(data.frame(ari=ari, n.years=n.years, n.events = NA, flow.threshold = NA, avg.duration = N, max.duration = NA))
-        			} else {
-        			 	return(data.frame(ari=ari, n.years=n.years, n.events = NA, flow.threshold = NA, avg.duration = NA, max.duration = NA, 
-        			 										med.spell.volume = NA))
-        			 }
-    
-    
+        if (volume == FALSE) {
+            return(data.frame(ari = ari, n.years = n.years, n.events = NA, flow.threshold = NA, avg.duration = N, max.duration = NA))
+        } else {
+            return(data.frame(ari = ari, n.years = n.years, n.events = NA, flow.threshold = NA, avg.duration = NA, max.duration = NA, med.spell.volume = NA))
+        }
+        
+        
     }
-    n.events <- data.frame(n.events=ceiling(n.years/ari))
-    p.series <- vector("list", length=n.events$n.events)
+    n.events <- data.frame(n.events = ceiling(n.years/ari))
+    p.series <- vector("list", length = n.events$n.events)
     
     rising <- data.frame(rising = flow.ts[2:nrow(flow.ts), "Q"] - flow.ts[1:nrow(flow.ts) - 1, "Q"])
     falling <- data.frame(falling = flow.ts[3:nrow(flow.ts), "Q"] - flow.ts[2:nrow(flow.ts) - 2, "Q"])
@@ -76,22 +75,19 @@ partial.series <- function(flow.ts, ari = 2, ind.days = 7, duration = T, plot = 
         spell.volumes <- flow.ts[["Q"]]
         spell.volumes <- sapply(spells, sum)
         spell.volumes.below.threshold <- sapply(spells, length) * flow.threshold
-        spell.volumes <- spell.volumes[which(high.flow.runs$values == 1)] - spell.volumes.below.threshold[which(high.flow.runs$values == 
-            1)]
+        spell.volumes <- spell.volumes[which(high.flow.runs$values == 1)] - spell.volumes.below.threshold[which(high.flow.runs$values == 1)]
         
         
         if (series == TRUE) {
-            return(list(p.series = p.series, ari=ari, n.years=n.years, n.events = n.events, flow.threshold = flow.threshold, avg.duration = avg.duration, max.duration = max.duration, 
-                med.spell.volume = median(spell.volumes)))
+            return(list(p.series = p.series, ari = ari, n.years = n.years, n.events = n.events, flow.threshold = flow.threshold, avg.duration = avg.duration, max.duration = max.duration, med.spell.volume = median(spell.volumes)))
         } else {
-            return(data.frame(ari=ari, n.years=n.years, n.events = n.events, flow.threshold = flow.threshold, avg.duration = avg.duration, max.duration = max.duration, 
-                med.spell.volume = median(spell.volumes)))
+            return(data.frame(ari = ari, n.years = n.years, n.events = n.events, flow.threshold = flow.threshold, avg.duration = avg.duration, max.duration = max.duration, med.spell.volume = median(spell.volumes)))
         }
     } else {
         if (series == TRUE) {
-            return(list(p.series = p.series, ari=ari, n.years=n.years, n.events = n.events, flow.threshold = flow.threshold, avg.duration = avg.duration, max.duration = max.duration))
+            return(list(p.series = p.series, ari = ari, n.years = n.years, n.events = n.events, flow.threshold = flow.threshold, avg.duration = avg.duration, max.duration = max.duration))
         } else {
-            return(data.frame(ari=ari, n.years=n.years, n.events = n.events, flow.threshold = flow.threshold, avg.duration = avg.duration, max.duration = max.duration))
+            return(data.frame(ari = ari, n.years = n.years, n.events = n.events, flow.threshold = flow.threshold, avg.duration = avg.duration, max.duration = max.duration))
         }
     }
 } 

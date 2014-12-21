@@ -10,7 +10,7 @@ baseflows <- function(flow.ts, a = 0.975, ts = "mean") {
     Q <- red.flow.ts[[2]]
     
     lh3 <- function(Q, a) {
-    
+        
         qb1 <- lh(Q, a)
         qb2 <- lh(rev(qb1), a)
         qb3 <- lh(rev(qb2), a)
@@ -75,8 +75,8 @@ baseflows <- function(flow.ts, a = 0.975, ts = "mean") {
             obs <- nrow(red.flow.ts)
             prop.obs = obs/all.days
             
-            return(data.frame(n.years = n.years, prop.obs = prop.obs, MDF = mean(out[, 2], na.rm = T), Q50 = median(out[, 2], na.rm = T), mean.bf = mean(out[, 
-                3], na.rm = T), mean.bfi = mean(out[, 3], na.rm = T)/mean(out[, 2], na.rm = T)))
+            return(data.frame(n.years = n.years, prop.obs = prop.obs, MDF = mean(out[, 2], na.rm = T), Q50 = median(out[, 2], na.rm = T), mean.bf = mean(out[, 3], na.rm = T), mean.bfi = mean(out[, 
+                3], na.rm = T)/mean(out[, 2], na.rm = T)))
             
         }
     }

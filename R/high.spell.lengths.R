@@ -18,10 +18,10 @@ high.spell.lengths <- function(flow.ts, quant = 0.9, threshold = NULL, ind.days 
         if (ignore.zeros == T) {
             
             flow.threshold <- quantile(flow.ts[which(flow.ts[, "Q"] > ctf.threshold), "Q"], quant, na.rm = T)
-            names(flow.threshold) <- NULL  
+            names(flow.threshold) <- NULL
         } else {
             flow.threshold <- quantile(flow.ts[, "Q"], quant, na.rm = T)
-            names(flow.threshold) <- NULL  
+            names(flow.threshold) <- NULL
         }
         
     }

@@ -34,8 +34,7 @@ seasonality <- function(flow.ts, monthly.range = FALSE) {
         month.difs <- factor(as.character(abs(max.months - min.months)))
         month.difs <- as.factor(recode(month.difs, oldvalue = c("11", "10", "9", "8", "7"), newvalue = c("1", "2", "3", "4", "5")))
         
-        return(list(seasonality = out, monthly.means, avg.ann.month.range = av.ann.month.range, max.min.time.dif = round(mean(as.numeric(levels(month.difs)[month.difs])), 
-            0)))
+        return(list(seasonality = out, monthly.means, avg.ann.month.range = av.ann.month.range, max.min.time.dif = round(mean(as.numeric(levels(month.difs)[month.difs])), 0)))
         
     } else {
         return(out)

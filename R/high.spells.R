@@ -1,5 +1,5 @@
-high.spells <- function(flow.ts, quant = 0.9, threshold = NULL, ind.days = 5, duration = TRUE, volume = TRUE, plot = TRUE, ignore.zeros = FALSE, 
-    ctf.threshold = 0.1, ann.stats = TRUE, ann.stats.only = FALSE, inter.flood = FALSE, hydro.year = FALSE) {
+high.spells <- function(flow.ts, quant = 0.9, threshold = NULL, ind.days = 5, duration = TRUE, volume = TRUE, plot = TRUE, ignore.zeros = FALSE, ctf.threshold = 0.1, ann.stats = TRUE, ann.stats.only = FALSE, 
+    inter.flood = FALSE, hydro.year = FALSE) {
     
     gauge <- deparse(substitute(flow.ts))
     
@@ -24,7 +24,7 @@ high.spells <- function(flow.ts, quant = 0.9, threshold = NULL, ind.days = 5, du
         if (length(n.most.days) == 0) {
             ann.maxs.mean <- NA
             ann.maxs.sd <- NA
-            avg.max.day <- data.frame(mean.doy=NA, sd.doy=NA)
+            avg.max.day <- data.frame(mean.doy = NA, sd.doy = NA)
             min.max.ann.duration <- NA
             avg.max.ann.duration <- NA
             max.max.ann.duration <- NA
@@ -33,7 +33,7 @@ high.spells <- function(flow.ts, quant = 0.9, threshold = NULL, ind.days = 5, du
             cv.max.ann <- NA
         } else {
             flow.ts.comp <- flow.ts.comp[which(flow.ts.comp[["hydro.year"]] %in% names(n.most.days)), ]
-            flow.ts.comp[["hydro.year"]] <-factor(flow.ts.comp[["hydro.year"]])
+            flow.ts.comp[["hydro.year"]] <- factor(flow.ts.comp[["hydro.year"]])
             record.year <- flow.ts.comp[["hydro.year"]]
             n.years <- nlevels(as.factor(record.year))
             
@@ -59,52 +59,56 @@ high.spells <- function(flow.ts, quant = 0.9, threshold = NULL, ind.days = 5, du
             max.ann.flow.threshold <- min(ann.maxs$Q, na.rm = T)
             
             ann.max.spells <- ifelse(flow.ts.comp[["Q"]] >= max.ann.flow.threshold, 1, 0)
-           # ann.max.spell.runs <- rle(ann.max.spells) now done seperately for each year below.
+            # ann.max.spell.runs <- rle(ann.max.spells) now done seperately for each year below.
             
-           ann.runs <- tapply(ann.max.spells, flow.ts.comp[["hydro.year"]], rle)
-           ann.runs.cum <- lapply(ann.runs, function(x) cumsum(x$lengths))
-
-           ann.max.index.all.events <- tapply(flow.ts.comp[["Q"]], flow.ts.comp[["hydro.year"]], function(x) which(x==max(x)))
-           
-           if (max(sapply(ann.max.index.all.events, length))>1) {
-           	ann.max.event.rles <- lapply(ann.max.index.all.events, function(x) rle(diff(x))) 
-           	idx<- !(sapply(ann.max.event.rles, function(x) length(x$lengths)))
-           	ann.max.event.rles[idx]<-lapply(ann.max.event.rles[idx], function(x) {x$lengths<-0; x$values<-1; x})	
-           	
-           	ann.max.events.max.dur<-unlist(lapply(ann.max.event.rles, function(x) max(x$lengths[which(x$values==1)])+1)) #add 1 because diff function returns index-1
-           	ann.max.events.max.dur <- ann.max.events.max.dur[is.finite(ann.max.events.max.dur)]
-           	
-           } else {
-           	
-           	ann.max.rle.event.indices<-sapply(ann.runs, function(x) which(x$values==1)) #list of vectors
-           	
-           	ann.max.rle.event.indices<-mapply(function(x, y) x[y], ann.runs.cum, ann.max.rle.event.indices) #list
-           	
-           	ann.max.rle.run.indices<-lapply(ann.runs, function(x) which(x$values==1)) #list
-           	
-           	largest.event.index<-mapply(function(x, y) which.min(abs(x-y)), ann.max.index.all.events, ann.max.rle.event.indices) #vector
-           	
-           	final.event.index<-mapply(function(x,y) x[y], ann.max.rle.run.indices, largest.event.index) #vector
-           	
-           	ann.max.events.max.dur<-unlist(mapply(function(x, y) x$lengths[y], ann.runs, final.event.index, SIMPLIFY=TRUE)) #vector
-           	
-        }
-        	
- 
+            ann.runs <- tapply(ann.max.spells, flow.ts.comp[["hydro.year"]], rle)
+            ann.runs.cum <- lapply(ann.runs, function(x) cumsum(x$lengths))
             
-            min.max.ann.duration <- min(ann.max.events.max.dur, na.rm=T)
+            ann.max.index.all.events <- tapply(flow.ts.comp[["Q"]], flow.ts.comp[["hydro.year"]], function(x) which(x == max(x)))
+            
+            if (max(sapply(ann.max.index.all.events, length)) > 1) {
+                ann.max.event.rles <- lapply(ann.max.index.all.events, function(x) rle(diff(x)))
+                idx <- !(sapply(ann.max.event.rles, function(x) length(x$lengths)))
+                ann.max.event.rles[idx] <- lapply(ann.max.event.rles[idx], function(x) {
+                  x$lengths <- 0
+                  x$values <- 1
+                  x
+                })
+                
+                ann.max.events.max.dur <- unlist(lapply(ann.max.event.rles, function(x) max(x$lengths[which(x$values == 1)]) + 1))  #add 1 because diff function returns index-1
+                ann.max.events.max.dur <- ann.max.events.max.dur[is.finite(ann.max.events.max.dur)]
+                
+            } else {
+                
+                ann.max.rle.event.indices <- sapply(ann.runs, function(x) which(x$values == 1))  #list of vectors
+                
+                ann.max.rle.event.indices <- mapply(function(x, y) x[y], ann.runs.cum, ann.max.rle.event.indices)  #list
+                
+                ann.max.rle.run.indices <- lapply(ann.runs, function(x) which(x$values == 1))  #list
+                
+                largest.event.index <- mapply(function(x, y) which.min(abs(x - y)), ann.max.index.all.events, ann.max.rle.event.indices)  #vector
+                
+                final.event.index <- mapply(function(x, y) x[y], ann.max.rle.run.indices, largest.event.index)  #vector
+                
+                ann.max.events.max.dur <- unlist(mapply(function(x, y) x$lengths[y], ann.runs, final.event.index, SIMPLIFY = TRUE))  #vector
+                
+            }
+            
+            
+            
+            min.max.ann.duration <- min(ann.max.events.max.dur, na.rm = T)
             avg.max.ann.duration <- mean(ann.max.events.max.dur, na.rm = T)
             max.max.ann.duration <- max(ann.max.events.max.dur, na.rm = T)
             cv.max.ann <- (ann.maxs.sd/ann.maxs.mean) * 100
             flood.skewness <- ann.maxs.mean/mean.ann[["mean"]]
-            cv.ann.duration <- (sd(ann.max.events.max.dur))/
-            											mean(ann.max.events.max.dur) * 100
+            cv.ann.duration <- (sd(ann.max.events.max.dur))/mean(ann.max.events.max.dur) * 100
             
         }
     }
     if (ann.stats.only == T) {
         
-        return(data.frame(avg.max.ann = ann.maxs.mean, cv.max.ann = cv.max.ann, ann.max.timing = avg.max.day[["mean.doy"]], ann.max.timing.sd = avg.max.day[["sd.doy"]], flood.skewness = flood.skewness, ann.max.min.dur=min.max.ann.duration, ann.max.avg.dur = avg.max.ann.duration, ann.max.max.dur=max.max.ann.duration, ann.max.cv.dur = cv.ann.duration))
+        return(data.frame(avg.max.ann = ann.maxs.mean, cv.max.ann = cv.max.ann, ann.max.timing = avg.max.day[["mean.doy"]], ann.max.timing.sd = avg.max.day[["sd.doy"]], flood.skewness = flood.skewness, 
+            ann.max.min.dur = min.max.ann.duration, ann.max.avg.dur = avg.max.ann.duration, ann.max.max.dur = max.max.ann.duration, ann.max.cv.dur = cv.ann.duration))
         
     } else {
         
@@ -165,8 +169,8 @@ high.spells <- function(flow.ts, quant = 0.9, threshold = NULL, ind.days = 5, du
         
         
         if (duration == TRUE) {
-      
-        		min.duration <- min(high.flow.runs$lengths[which(high.flow.runs$values == 1)], na.rm = T)
+            
+            min.duration <- min(high.flow.runs$lengths[which(high.flow.runs$values == 1)], na.rm = T)
             avg.duration <- mean(high.flow.runs$lengths[which(high.flow.runs$values == 1)], na.rm = T)
             med.duration <- quantile(high.flow.runs$lengths[which(high.flow.runs$values == 1)], 0.5, na.rm = T, names = F)
             max.duration <- max(high.flow.runs$lengths[which(high.flow.runs$values == 1)], na.rm = T)
@@ -191,8 +195,7 @@ high.spells <- function(flow.ts, quant = 0.9, threshold = NULL, ind.days = 5, du
             spell.volumes <- flow.ts[, "Q"]
             spell.volumes <- sapply(spells, sum)
             spell.volumes.below.threshold <- sapply(spells, length) * flow.threshold
-            spell.volumes <- spell.volumes[which(high.flow.runs$values == 1)] - spell.volumes.below.threshold[which(high.flow.runs$values == 
-                1)]
+            spell.volumes <- spell.volumes[which(high.flow.runs$values == 1)] - spell.volumes.below.threshold[which(high.flow.runs$values == 1)]
             
         }
         
@@ -208,15 +211,14 @@ high.spells <- function(flow.ts, quant = 0.9, threshold = NULL, ind.days = 5, du
     }
     
     if (ann.stats == F) {
-        return(data.frame(high.spell.threshold = flow.threshold, n.events = n.events, spell.frequency = flood.frequency, 
-            ari = 1/flood.frequency, min.high.spell.duration = min.duration, avg.high.spell.duration = avg.duration, med.high.spell.duration = med.duration, max.high.spell.duration = max.duration, 
-            avg.spell.volume = mean(spell.volumes, na.rm = T), avg.spell.peak = high.flow.av, sd.spell.peak = high.flow.sd, avg.rise = mean.rise, 
-            avg.fall = mean.fall))
+        return(data.frame(high.spell.threshold = flow.threshold, n.events = n.events, spell.frequency = flood.frequency, ari = 1/flood.frequency, min.high.spell.duration = min.duration, avg.high.spell.duration = avg.duration, 
+            med.high.spell.duration = med.duration, max.high.spell.duration = max.duration, avg.spell.volume = mean(spell.volumes, na.rm = T), avg.spell.peak = high.flow.av, sd.spell.peak = high.flow.sd, 
+            avg.rise = mean.rise, avg.fall = mean.fall))
     } else {
-        return(data.frame(high.spell.threshold = flow.threshold, n.events = n.events, spell.freq = flood.frequency, ari = 1/flood.frequency, min.high.spell.duration = min.duration,
-            avg.high.spell.duration = avg.duration, med.high.spell.duration = med.duration, max.high.spell.duration = max.duration, avg.spell.volume = mean(spell.volumes, 
-                na.rm = T), avg.spell.peak = high.flow.av, sd.spell.peak = high.flow.sd, avg.rise = mean.rise, avg.fall = mean.fall, avg.max.ann = ann.maxs.mean, 
-            cv.max.ann = cv.max.ann, flood.skewness = flood.skewness, ann.max.timing = avg.max.day[["mean.doy"]], ann.max.timing.sd = avg.max.day[["sd.doy"]], ann.max.min.dur=min.max.ann.duration, ann.max.avg.dur = avg.max.ann.duration, ann.max.max.dur=max.max.ann.duration, ann.max.cv.dur = cv.ann.duration))
+        return(data.frame(high.spell.threshold = flow.threshold, n.events = n.events, spell.freq = flood.frequency, ari = 1/flood.frequency, min.high.spell.duration = min.duration, avg.high.spell.duration = avg.duration, 
+            med.high.spell.duration = med.duration, max.high.spell.duration = max.duration, avg.spell.volume = mean(spell.volumes, na.rm = T), avg.spell.peak = high.flow.av, sd.spell.peak = high.flow.sd, 
+            avg.rise = mean.rise, avg.fall = mean.fall, avg.max.ann = ann.maxs.mean, cv.max.ann = cv.max.ann, flood.skewness = flood.skewness, ann.max.timing = avg.max.day[["mean.doy"]], ann.max.timing.sd = avg.max.day[["sd.doy"]], 
+            ann.max.min.dur = min.max.ann.duration, ann.max.avg.dur = avg.max.ann.duration, ann.max.max.dur = max.max.ann.duration, ann.max.cv.dur = cv.ann.duration))
     }
     
     

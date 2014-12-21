@@ -1,4 +1,4 @@
-Colwells <- function(flow.ts, fn = "mean", boundaries = "transform", s = 11, base = 2, from = 0.5, by = 0.25, indices.only=FALSE) {
+Colwells <- function(flow.ts, fn = "mean", boundaries = "transform", s = 11, base = 2, from = 0.5, by = 0.25, indices.only = FALSE) {
     fn <- match.fun(fn)
     
     
@@ -78,13 +78,13 @@ Colwells <- function(flow.ts, fn = "mean", boundaries = "transform", s = 11, bas
     C <- round(1 - HY/log(s), 2)
     M <- round((HX + HY - HXY)/log(s), 2)
     
-   
-    if (indices.only==TRUE) {
-    	
-    	return(data.frame(P = P, C = C, M = M, CP = C/P, MP = M/P))
-   
-    	} else {
-   
-    		return(list(breaks = pbreaks, flow.table = flow.table, P = P, C = C, M = M, CP = C/P, MP = M/P))
+    
+    if (indices.only == TRUE) {
+        
+        return(data.frame(P = P, C = C, M = M, CP = C/P, MP = M/P))
+        
+    } else {
+        
+        return(list(breaks = pbreaks, flow.table = flow.table, P = P, C = C, M = M, CP = C/P, MP = M/P))
+    }
 } 
-}
