@@ -1,6 +1,6 @@
 Package: hydrostats
 Type: Package
-Title: Hydrologic indices for daily time series data
+Title: Hydrologic Indices for Daily Time Series Data
 Version: 0.2.3
 Date: 2014-12-22
 Author: Nick Bond
