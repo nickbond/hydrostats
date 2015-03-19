@@ -18,6 +18,9 @@ Dataframe with date and discharge data in columns named "Date" and "Q" respectiv
   \item{a}{
 The alpha value used in the Lynne-Hollick filter for digital baseflow separation. Default value is 0.975  
 }
+  \item{n.reflected}{
+The number of days that are reflected at the start and end of the series to provide a burn in for the digital filter. Default value is 30. 
+}
   \item{ts}{
 ts="mean" returns means for the entire time series \cr
 ts="annual" returns annual averages. Note this function does not currently use hydrologic years even when defined\cr
