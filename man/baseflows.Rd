@@ -8,7 +8,7 @@ Measures of central tendency and baseflow via the Lynne-Hollick (LH) baseflow fi
 Calculate measure of central tendency and baseflow indices using the Lynne-Hollick filter
 }
 \usage{
-baseflows(flow.ts, a, ts = "mean")
+baseflows(flow.ts, a, n.reflected = 30, ts = "mean")
 }
 
 \arguments{
