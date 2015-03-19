@@ -1,3 +1,9 @@
+hydrostats 0.2.4
+BUG FIXES AND MINOR IMPROVEMENTS
+* the baseflows function now reflects the start and end values from the time-series (n.reflected) before calculating the baseflow component to reduce sensitivity to the starting conditions (as recommended by Ladson, A. R., R. Brown, B. Neal and R. Nathan (2013). “A standard approach to baseflow separation using the Lyne and Hollick filter.” Australian Journal of Water Resources 17(1): 173-180.).
+
+* corrected year count in the baseflow function.
+
 hydrostats 0.2.3
 ----------------------------------------------------------------
 
