@@ -75,7 +75,7 @@ high.spells <- function(flow.ts, quant = 0.9, threshold = NULL, ind.days = 5, du
                   x
                 })
                 
-                ann.max.events.max.dur <- unlist(lapply(ann.max.event.rles, function(x) max(x$lengths[which(x$values == 1)]) + 1))  #add 1 because diff function returns index-1
+                ann.max.events.max.dur <- unlist(lapply(ann.max.event.rles, function(x) max(x$lengths[which(x$values == 1)], na.rm=T) + 1))  #add 1 because diff function returns index-1
                 ann.max.events.max.dur <- ann.max.events.max.dur[is.finite(ann.max.events.max.dur)]
                 
             } else {
@@ -135,7 +135,7 @@ high.spells <- function(flow.ts, quant = 0.9, threshold = NULL, ind.days = 5, du
         
         
         
-        high.flows <- ifelse(flow.ts[, "Q"] > flow.threshold, 1, 0)
+        high.flows <- ifelse(flow.ts[, "Q"] >= flow.threshold, 1, 0)
         
         if (ind.days > 0) {
             
