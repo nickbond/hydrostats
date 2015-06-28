@@ -2,7 +2,7 @@
 \alias{daily.cv}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Caculate daily cofficient of variation
+Calculate daily cofficient of variation
 }
 \description{
 This function takes a daily time series and returns the coefficient of variation of daily flows expressed as a percentage. 
