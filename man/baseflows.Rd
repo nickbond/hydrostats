@@ -19,7 +19,7 @@ Dataframe with date and discharge data in columns named "Date" and "Q" respectiv
 The alpha value used in the Lynne-Hollick filter for digital baseflow separation. Default value is 0.975  
 }
   \item{n.reflected}{
-The number of days that are reflected at the start and end of the series to provide a burn in for the digital filter. Default value is 30. 
+The number of days that are reflected at the start and end of the series to provide a burn in for the digital filter. Default value is 30. (See Ladson et al. 2013).
 }
   \item{ts}{
 ts="mean" returns means for the entire time series \cr
@@ -48,6 +48,8 @@ ts="daily"
 
 }
 \references{
+Ladson, A. R., R. Brown, B. Neal and R. Nathan (2013). “A standard approach to baseflow separation using the Lyne and Hollick filter.” Australian Journal of Water Resources 17(1): 173-18
+
 Lynne, V., Hollick, M. (1979) Stochastic time-variable rainfall-runoff modelling. In: pp. 89-93 Institute of Engineers Australia National Conference. Perth.
 }
 \author{
