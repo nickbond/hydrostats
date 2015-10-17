@@ -36,6 +36,8 @@ logical. If TRUE, the function returns the spell lengths and start dates for per
 
 \value{
 Returns a dataframe of spell lengths and their associated starting dates.
+
+Note that spells will always end at NAs.
 }
 
 \author{
