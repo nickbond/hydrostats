@@ -1,4 +1,5 @@
 hydrostats 0.2.4
+----------------------------------------------------------------
 BUG FIXES AND MINOR IMPROVEMENTS
 * The high.spell.lengths function was fixed so that missing values do not result in incorrect start dates being returned (Thanks to Bastian Pöschl).
 
