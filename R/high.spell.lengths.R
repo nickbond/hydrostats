@@ -2,7 +2,8 @@ high.spell.lengths <- function(flow.ts, quant = 0.9, threshold = NULL, ind.days 
     
     record.year <- strftime(flow.ts[["Date"]], format = "%Y")
     flow.ts <- data.frame(flow.ts, year = record.year)
-    
+    #make missing Q values 0 so that the correct start and end dates are returned.
+   flow.ts[is.na(flow.ts[["Q"]]), "Q"] <- 0
     n.years <- nlevels(as.factor(record.year))
     
     
