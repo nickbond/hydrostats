@@ -12,8 +12,8 @@ Calculate a range of hydrologic statistics based on daily time series data and w
 \tabular{ll}{
 Package: \tab hydrostats\cr
 Type: \tab Package\cr
-Version: \tab 0.2.3\cr
-Date: \tab 2014-12-22\cr
+Version: \tab 0.2.4\cr
+Date: \tab 2015-10-16\cr
 License: \tab GPL (>= 2) \cr
 }
 

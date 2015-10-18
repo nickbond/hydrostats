@@ -48,7 +48,7 @@ ts="daily"
 
 }
 \references{
-Ladson, A. R., R. Brown, B. Neal and R. Nathan (2013). “A standard approach to baseflow separation using the Lyne and Hollick filter.” Australian Journal of Water Resources 17(1): 173-18
+Ladson, A. R., R. Brown, B. Neal and R. Nathan (2013) A standard approach to baseflow separation using the Lyne and Hollick filter. Australian Journal of Water Resources 17(1): 173-18
 
 Lynne, V., Hollick, M. (1979) Stochastic time-variable rainfall-runoff modelling. In: pp. 89-93 Institute of Engineers Australia National Conference. Perth.
 }

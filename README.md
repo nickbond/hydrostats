@@ -10,7 +10,7 @@
 - baseflow components
 
 	
-Most of the functions can be used with plyr to return a dataframe of indices based on an additional splitting factor. This allows the analysis (for example) of data from multiple gauges simultaneously, without the need to write a for loop. As well as summary indices, several functions will instead return a dataframe of individual spell charactersistics for use in subsequent analysis and plotting.
+Most of the functions can be used with the packages plyr and dplyr to return a dataframe of indices based on an additional grouping variable. This allows the analysis (for example) of data from multiple gauges simultaneously, without the need to write a for loop. While most functions return a single row dataframe, several functions will instead return a dataframe of individual spell charactersistics for use in subsequent analysis and plotting.
 
 #Installation
 To install the latest development version run the following code: 

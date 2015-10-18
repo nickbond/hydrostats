@@ -16,3 +16,6 @@ export(ann.cv,
 			 recode, 
 			 seasonality,
 			 ts.format)
+import(stats, 
+					 utils, 
+					 graphics)
