@@ -1,4 +1,4 @@
-Colwells <- function(flow.ts, fn = "mean", boundaries = "transform", s = 11, base = 2, from = 0.5, by = 0.25, indices.only = FALSE) {
+Colwells <- function(flow.ts, fn = "mean", boundaries = "transform", s = 11, base.binning = 2, from = 0.5, by = 0.25, base.entropy = 2, indices.only = FALSE) {
     fn <- match.fun(fn)
     
     
@@ -23,7 +23,7 @@ Colwells <- function(flow.ts, fn = "mean", boundaries = "transform", s = 11, bas
         
         if (boundaries == "log_class_size") {
             
-            breaks <- base^(seq(1:s) - 2)
+            breaks <- base.binning^(seq(1:s) - 2)
             breaks <- c(-Inf, breaks, Inf)
             pbreaks <- breaks
             flow.ts.monthly$flow.class <- cut(flow.ts.monthly$Q, breaks)
@@ -33,7 +33,7 @@ Colwells <- function(flow.ts, fn = "mean", boundaries = "transform", s = 11, bas
             
             if (boundaries == "weighted_log_class_size") {
                 low_exp <- ceiling(0 - (s - 1)/2)
-                breaks <- base^seq(low_exp, length.out = s - 1)
+                breaks <- base.binning^seq(low_exp, length.out = s - 1)
                 breaks <- c(-Inf, breaks, Inf)
                 pbreaks <- breaks
                 breaks <- fn(flow.ts.monthly$Q) * breaks
@@ -70,13 +70,13 @@ Colwells <- function(flow.ts, fn = "mean", boundaries = "transform", s = 11, bas
     Y <- apply(flow.table, 1, sum, na.rm = T)
     Z <- sum(flow.table, na.rm = TRUE)
     
-    HX <- -1 * sum((X/Z) * log(X/Z), na.rm = TRUE)
-    HY <- -1 * sum((Y/Z) * log(Y/Z), na.rm = TRUE)
-    HXY <- -1 * sum((flow.table/Z) * log(flow.table/Z), na.rm = TRUE)
+    HX <- -1 * sum((X/Z) * log(X/Z, base = base.entropy), na.rm = TRUE)
+    HY <- -1 * sum((Y/Z) * log(Y/Z, base = base.entropy), na.rm = TRUE)
+    HXY <- -1 * sum((flow.table/Z) * log(flow.table/Z, base = base.entropy), na.rm = TRUE)
     
-    P <- round(1 - (HXY - HX)/log(s), 2)
-    C <- round(1 - HY/log(s), 2)
-    M <- round((HX + HY - HXY)/log(s), 2)
+    P <- round(1 - (HXY - HX)/log(s, base = base.binning), 2)
+    C <- round(1 - HY/log(s, base = base.binning), 2)
+    M <- round((HX + HY - HXY)/log(s, base = base.binning), 2)
     
     
     if (indices.only == TRUE) {
