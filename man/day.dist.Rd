@@ -34,7 +34,7 @@ A dataframe with two columns.
 Bayliss, A. C., Jones, R. C. (1993) Peaks-over-threshold flood database: Summary statistics and seasonality. Institute of Hydrology. Wallingford, UK.
 }
 \author{
-Nick Bond <n.bond@griffith.edu.au>
+Nick Bond <n.bond@latrobe.edu.au>
 }
 \examples{
 days<-c(366,1,365,1,366)

@@ -10,8 +10,8 @@ Returns the length (and start date) of all flow spells above (or below) a given 
 Independence criteria allow short periods below the spell threshold to be ignored and flows below a threshold (e.g. zero flows) can be ignored when calculating percentile flows (useful in ephemeral rivers).
 }
 \usage{
-low.spell.lengths(flow.ts, quant = 0.9, threshold,
-ind.days = 5, ignore.zeros = T, ctf.threshold = 0.1, inter.spell=FALSE)
+low.spell.lengths(flow.ts, quant = 0.1, threshold,
+ind.days = 5, ignore.zeros = F, ctf.threshold = 0.1, inter.spell=FALSE)
 }
 
 \arguments{
@@ -29,7 +29,7 @@ Periods between spells of less than ind.days (default 5) are considered to be 'i
 logical. If TRUE, days below a user defined cease-to-flow threshold (default 0.1) will be excluded when estimating the spell threshold for a given percentile. This is primarily of interest in highly ephemeral rivers, where flow may only occur for a small fraction of the time. In such cases, the inclusion of zeros will skew estimates of low flow events downwards, which may be undesirable.}
   \item{ctf.threshold}{
 values below this threshold are treated as zero for the purpose of percentile based calculations (see ignore zeros).}
-	\item{inter.flood}{
+	\item{inter.spell}{
 logical. If TRUE, the function returns the spell lengths and start dates for periods above (rather than below) the defined threshold.
 	}
 }
@@ -41,7 +41,7 @@ Note that spells will always end at NAs.
 }
 
 \author{
-Nick Bond <n.bond@griffith.edu.au>
+Nick Bond <n.bond@latrobe.edu.au>
 }
 \examples{
 data(Cooper)

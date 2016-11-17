@@ -26,7 +26,7 @@ data(Acheron) - Flow data for Acheron River, Australia, Gauge 405209@Taggerty
 }
 \author{
 Nick Bond
-Maintainer: Nick Bond <n.bond@griffith.edu.au>
+Maintainer: Nick Bond <n.bond@latrobe.edu.au>
 }
 
 \examples{

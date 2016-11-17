@@ -31,7 +31,7 @@ If year.only=FALSE (default), the function returns the original dataframe with a
 }
 
 \author{
-Nick Bond <n.bond@griffith.edu.au>
+Nick Bond <n.bond@latrobe.edu.au>
 }
 \seealso{
 \code{\link{high.spells}}, \code{\link{low.spells}}.

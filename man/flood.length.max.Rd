@@ -24,7 +24,7 @@ Periods between spells of less than ind.days (default 5) are considered to be 'i
 A dataframe with one column (flood.length.max).
 }
 \author{
-Nick Bond <n.bond@griffith.edu.au>
+Nick Bond <n.bond@latrobe.edu.au>
 }
 \examples{
 

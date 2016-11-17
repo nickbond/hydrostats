@@ -22,7 +22,7 @@ A vector of same length as input with years in four digit format.
 }
 
 \author{
-Nick Bond <n.bond@griffith.edu.au>
+Nick Bond <n.bond@latrobe.edu.au>
 }
 
 \seealso{

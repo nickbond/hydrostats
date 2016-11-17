@@ -30,7 +30,7 @@ A dataframe with the dates formatted as POSIXct and named columns Date and Q.
 %% ...
 }
 \author{
-Nick Bond <n.bond@griffith.edu.au>
+Nick Bond <n.bond@latrobe.edu.au>
 }
 \examples{
 data(Cooper)

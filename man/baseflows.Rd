@@ -53,7 +53,7 @@ Ladson, A. R., R. Brown, B. Neal and R. Nathan (2013) A standard approach to bas
 Lynne, V., Hollick, M. (1979) Stochastic time-variable rainfall-runoff modelling. In: pp. 89-93 Institute of Engineers Australia National Conference. Perth.
 }
 \author{
-Nick Bond <n.bond@griffith.edu.au>
+Nick Bond <n.bond@latrobe.edu.au>
 }
 
 \examples{

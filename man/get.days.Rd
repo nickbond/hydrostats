@@ -20,7 +20,7 @@ A vector containing the number of days in each year in the input vector
 }
 
 \author{
-Nick Bond <n.bond@griffith.edu.au>
+Nick Bond <n.bond@latrobe.edu.au>
 }
 
 \examples{

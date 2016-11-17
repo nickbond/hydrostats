@@ -49,7 +49,7 @@ Indices
 }
 
 \author{
-Nick Bond <n.bond@griffith.edu.au>
+Nick Bond <n.bond@latrobe.edu.au>
 }
 \examples{
 data(Cooper)

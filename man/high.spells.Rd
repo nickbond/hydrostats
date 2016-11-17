@@ -97,7 +97,7 @@ Annual flood statistics
 }
 
 \author{
-Nick Bond <n.bond@griffith.edu.au>
+Nick Bond <n.bond@latrobe.edu.au>
 }
 
 

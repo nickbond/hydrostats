@@ -30,7 +30,7 @@ If monthly.range=TRUE, the function returns a list with the following elements:
 }
 
 \author{
-Nick Bond <n.bond@griffith.edu.au>
+Nick Bond <n.bond@latrobe.edu.au>
 }
 
 \examples{

@@ -8,7 +8,7 @@ Calculates Colwell's (1974), which provide a measure of the seasonal predictabil
 \usage{
 Colwells(flow.ts, fn = "mean",
 boundaries = "transform", s = 11,
-base = 2, from = 0.5, by = 0.25, indices.only=FALSE)
+base.binning = 2, from = 0.5, by = 0.25, base.entropy=2, indices.only=FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -38,12 +38,15 @@ The number of classes the flow data is broken into (default 11)
   \item{base.binning}{
 The base integer for defining classes when using the "log_class_size" or "weighted_log_class_size" boundaries
 }
+
   \item{from}{
 The lowest break point for defining classes when using the "Gan" boundaries (default 0.25)
 }
+
   \item{by}{
 The bin width when using the "Gan" boundaries (default 0.25)
 }
+
   \item{base.entropy}{
 The base integer used for the entropy calculations (default=2)
 }
@@ -71,7 +74,7 @@ Colwell, R.K. 1974. Predictability, constancy, and contingency of periodic pheno
 Gan, K.C., McMahon, T.A., and Finlayson, B.L. 1991. Analysis of periodicity in streamflow and rainfall data by Colwell's indices. Journal of Hydrology 123(1-2): 105-18.
 }
 \author{
-Nick Bond <n.bond@griffith.edu.au>
+Nick Bond <n.bond@latrobe.edu.au>
 }
 \examples{
 data(Cooper)

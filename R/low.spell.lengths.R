@@ -1,4 +1,4 @@
-low.spell.lengths <- function(flow.ts, quant = 0.1, threshold = NULL, ind.days = 5, ignore.zeros = T, ctf.threshold = 0.1, inter.flood = FALSE) {
+low.spell.lengths <- function(flow.ts, quant = 0.1, threshold = NULL, ind.days = 5, ignore.zeros = F, ctf.threshold = 0.1, inter.spell = FALSE) {
 
     record.year <- strftime(flow.ts[["Date"]], format = "%Y")
     flow.ts <- data.frame(flow.ts, year = record.year)
@@ -52,7 +52,7 @@ low.spell.lengths <- function(flow.ts, quant = 0.1, threshold = NULL, ind.days =
     spell.starts <- c(1, cumsum(head(flow.runs.lengths, -1)) + 1)
     spell.lengths <- data.frame(flow.runs.values, start.date = flow.ts[spell.starts, "Date"], spell.length = flow.runs.lengths)
 
-    if (inter.flood == TRUE) {
+    if (inter.spell == TRUE) {
 
         spell.lengths <- subset(spell.lengths, flow.runs.values == 0, select = names(spell.lengths) %in% c("start.date", "spell.length"))
 
