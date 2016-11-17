@@ -24,6 +24,6 @@ Nick Bond <n.bond@griffith.edu.au>
 
 \examples{
 data(Cooper)
-cooper<-ts.format(Cooper)
+Cooper<-ts.format(Cooper)
 ann.cv(Cooper)
 }
