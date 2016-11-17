@@ -15,6 +15,8 @@ Most of the functions can be used with the packages plyr and dplyr to return a d
 #Installation
 To install the latest development version run the following code: 
 
+Current version on github and CRAN is 0.2.5.
+
 	# install dependencies/suggests:
 	# devtools required only to install from Github; 
 	# plyr required for examples
@@ -28,4 +30,4 @@ To install the latest development version run the following code:
 
 
 #Developer
-Nick Bond n.bond@griffith.edu.au
+Nick Bond n.bond@latrobe.edu.au
