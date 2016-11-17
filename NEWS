@@ -1,3 +1,16 @@
+hydrostats 0.2.5
+----------------------------------------------------------------
+BUG FIXES AND MINOR IMPROVEMENTS
+*The high.spells function was fixed to correct an error in the calculation of summary statistics for peaks (mean and sd). Formerly these included all flows above the threshold. (Thanks to Scott Hardie for picking this up).
+
+*The Colwells function was modified to use log base 2 for the entropy calculations. This value can now be set by the user. (Thanks to Benedikt Heudorfer for modifying the code to include this functionality).
+
+*A typo was corrected in the monthly.cv function help file to allow the examples to run correctly. (Thanks to Sunny Yu).
+
+*A low.spell.lengths function was added to provide the ability to calculate low spell start date and duration with the same flexibility as for high spells (including independence criteria). This extends the functionality of using high.spell.lengths with inter.flood=TRUE. (Thanks to Tim Haeusler).
+----------------------------------------------------------------
+
+
 hydrostats 0.2.4
 ----------------------------------------------------------------
 BUG FIXES AND MINOR IMPROVEMENTS
