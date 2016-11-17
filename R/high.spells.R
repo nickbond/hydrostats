@@ -148,11 +148,16 @@ high.spells <- function(flow.ts, quant = 0.9, threshold = NULL, ind.days = 5, du
         
         
         high.flow.runs <- rle(high.flows)
+
+        #find peaks
+        x<-flow.ts[["Q"]]
+        r<-rle(x)
+        peaks<- which(rep(x = diff(sign(diff(c(-Inf,r$values, -Inf)))) == -2, 
+        				times = r$lengths))
+        ##
         
-        
-        
-        high.flow.av <- mean(flow.ts[which(high.flows == 1), "Q"], na.rm = T)
-        high.flow.sd <- sd(flow.ts[which(high.flows == 1), "Q"], na.rm = T)
+        high.flow.pk.av <- mean(flow.ts[peaks, "Q"], na.rm = T)
+        high.flow.pk.sd <- sd(flow.ts[peaks, "Q"], na.rm = T)
         
         high.flow.rf <- rise.fall[which(high.flows == 1)]
         mean.rise <- abs(mean(high.flow.rf[high.flow.rf > 0], na.rm = T))
@@ -212,11 +217,11 @@ high.spells <- function(flow.ts, quant = 0.9, threshold = NULL, ind.days = 5, du
     
     if (ann.stats == F) {
         return(data.frame(high.spell.threshold = flow.threshold, n.events = n.events, spell.frequency = flood.frequency, ari = 1/flood.frequency, min.high.spell.duration = min.duration, avg.high.spell.duration = avg.duration, 
-            med.high.spell.duration = med.duration, max.high.spell.duration = max.duration, avg.spell.volume = mean(spell.volumes, na.rm = T), avg.spell.peak = high.flow.av, sd.spell.peak = high.flow.sd, 
+            med.high.spell.duration = med.duration, max.high.spell.duration = max.duration, avg.spell.volume = mean(spell.volumes, na.rm = T), avg.spell.peak = high.flow.pk.av, sd.spell.peak = high.flow.pk.sd, 
             avg.rise = mean.rise, avg.fall = mean.fall))
     } else {
         return(data.frame(high.spell.threshold = flow.threshold, n.events = n.events, spell.freq = flood.frequency, ari = 1/flood.frequency, min.high.spell.duration = min.duration, avg.high.spell.duration = avg.duration, 
-            med.high.spell.duration = med.duration, max.high.spell.duration = max.duration, avg.spell.volume = mean(spell.volumes, na.rm = T), avg.spell.peak = high.flow.av, sd.spell.peak = high.flow.sd, 
+            med.high.spell.duration = med.duration, max.high.spell.duration = max.duration, avg.spell.volume = mean(spell.volumes, na.rm = T), avg.spell.peak = high.flow.pk.av, sd.spell.peak = high.flow.pk.sd, 
             avg.rise = mean.rise, avg.fall = mean.fall, avg.max.ann = ann.maxs.mean, cv.max.ann = cv.max.ann, flood.skewness = flood.skewness, ann.max.timing = avg.max.day[["mean.doy"]], ann.max.timing.sd = avg.max.day[["sd.doy"]], 
             ann.max.min.dur = min.max.ann.duration, ann.max.avg.dur = avg.max.ann.duration, ann.max.max.dur = max.max.ann.duration, ann.max.cv.dur = cv.ann.duration))
     }
