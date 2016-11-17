@@ -6,8 +6,8 @@ Colwells indices }
 \description{
 Calculates Colwell's (1974), which provide a measure of the seasonal predictability of environmental phenomena. Defined in terms of Predictability (P), Constancy (C) and Contingency (M). For detailed information on the calculation and description of Colwell's indices refer to (Colwell, 1974).}
 \usage{
-Colwells(flow.ts, fn = "mean", 
-boundaries = "transform", s = 11, 
+Colwells(flow.ts, fn = "mean",
+boundaries = "transform", s = 11,
 base = 2, from = 0.5, by = 0.25, indices.only=FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
@@ -35,14 +35,17 @@ boundaries="Gan" creates bins that match those of Gan et al. (1991). Requires: f
 The number of classes the flow data is broken into (default 11)
 }
 
-  \item{base}{
+  \item{base.binning}{
 The base integer for defining classes when using the "log_class_size" or "weighted_log_class_size" boundaries
 }
   \item{from}{
 The lowest break point for defining classes when using the "Gan" boundaries (default 0.25)
 }
   \item{by}{
-The bin width when using the "Gan" boundaries (default 0.25) 
+The bin width when using the "Gan" boundaries (default 0.25)
+}
+  \item{base.entropy}{
+The base integer used for the entropy calculations (default=2)
 }
   \item{indices.only}{
 Logical. If FALSE (default), the function returns a list of length 3, including the breaks, a table of frequencies, and Colwell's indices. If TRUE, the function returns just a dataframe of indices, useful for combining output with that from other functions.}
@@ -91,6 +94,6 @@ data(Acheron)
 Acheron<-ts.format(Acheron)
 flow.ts<-rbind(data.frame(River="Acheron", Acheron), data.frame(River="Cooper", Cooper))
 
-ddply(flow.ts, .(River), function(x) 
+ddply(flow.ts, .(River), function(x)
 Colwells(x, boundaries="weighted_log_class_size", s=11, indices.only=TRUE))
 }
