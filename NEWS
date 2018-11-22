@@ -1,3 +1,11 @@
+hydrostats 0.2.6
+----------------------------------------------------------------
+BUG FIXES AND MINOR IMPROVEMENTS
+*Made a minor change to the baseflow function so that when the Lynn Hollick filter is used to estimate quickflow at each time step, any values < 0 are set to 0 immediately, before calculating the next quickflow value (Thanks to Leo-Juhani Meriö).
+
+*Fixed a bug in the high.spell and low.spell functions, so that the SD of the timing of max and min annual flows, respectively, are still calculated in situations where the max/min value occurs on multiple days.
+
+
 hydrostats 0.2.5
 ----------------------------------------------------------------
 BUG FIXES AND MINOR IMPROVEMENTS
