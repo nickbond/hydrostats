@@ -50,7 +50,7 @@ high.spells <- function(flow.ts, quant = 0.9, threshold = NULL, ind.days = 5, du
             
             ann.maxs.sd <- sd(ann.maxs[["Q"]], na.rm = T)
             
-            avg.ann.max.days <- aggregate(ann.max.days["Date"], by = ann.max.days["hydro.year"], function(x) t(day.dist(x)[["mean.doy"]]))
+            avg.ann.max.days <- aggregate(ann.max.days["Date"], ann.max.days["hydro.year"], function(x) t(day.dist(x)[["mean.doy"]]))
             
             avg.max.day <- day.dist(days = avg.ann.max.days[["Date"]], years = avg.ann.max.days[["hydro.year"]])
             
