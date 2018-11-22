@@ -45,9 +45,9 @@ low.spells <- function(flow.ts, quant = 0.1, threshold = NULL, duration = T, vol
             ann.mins.sd <- sd(ann.mins[["Q"]], na.rm = T)
             
             
-            avg.ann.min.days <- aggregate(ann.min.days["Date"], ann.min.days["hydro.year"], function(x) t(day.dist(x)))
+            avg.ann.min.days <- aggregate(ann.min.days["Date"], ann.min.days["hydro.year"], function(x) t(day.dist(x)[["mean.doy"]]))
             
-            avg.min.day <- day.dist(days = avg.ann.min.days[["Date"]][[1]], years = avg.ann.min.days[["hydro.year"]])
+            avg.min.day <- day.dist(days = avg.ann.min.days[["Date"]], years = avg.ann.min.days[["hydro.year"]])
             
             min.ann.flow.threshold <- max(ann.mins$Q, na.rm = T)
             
