@@ -32,11 +32,11 @@ baseflows <- function(flow.ts, a = 0.975, n.reflected = 30, ts = "mean") {
 		qf[1] <- (Q[2] - Q[1]) * ((1 + a)/2)
 		
 		for (i in 2:length(Q)) {
-			if (qf[i-1] <= 0) {
-				qf[i] <- 0
-			} else {
 			
 			qf[i] <- a * qf[i - 1] + ((Q[i] - Q[i - 1]) * ((1 + a)/2))
+			
+			if (qf[i] <= 0) {
+				qf[i] <- 0
 			
 			}
 		}
