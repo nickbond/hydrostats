@@ -20,7 +20,7 @@ values below this threshold (default 0.1) are treated as zero for the purpose of
 \value{
 A dataframe with 5 columns (see below).
 
-\item{p.CTF }{Fraction time cease to flows occur}
+\item{p.CTF }{Proportion time cease to flows occur}
 \item{avg.CTF }{Average cease-to-flow spell duration}
 \item{med.CTF }{Median cease-to-flow spell duration}
 \item{min.CTF }{Minimum cease-to-flow spell duration}
