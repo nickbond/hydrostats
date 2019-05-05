@@ -1,8 +1,8 @@
 Package: hydrostats
 Type: Package
 Title: Hydrologic Indices for Daily Time Series Data
-Version: 0.2.6
-Date: 2018-11-22
+Version: 0.2.7
+Date: 2019-05-05
 Author: Nick Bond
 Maintainer: Nick Bond <n.bond@latrobe.edu.au>
 Description: Calculates a suite of hydrologic indices for daily time series data that are widely used in hydrology and stream ecology.

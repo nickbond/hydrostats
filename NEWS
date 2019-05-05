@@ -1,3 +1,8 @@
+hydrostats 0.2.7
+----------------------------------------------------------------
+BUG FIXES AND MINOR IMPROVEMENTS
+*Addressed codign issue that occassionally threw an error when using the CTF function with dplyr 'do' or purrr. Returned results unaffected. 
+
 hydrostats 0.2.6
 ----------------------------------------------------------------
 BUG FIXES AND MINOR IMPROVEMENTS
