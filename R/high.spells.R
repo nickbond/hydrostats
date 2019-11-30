@@ -7,7 +7,7 @@ high.spells <- function(flow.ts, quant = 0.9, threshold = NULL, ind.days = 5, du
     if (hydro.year == TRUE) {
         print("Returning results based on hydrologic year")
         flow.ts <- hydro.year(flow.ts, hydro.year = "hydro")
-        record.year <- flow.ts[, "hydro.year"]
+        record.year <- flow.ts[["hydro.year"]]
     } else {
         record.year <- strftime(flow.ts[["Date"]], format = "%Y")
         flow.ts <- data.frame(flow.ts, hydro.year = record.year)
