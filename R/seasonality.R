@@ -24,7 +24,7 @@ seasonality <- function(flow.ts, monthly.range = FALSE) {
     if (monthly.range == TRUE) {
         flow.ts$Year <- as.factor(strftime(flow.ts$Date, format = "%Y"))
         flow.ts$month <- as.factor(strftime(flow.ts$Date, format = "%m"))
-        month.year.means <- tapply(flow.ts[, "Q"], flow.ts[c("Year", "month")], sum)
+        month.year.means <- tapply(flow.ts[["Q"]], flow.ts[c("Year", "month")], sum)
         month.year.means <- na.omit(month.year.means)
         monthly.means <- apply(month.year.means, 2, mean, na.rm = T)
         month.range <- apply(month.year.means, 1, range, na.rm = T)
@@ -32,7 +32,7 @@ seasonality <- function(flow.ts, monthly.range = FALSE) {
         max.months <- apply(month.year.means, 1, which.max)
         av.ann.month.range <- mean(month.range[2, ] - month.range[1, ])
         month.difs <- factor(as.character(abs(max.months - min.months)))
-        month.difs <- as.factor(recode(month.difs, oldvalue = c("11", "10", "9", "8", "7"), newvalue = c("1", "2", "3", "4", "5")))
+        month.difs <- as.factor(hydrostats::recode(month.difs, oldvalue = c("11", "10", "9", "8", "7"), newvalue = c("1", "2", "3", "4", "5")))
         
         return(list(seasonality = out, monthly.means, avg.ann.month.range = av.ann.month.range, max.min.time.dif = round(mean(as.numeric(levels(month.difs)[month.difs])), 0)))
         
