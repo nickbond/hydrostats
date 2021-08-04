@@ -1,3 +1,8 @@
+hydrostats 0.2.8
+----------------------------------------------------------------
+BUG FIXES AND MINOR IMPROVEMENTS
+*Addressed a coding issue in the seasonaility function to deal with an occassional error. Returned results unaffected. 
+
 hydrostats 0.2.7
 ----------------------------------------------------------------
 BUG FIXES AND MINOR IMPROVEMENTS

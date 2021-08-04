@@ -2,7 +2,7 @@ seasonality <- function(flow.ts, monthly.range = FALSE) {
     
     
     month.runs <- c()
-    month.means <- aggregate(flow.ts.month["Q"], by = list(month = strftime(flow.ts[["Date"]], format = "%m")), mean, na.rm = T)
+    month.means <- aggregate(flow.ts["Q"], by = list(month = strftime(flow.ts[["Date"]], format = "%m")), mean, na.rm = T)
     month.runs[1] <- sum(month.means[1:6, "Q"], na.rm = T)
     month.runs[2] <- sum(month.means[2:7, "Q"], na.rm = T)
     month.runs[3] <- sum(month.means[3:8, "Q"], na.rm = T)
@@ -22,8 +22,8 @@ seasonality <- function(flow.ts, monthly.range = FALSE) {
     
     
     if (monthly.range == TRUE) {
-        flow.ts$Year <- as.factor(strftime(flow.ts$Date, format = "%Y"))
-        flow.ts$month <- as.factor(strftime(flow.ts$Date, format = "%m"))
+        flow.ts[["Year"]] <- as.factor(strftime(flow.ts[["Date"]], format = "%Y"))
+        flow.ts[["month"]] <- as.factor(strftime(flow.ts[["Date"]], format = "%m"))
         month.year.means <- tapply(flow.ts[["Q"]], flow.ts[c("Year", "month")], sum)
         month.year.means <- na.omit(month.year.means)
         monthly.means <- apply(month.year.means, 2, mean, na.rm = T)
