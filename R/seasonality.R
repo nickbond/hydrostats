@@ -17,8 +17,8 @@ seasonality <- function(flow.ts, monthly.range = FALSE) {
     month.runs[12] <- sum(month.means[c(12, 1:5), "Q"], na.rm = T)
     
     month.runs.sort <- sort(month.runs)
-    low.6.months <- sum(month.runs.sort[1:6])
-    out <- low.6.months/sum(month.runs) * 100
+    low.6.months <- sum(month.runs.sort[1:6], na.rm=TRUE)
+    out <- low.6.months/sum(month.runs, na.rm=TRUE) * 100
     
     
     if (monthly.range == TRUE) {
