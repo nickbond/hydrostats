@@ -30,7 +30,8 @@ ts="daily" returns complete series}
 Technically the LH filter cannot be calculated where there are missing data. Here the function removes missing values and is applied to a concatenated version of the time series. Missing dates are reinserted after the filter has been applied for the purpose of returning annual or daily series. The function further reports the number of missing values leaving the user to decide on the reliability of the baseflow estimates.
 }
 \value{
-A dataframe. See below for details.
+A dataframe. See below for details. The original dataframe with appended columns "bf" and "bfi". See ts="annual" for details.
+
 
 ts="mean" 
  \item{n.years }{The number of years of record in the series}
@@ -41,11 +42,15 @@ ts="mean"
  \item{mean.bfi }{mean baseflow index}
  
 ts="annual"
-	\item{}{A dataframe containing columns "year", "no.obs",  "Q", "bf", "bfi", where no.obs is the number of observations, and bf and bfi are the mean baseflow and baseflow index, respectively, for each year in the record.}
+	\item{year}{the record year}
+	\item{no.obs}{no of observations in each year}
+	\item{Q}{mean daily flow in each year}
+	\item{bf}{mean baseflow volume in each year}
+	\item{bfi}{baseflow index for each year}
 	
 ts="daily"
-	\item{}{The original dataframe with appended columns "bf" and "bfi". See ts="annual" for details.}
-
+	\item{bf}{baseflow index for each observation}
+	\item{bfi}{baseflow index associated with each observation}
 }
 \references{
 Ladson, A. R., R. Brown, B. Neal and R. Nathan (2013) A standard approach to baseflow separation using the Lyne and Hollick filter. Australian Journal of Water Resources 17(1): 173-18
